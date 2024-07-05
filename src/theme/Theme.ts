@@ -136,6 +136,7 @@ export const HomeStyled = styled.div`
   text-align: center;
   height: 100vh;
   padding: 10px;
+  margin: 5px 5px 5px yellow;
   
   @media (max-width: 768px) {
     height: 200vh;
@@ -329,12 +330,15 @@ export const DashboardInfo = styled.div`
     p{
       font-size: 0.8rem;
     }
-    width: 90%;
+    width: 80%;
     height: 50%;
   }
 `;
 
 export const DashboardProjects = styled.div`
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
   background-color: ${({ theme }) => theme.colors.background};
   width: 35%;
   height: 100%;
@@ -342,12 +346,12 @@ export const DashboardProjects = styled.div`
   overflow-x: hidden;
   box-sizing: border-box;
   border-radius: 8px; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0px 8px rgba(0, 0, 0, 0.2);
   z-index: 200;
 
   @media (max-width: 768px) {
     width: 100%;
-    height: 30%;
+    height: 70%;
   }
 
 `;
@@ -360,13 +364,18 @@ export const DashboardCard  = styled.div`
   color: ${({ theme }) => theme.colors.text};
   gap: 0.2rem;
   text-align: left;
-  margin: 0px 0px 10px;
-  width: 100%;
-  height: 50%;
+  width: 70%;
+  height: 100%;
   overflow: auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   box-sizing: border-box;
+
+  h4{
+    color: ${({ theme }) => theme.colors.text};
+    font-size: 1rem;
+    font-weight: bold;
+  }
   
   p{
     color: ${({ theme }) => theme.colors.text};
@@ -448,17 +457,17 @@ export const FooterLinks = styled.div`
 `;
 
 export const BlackHoleStyled = styled.div`
-    background: ${({ theme }) => theme.colors.backgroundBlackHole};
+    background: ${({ theme }) => theme.colors.background};
     display: grid;
-    opacity: ${({ theme }) => theme.config.opacity}; 
+    // opacity: ${({ theme }) => theme.config.opacity}; 
     place-content: center;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110vh;
     filter: blur(8px);
-    border: 10px;
+    // border: 10px;
     z-index: -1;
 
     
