@@ -3,7 +3,7 @@ import Avatar from '../Avatar/Avatar';
 import Header from '../Header/Header';
 import React, { ReactNode } from 'react';
 import BlackHole from '../Blackhole/Blackhole';
-import userAvatar from '../../theme/assets/ipablo.dev.png';
+import userAvatar from '../../theme/assets/ipablo.dev.webp';
 import { HomeStyled, ContactStyled, LinkStyled } from '../../theme/Theme';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

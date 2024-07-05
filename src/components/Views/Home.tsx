@@ -6,8 +6,7 @@ import React, { ReactNode } from 'react';
 import DashboardProjects from '../Dashboards/Dashboard';
 import { HomeStyled } from '../../theme/Theme';
 
-import userAvatar from '../../theme/assets/ipablo.dev.png';
-<Avatar src={userAvatar} alt="User Avatar" size="200px" />
+import userAvatar from '../../theme/assets/ipablo.dev.webp';
 
 export interface AppProps {
   rightContent?: ReactNode;

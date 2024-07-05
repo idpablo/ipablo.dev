@@ -301,7 +301,7 @@ export const DashboardContainer = styled.div`
 
   @media (max-width: 768px) {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-revers;
     width: 99%;
     height: 100%;
   }
