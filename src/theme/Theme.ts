@@ -45,7 +45,7 @@ export const darkTheme = {
     backgroundBlackHole: '#010102',
   },
   config: {
-    opacity: '10',
+    opacity: '2',
     box_shadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
   },
 };
@@ -139,12 +139,19 @@ export const HomeStyled = styled.div`
   margin: 5px 5px 5px yellow;
   
   @media (max-width: 768px) {
-    height: 200vh;
+    height: 100%;
   }
 `;
 
 export const LinkStyled = styled.a`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   color: ${({ theme }) => theme.colors.text};
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+  }
 `;
 
 
@@ -227,14 +234,13 @@ export const HeaderBottonTheme = styled.div`
 `;
 
 export const ContactStyled = styled.div`
-  overflow: hidden;
-  justify-content: center;
-  flex-direction: column;
   display: flex; 
-  flex: 1;
-  gap: 1rem;
   justify-content: center;
-  width: 98%;
+  flex-direction: row;
+  align-items: center;
+  flex: 1;
+  gap: 3rem;
+  width: 100%;
   height: 100%;
   margin: 10px;
   border-radius: 5px;
@@ -242,8 +248,14 @@ export const ContactStyled = styled.div`
   box-shadow: 0 4px 8px rgba(0.1, 0.5, 0.5, 0.5);
   opacity: ${({ theme }) => theme.config.opacity}; 
   background-color: ${({ theme }) => theme.colors.background};
-  transform-origin: center;
   z-index: 199;
+
+  @media (max-width: 768px) {
+    display: flex; 
+    flex-direction: column;
+    gap: 4rem;
+    width: 100%;
+    height: 100%;
   }
 
 `;
@@ -336,12 +348,11 @@ export const DashboardInfo = styled.div`
 `;
 
 export const DashboardProjects = styled.div`
-  display: flex;
-  justify-content: start;
-  flex-direction: column;
+  gap: 0.2rem
   background-color: ${({ theme }) => theme.colors.background};
   width: 35%;
   height: 100%;
+  border: 10px;
   overflow-y: auto;
   overflow-x: hidden;
   box-sizing: border-box;
@@ -350,6 +361,10 @@ export const DashboardProjects = styled.div`
   z-index: 200;
 
   @media (max-width: 768px) {
+    display: flex;
+    justify-content: start;
+    justify-content: center;
+    flex-direction: column;
     width: 100%;
     height: 70%;
   }
@@ -357,15 +372,12 @@ export const DashboardProjects = styled.div`
 `;
 
 export const DashboardCard  = styled.div`
-  display: flex;
-  justify-content: start;
-  flex-direction: column;
   background-color: ${({ theme }) => theme.colors.background};
   color: ${({ theme }) => theme.colors.text};
   gap: 0.2rem;
   text-align: left;
-  width: 70%;
-  height: 100%;
+  width: 100%;
+  height: 50%;
   overflow: auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
@@ -400,18 +412,18 @@ export const DashboardCard  = styled.div`
     height: 60%;
   }
 
-  // ::-webkit-scrollbar-track {
-  //   background: #f1f1f1;
-  // }
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
 
-  // ::-webkit-scrollbar-thumb {
-  //   background: #888;
-  //   border-radius: 4px;
-  // }
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
 
-  // ::-webkit-scrollbar-thumb:hover {
-  //   background: #555;
-  // }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 
 `;
 

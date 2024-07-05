@@ -20,17 +20,15 @@ export const Contact: React.FC<AppProps> = ({ rightContent }) => {
       <BlackHole />
       <Header />
       <ContactStyled>
-        <div>
-          <Avatar src={userAvatar} alt="User Avatar" size="100px" />
-        </div>
+        <div><Avatar src={userAvatar} alt="User Avatar" size="100px" /></div>
         <LinkStyled href="mailto:pablo.soares.dev@gmail.com">
-          <FontAwesomeIcon icon={faEnvelope} size="5x" />
+          <FontAwesomeIcon icon={faEnvelope} size="3x" />
         </LinkStyled>
         <LinkStyled href="https://www.instagram.com/ipablo.dev" target="_blank" rel="noopener noreferrer">
-          <FontAwesomeIcon icon={faInstagram} size="5x" />
+          <FontAwesomeIcon icon={faInstagram} size="3x" />
         </LinkStyled>
         <LinkStyled href="https://github.com/idpablo" target="_blank" rel="noopener noreferrer">
-          <FontAwesomeIcon icon={faGithub} size="5x" />
+          <FontAwesomeIcon icon={faGithub} size="3x" />
         </LinkStyled>
       </ContactStyled>
       <Footer />

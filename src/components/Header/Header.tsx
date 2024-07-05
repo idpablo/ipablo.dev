@@ -7,8 +7,8 @@ import { FaSun, FaMoon } from 'react-icons/fa';
 import {
   HeaderStyled,
   HeaderLinks,
-  MenuButton,
-  MenuIcon,
+  // MenuButton,
+  // MenuIcon,
   HeaderBottonTheme,
   DropdownMenu,
   ThemeToggleContainer,
@@ -18,7 +18,7 @@ import {
 const Header: React.FC = () => {
   const currentTheme = useAppSelector((state) => state.theme.theme);
   const dispatch = useAppDispatch();
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [showDropdown] = useState(false);
 
   const toggleTheme = () => {
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
