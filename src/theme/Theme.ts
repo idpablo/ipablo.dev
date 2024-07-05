@@ -1,46 +1,53 @@
 import styled, { keyframes } from 'styled-components';
 import { FaBars } from 'react-icons/fa';
 
-const spin = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-`;
-
 const blackhole = keyframes`
     0% {transform: rotate(0deg)}
     100% {transform: rotate(-360deg)}
 `;
 
+const scroll = keyframes`
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+`;
+
 export const lightTheme = {
   colors: {
-    background: '#ffffff',
-    text: '#000000',
+    background: 'FCFCFF',
+    text: 'black',
     links: '#000000',
-    botton: '#2b2b80',
-    primary: '#0a6cbd',
-    primaryHover: '#0860a1',
+    botton: 'ECECF0',
+    primary: '17171A',
+    primaryHover: 'FCFCFF',
     textHover: '#ffffff',
-    backgroundBlackHole: '#063068',
+    backgroundBlackHole: 'FCFCFF',
   },
-  // outras propriedades de tema
+  config: {
+    opacityprimary: '0.4',
+    opacitysecund: '0',
+    box_shadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+  },
 };
 
 export const darkTheme = {
   colors: {
-    background: '#000000',
+    background: '#17171A',
     text: '#ffffff',
     links: '#ffffff',
     botton: '#3a3a52',
-    primary: '#282849',
-    primaryHover: '#59598f',
+    primary: '#ECECF0',
+    primaryHover: '##ECECF0',
     textHover: '#000000',
-    backgroundBlackHole: '#030a32',
+    backgroundBlackHole: '#010102',
   },
-  // outras propriedades de tema
+  config: {
+    opacity: '10',
+    box_shadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+  },
 };
 
 export const ThemeToggleContainer = styled.div`
@@ -61,6 +68,7 @@ export const ThemeToggleButton = styled.div<{ isDark: boolean }>`
   padding: 5px;
   position: relative;
   transition: background 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
   &:before {
     content: '';
@@ -128,29 +136,14 @@ export const HomeStyled = styled.div`
   text-align: center;
   height: 100vh;
   padding: 10px;
-`;
-
-export const AppLogo = styled.img`
-  height: 40vmin;
-  pointer-events: none;
-  @media (prefers-reduced-motion: no-preference) {
-    animation: ${spin} infinite 20s linear;
+  
+  @media (max-width: 768px) {
+    height: 200vh;
   }
 `;
 
-// export const AppHeader = styled.header`
-//   background-color: ${({ theme }) => theme.colors.primary};
-//   min-height: 100vh;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   font-size: calc(10px + 2vmin);
-//   color: ${({ theme }) => theme.colors.text};
-// `;
-
-export const AppLink = styled.a`
-  color: ${({ theme }) => theme.colors.primary};
+export const LinkStyled = styled.a`
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 
@@ -164,15 +157,21 @@ export const AvatarStyled = styled.img<{ size?: string }>`
   border-radius: 50%;
   object-fit: cover;
   margin-top: 10px;
-  border: 2px solid ${({ theme }) => theme.colors.primary || '#000'};
-  z-index: 1000;
+  // align-items: center;
+  border: 2px solid ${({ theme }) => theme.colors.text || '#000'};
+  z-index: 200;
+
+  @media (max-width: 768px) {
+    width: 100px;
+    height: 100px;
+  }
 `;
 
 export const HeaderStyled = styled.header`
   display: flex;
   flex: 0 1 auto;
   justify-content: space-between;
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.background};
   height: 3rem;
   width: 100%;
   box-sizing: border-box;
@@ -180,7 +179,13 @@ export const HeaderStyled = styled.header`
   align-items: center;
   padding: 5px;
   border-radius: 5px;
+  box-shadow: ${({ theme }) => theme.config.box_shadow };
   z-index: 100;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 5%;
+  }
 `;
 
 export const HeaderLinks = styled.div`
@@ -204,7 +209,6 @@ export const HeaderBottonTheme = styled.div`
 
   display: flex;
   gap: 1rem; 
-  // align-items: center;
 
   a {
     color: ${({ theme }) => theme.colors.text};
@@ -221,18 +225,209 @@ export const HeaderBottonTheme = styled.div`
   }
 `;
 
+export const ContactStyled = styled.div`
+  overflow: hidden;
+  justify-content: center;
+  flex-direction: column;
+  display: flex; 
+  flex: 1;
+  gap: 1rem;
+  justify-content: center;
+  width: 98%;
+  height: 100%;
+  margin: 10px;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0.1, 0.5, 0.5, 0.5);
+  opacity: ${({ theme }) => theme.config.opacity}; 
+  background-color: ${({ theme }) => theme.colors.background};
+  transform-origin: center;
+  z-index: 199;
+  }
+
+`;
+
+export const AboutStyled = styled.div`
+  overflow: hidden;
+  position: relative;
+  // justify-content: center;
+  width: 98%;
+  height: 80%;
+  margin: 10px;
+  border-radius: 5px;
+  padding: 10px;
+  opacity: ${({ theme }) => theme.config.opacity};
+  box-shadow: 0 4px 8px rgba(0.1, 0.5, 0.5, 0.5);
+  color: ${({ theme }) => theme.colors.text};
+  background-color: ${({ theme }) => theme.colors.background};
+  transform-origin: center;
+  z-index: 199;
+`;
+
+export const EndCreditsText = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 60%;
+  animation: ${scroll} 20s linear infinite;
+  text-align: center;
+  font-size: 1.5rem; 
+  line-height: 2;
+  z-index: -1;
+`;
+export const DashboardContainer = styled.div`
+  display: flex; 
+  gap: 0.2rem;
+  justify-content: center;
+  background-color: ${({ theme }) => theme.colors.background};
+  width: 99%;
+  height: 55vh;
+  margin: 10px;
+  border-radius: 5px;
+  padding: 10px; 
+  z-index: 199;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    width: 99%;
+    height: 100%;
+  }
+
+`;
+
+export const DashboardInfo = styled.div`
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  background-color: ${({ theme }) => theme.colors.background};
+  opacity: ${({ theme }) => theme.config.opacity}; 
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  border-radius: 8px;
+  color: ${({ theme }) => theme.colors.text};  
+  box-shadow: 0 4px 8px rgba(0.2, 0.2, 0.2, 0.2);
+  padding: 0px 30px 0px;
+  z-index: 200;
+
+  h2{
+    font-size: 2.5rem;
+    z-index: 201;
+  }
+  
+  p{
+    font-size: 1.5rem;
+    line-height: 1.5;
+    z-index: 201;
+  }
+
+  @media (max-width: 768px) {
+    h2{
+      font-size: 1rem;
+      z-index: 201;
+    }
+    p{
+      font-size: 0.8rem;
+    }
+    width: 90%;
+    height: 50%;
+  }
+`;
+
+export const DashboardProjects = styled.div`
+  background-color: ${({ theme }) => theme.colors.background};
+  width: 35%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  border-radius: 8px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 200;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 30%;
+  }
+
+`;
+
+export const DashboardCard  = styled.div`
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  background-color: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.colors.text};
+  gap: 0.2rem;
+  text-align: left;
+  margin: 0px 0px 10px;
+  width: 100%;
+  height: 50%;
+  overflow: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  box-sizing: border-box;
+  
+  p{
+    color: ${({ theme }) => theme.colors.text};
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  ::-webkit-scrollbar {
+    width: 200px; 
+  }
+
+  @media (max-width: 768px) {
+    gap: 0.1rem;
+    h4{
+      font-size: 0.8rem;
+      z-index: 201;
+    }
+    p{
+      font-size: 0.6rem;
+    }
+    width: 100%;
+    height: 60%;
+  }
+
+  // ::-webkit-scrollbar-track {
+  //   background: #f1f1f1;
+  // }
+
+  // ::-webkit-scrollbar-thumb {
+  //   background: #888;
+  //   border-radius: 4px;
+  // }
+
+  // ::-webkit-scrollbar-thumb:hover {
+  //   background: #555;
+  // }
+
+`;
+
 export const FooterStyled = styled.div`
-  background-color: ${({ theme }) => theme.colors.primary};
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: ${({ theme }) => theme.colors.background};
   color: ${({ theme }) => theme.colors.primary};
   border-radius: 5px;
+  botton: 0px;
   margin: 5px;
-  height: 5rem;
-  width: 100%;
-  bottom: 0;
+  width: 99%;
+  height: 15%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 100;
   
   p{
     color: ${({ theme }) => theme.colors.text}
+  }
+
+  @media (max-width: 768px) {
+    botton: 0px;
+    width: 99%;
+    height: 10%;
   }
 `;
 
@@ -252,82 +447,10 @@ export const FooterLinks = styled.div`
   }
 `;
 
-export const DashboardContainer = styled.div`
-  display: flex; 
-  flex: 1;
-  gap: 1rem;
-  justify-content: center;
-  background-color: ${({ theme }) => theme.colors.background};
-  width: 98%;
-  height: 5rem;
-  margin: 10px;
-  border-radius: 5px;
-  padding: 10px;
-  opacity: 0.5; 
-  z-index: 199;
-`;
-
-export const DashboardProjects = styled.div`
-  background-color: ${({ theme }) => theme.colors.background};
-  width: 30%;
-  height: 100%;
-  opacity: 1; 
-  overflow-y: auto;
-  overflow-x: hidden;
-  box-sizing: border-box;
-  border-radius: 8px; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 200;
-`;
-
-export const DashboardInfo = styled.div`
-  background-color: ${({ theme }) => theme.colors.primary};
-  width: 70%;
-  text-align: left;
-  opacity: 1; 
-  border-radius: 8px;
-  color: ${({ theme }) => theme.colors.text};
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  padding: 0px 30px 0px;
-  z-index: 200;
-
-  h2{
-    font-size: 2.5rem;
-    z-index: 201;
-  }
-  
-  p{
-    font-size: 1.5rem;
-    font-weight: bold;
-    line-height: 1.5;
-    z-index: 201;
-  }
-`;
-
-export const DashboardCard  = styled.div`
-  background-color: ${({ theme }) => theme.colors.primary};
-  width: 100%;
-  height: 40%;
-  text-align: left;
-  overflow: auto;
-  border: 1px solid #ccc;
-  padding: 15px;
-  opacity: 1;
-  color: ${({ theme }) => theme.colors.text};
-  border-radius: 8px;
-  box-sizing: border-box;
-  
-  p{
-    color: ${({ theme }) => theme.colors.text};
-    font-size: 1rem;
-    font-weight: bold;
-  }
-`;
-
 export const BlackHoleStyled = styled.div`
-    
     background: ${({ theme }) => theme.colors.backgroundBlackHole};
     display: grid;
+    opacity: ${({ theme }) => theme.config.opacity}; 
     place-content: center;
     position: fixed;
     top: 0;
@@ -346,9 +469,9 @@ export const BlackHoleStyled = styled.div`
     b{
         width: 50vmin;
         height: 51vmin;
-        box-shadow: 1vmin 0 3vmin 2vmin ${({ theme }) => theme.colors.primary},
-            inset -1vmin 0 3vmin 4vmin ${({ theme }) => theme.colors.primaryHover},
-                    -4vmin 0 35vmin 0 ${({ theme }) => theme.colors.primary};
+        box-shadow: 1vmin 0 3vmin 2vmin ${({ theme }) => theme.colors.background},
+            inset -1vmin 0 3vmin 4vmin ${({ theme }) => theme.colors.background},
+                    -4vmin 0 35vmin 0 ${({ theme }) => theme.colors.background};
         animation: ${blackhole} 20s linear infinite;
     }
     b:before, b:after {
@@ -361,8 +484,8 @@ export const BlackHoleStyled = styled.div`
         width: 3vmin;
         height: 3vmin;
         left: 40vmin;
-        box-shadow: #b8b8cb 0 0 2vmin 2vmin,
-                    #b8b8cb 2vmin 4vmin 2vmin 0.5vmin;
+        box-shadow: ${({ theme }) => theme.colors.background} 0 0 2vmin 2vmin,
+                    ${({ theme }) => theme.colors.background} 2vmin 4vmin 2vmin 0.5vmin;
     }
     b:after {
         width: 38vmin;

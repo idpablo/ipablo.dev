@@ -6,7 +6,7 @@ const Dashboard: React.FC = () => {
     return (
       <DashboardContainer>
         <DashboardProjects>
-          <DashboardCard>
+        <DashboardCard>
               <h4>Project 1</h4>
               <br></br>
               <p>O Innovative Learning Portal (ILP) é uma plataforma educacional avançada projetada para transformar a experiência de aprendizado online. Combinando tecnologias de ponta, personalização inteligente e uma interface amigável, o ILP visa criar um ambiente de aprendizado dinâmico e interativo para estudantes de todas as idades e disciplinas.</p>

@@ -15,7 +15,7 @@ const changeTheme = (data: string) => {
 let initTheme;
 
 if (
-  localStorage.getItem("theme") === "dark" ||
+  localStorage.getItem("theme") === "light" ||
   !localStorage.getItem("theme") ||
   window.matchMedia("(prefers-color-scheme: dark)").matches
 ) {

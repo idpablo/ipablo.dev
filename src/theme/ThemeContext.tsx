@@ -1,6 +1,5 @@
 import React, { createContext, useState, ReactNode } from 'react';
 
-// Defina uma interface para as props, incluindo 'children'
 interface ThemeProviderProps {
   children: ReactNode;
 }

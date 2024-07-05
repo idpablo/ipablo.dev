@@ -1,10 +1,10 @@
 import React from 'react';
-import { AvatarStyled } from '../../theme/Theme'; // Ajuste o caminho conforme necessário
+import { AvatarStyled } from '../../theme/Theme';
 
 interface AvatarProps {
   src: string;
   alt: string;
-  size?: string; // Permite personalizar o tamanho do avatar
+  size?: string;
 }
 
 const Avatar: React.FC<AvatarProps> = ({ src, alt, size }) => {

@@ -34,18 +34,16 @@ const Header: React.FC = () => {
       </HeaderLinks>
       <HeaderBottonTheme>
         <ThemeToggleContainer onClick={toggleTheme}>
-                <ThemeToggleButton isDark={currentTheme === 'dark'}>
+                <ThemeToggleButton isDark={currentTheme === 'light'}>
                   <FaSun className="icon" />
                   <FaMoon className="icon" />
                 </ThemeToggleButton>
         </ThemeToggleContainer>
-        <MenuButton onClick={() => setShowDropdown(!showDropdown)}>
+        {/* <MenuButton onClick={() => setShowDropdown(!showDropdown)}>
           <MenuIcon />
-        </MenuButton>
+        </MenuButton> */}
         {showDropdown && (
-          <DropdownMenu>
-            
-          </DropdownMenu>
+          <DropdownMenu />
         )}
       </HeaderBottonTheme>
       </HeaderStyled>

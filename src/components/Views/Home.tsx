@@ -6,6 +6,9 @@ import React, { ReactNode } from 'react';
 import DashboardProjects from '../Dashboards/Dashboard';
 import { HomeStyled } from '../../theme/Theme';
 
+import userAvatar from '../../theme/assets/ipablo.dev.png';
+<Avatar src={userAvatar} alt="User Avatar" size="200px" />
+
 export interface AppProps {
   rightContent?: ReactNode;
 }
@@ -16,7 +19,7 @@ export const Home: React.FC<AppProps> = ({ rightContent }) => {
     <HomeStyled>
       <BlackHole />
       <Header />
-      <Avatar src="https://via.placeholder.com/150" alt="User Avatar" size="100px" />
+      <Avatar src={userAvatar} alt="User Avatar" size="200px" />
       <DashboardProjects />
       {rightContent}
       <Footer />
