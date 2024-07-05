@@ -431,14 +431,16 @@ export const FooterStyled = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.colors.background};
-  color: ${({ theme }) => theme.colors.primary};
-  border-radius: 5px;
   botton: 0px;
   margin: 5px;
   width: 99%;
   height: 15%;
+  padding: 10px;
+  font-size: 0.8rem;
+  border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.background};
   z-index: 100;
   
   p{
@@ -448,7 +450,7 @@ export const FooterStyled = styled.div`
   @media (max-width: 768px) {
     botton: 0px;
     width: 99%;
-    height: 10%;
+    height: 15%;
   }
 `;
 
