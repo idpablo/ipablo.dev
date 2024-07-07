@@ -1,49 +1,49 @@
-# Scripts Disponíveis
+# Portifólio
+  Portifólio criado para testar o framework React
+ 
+## Sobre
 
-### Iniciar projeto
+ Página desenvolvida com base na documentação:
+ [Documentação API](https://react.dev/learn/typescript)
+ 
+## Tecnologias usadas
 
-``` bash
+<div style="display: inline_block">
+  <br>
+  <img align="center" alt="React" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg>
+</div>
 
-npm start
+<br>
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=idpablo_ipablo.dev&metric=duplicated_lines_density&token=d4215bf2fb0f7ecd767bcb859bcd6df371e6832e)](https://sonarcloud.io/summary/new_code?id=idpablo_ipablo.dev)
 
+### Dependências globais
+
+NodeJS
+
+### Dependências locais
+
+```bash
+npm install 
 ```
 
-### Inicia o aplicativo no modo de desenvolvimento.
-Abra http://localhost:3000 para visualizá-lo no navegador.
+### Iniciar aplicação
 
-A página será recarregada se você fizer edições.
-Você também verá quaisquer erros de lint no console.
-
-### Inicia o executor de testes no modo interativo de observação.
-Veja a seção sobre execução de testes para mais informações.
-
-``` bash 
-
-npm test
-
+```bash
+node run start 
 ```
 
-### Compila o aplicativo para produção na pasta build.
-Ele agrupa corretamente o React no modo de produção e otimiza a construção para obter o melhor desempenho.
-A construção é minificada e os nomes dos arquivos incluem os hashes.
-Seu aplicativo está pronto para ser implantado!
+### Executar testes
 
-``` bash 
+```bash
+node test 
+```
 
+### gerar build
+
+```bash
 npm run build
-
 ```
 
-Veja a seção sobre implantação para mais informações.
-Nota: esta é uma operação unilateral. Uma vez que você eject, não poderá voltar atrás!
+# Melhorias
 
-### Se você não estiver satisfeito com a ferramenta de construção e as escolhas de configuração, pode eject a qualquer momento. Este comando removerá a dependência de construção única do seu projeto.
-Em vez disso, ele copiará todos os arquivos de configuração e as dependências transitivas (webpack, Babel, ESLint, etc.) diretamente para seu projeto para que você tenha controle total sobre eles. Todos os comandos, exceto eject, ainda funcionarão, mas apontarão para os scripts copiados para que você possa ajustá-los. Neste ponto, você está por conta própria.
-
-``` bash 
-
-npm run eject
-
-```
-
-Você não precisa usar eject. O conjunto de recursos curado é adequado para implantações pequenas e médias, e você não deve se sentir obrigado a usar este recurso. No entanto, entendemos que esta ferramenta não seria útil se você não pudesse personalizá-la quando estiver pronto.
+    Adicionar controle de containers para subir e testar se a aplicação esta funcionando corretamente;
