@@ -15,7 +15,7 @@
 
 <br>
 
-[![Linhas Duplicadas (%)](https://sonarcloud.io/api/project_badges/measure?project=idpablo_ipablo.dev&metric=duplicated_lines_density&token=d4215bf2fb0f7ecd767bcb859bcd6df371e6832e)](https://sonarcloud.io/summary/new_code?id=idpablo_ipablo.dev)
+[![Linhas duplicadas (%)](https://sonarcloud.io/api/project_badges/measure?project=idpablo_ipablo.dev&metric=duplicated_lines_density&token=d4215bf2fb0f7ecd767bcb859bcd6df371e6832e)](https://sonarcloud.io/summary/new_code?id=idpablo_ipablo.dev)
 
 ### Dependências globais
 
