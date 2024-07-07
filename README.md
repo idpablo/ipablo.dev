@@ -1,7 +1,7 @@
 # Portifólio
   Portifólio criado para testar o framework React
 
-# Visite o sie [ipablo.dev](https://www.ipablo.dev).
+# Visite [ipablo.dev](https://www.ipablo.dev).
   Site disponibilizado com GitPages, build e deploy são gerados automaticamente a partir de alterações na master com Git Actions
   
 ## Sobre
