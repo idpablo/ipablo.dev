@@ -10,10 +10,11 @@
 
 <div style="display: inline_block">
   <br>
-  <img align="center" alt="React" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg>
+  <img align="center" alt="React" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg">
 </div>
 
 <br>
+
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=idpablo_ipablo.dev&metric=duplicated_lines_density&token=d4215bf2fb0f7ecd767bcb859bcd6df371e6832e)](https://sonarcloud.io/summary/new_code?id=idpablo_ipablo.dev)
 
 ### Dependências globais
