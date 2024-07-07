@@ -17,15 +17,14 @@ export const About: React.FC<AppProps> = ({ rightContent }) => {
       <Header />
       <AboutStyled>
         <Avatar src={userAvatar} alt="User Avatar" size="100px" />
-      <EndCreditsText>
-        <p>Esse "Portifolio"</p>
-        <p>foi construindo para testar o famoso "React"</p>
-        <p>O negocio é bom mesmo rapaz,</p>
-        <p>mas pra quem ta acostumando com tela preta</p>
-        <p></p>
-        <p>...</p>
-        <p>Obrigado por acessar!</p>
-      </EndCreditsText>
+        <EndCreditsText>
+          <p>Esse "Portifólio"</p>
+          <p>foi construindo para testar o famoso "React".</p>
+          <p>O negocio é bom mesmo rapaz,</p>
+          <p>mas pra quem ta acostumando com tela preta</p>
+          <p>...</p>
+          <p>Obrigado por acessar!</p>
+        </EndCreditsText>
       </AboutStyled>
       <Footer />
     </HomeStyled>

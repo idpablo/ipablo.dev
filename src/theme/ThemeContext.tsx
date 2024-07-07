@@ -7,7 +7,7 @@ interface ThemeProviderProps {
 const ThemeContext = createContext<any>(null);
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const storedTheme = localStorage.getItem('theme') || 'light';
+  const storedTheme = localStorage.getItem('theme' || 'light');
   const [theme, setTheme] = useState(storedTheme);
 
   return (

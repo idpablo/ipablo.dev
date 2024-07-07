@@ -40,7 +40,7 @@ export const darkTheme = {
     links: '#ffffff',
     botton: '#3a3a52',
     primary: '#ECECF0',
-    primaryHover: '##ECECF0',
+    primaryHover: '#000000',
     textHover: '#000000',
     backgroundBlackHole: '#010102',
   },
@@ -63,29 +63,28 @@ export const ThemeToggleButton = styled.div<{ isDark: boolean }>`
   justify-content: space-between;
   width: 50px;
   height: 15px;
+  padding: 8px;
   border-radius: 5px;
-  background: ${({ theme }) => theme.colors.botton};
-  padding: 5px;
   position: relative;
   transition: background 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background: ${({ theme }) => theme.colors.botton};
+  box-shadow: ${({ theme }) => theme.config.box_shadow };s
 
   &:before {
     content: '';
     position: absolute;
     top: 50%;
-    left: ${({ isDark }) => (isDark ? 'calc(100% - 25px)' : '5px')};
     transform: translateY(-50%);
     width: 20px;
     height: 20px;
-    background: ${({ theme }) => theme.colors.botton};
     border-radius: 50%;
     transition: left 0.3s ease;
+    background: ${({ theme }) => theme.colors.botton};
+    left: ${({ isDark }) => (isDark ? 'calc(100% - 25px)' : '5px')};
   }
 
   .icon {
     position: absolute;
-    z-index: 1;
     color: ${({ theme }) => theme.colors.background};
     &:first-child {
       left: 5px;
@@ -121,24 +120,26 @@ export const MenuIcon = styled(FaBars)`
 `;
 
 export const DropdownMenu = styled.div`
-  position: absolute;
   top: 50px;
   right: 20px;
+  position: absolute;
   background-color: ${({ theme }) => theme.colors.background};
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 1;
 `;
+
+//  Home
 
 export const HomeStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
+  position: fixed;
+  width: 100%;
   height: 100vh;
-  padding: 10px;
-  margin: 5px 5px 5px yellow;
+  left: 0;
+  top: 0;
   
-  @media (max-width: 768px) {
+  @media (max-width: 1100px) {
+    position: relative;
     height: 100%;
   }
 `;
@@ -149,7 +150,7 @@ export const LinkStyled = styled.a`
   gap: 1rem;
   color: ${({ theme }) => theme.colors.text};
 
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
     gap: 1rem;
   }
 `;
@@ -165,11 +166,10 @@ export const AvatarStyled = styled.img<{ size?: string }>`
   border-radius: 50%;
   object-fit: cover;
   margin-top: 10px;
-  // align-items: center;
   border: 2px solid ${({ theme }) => theme.colors.text || '#000'};
-  z-index: 200;
+  z-index: 10;
 
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
     width: 100px;
     height: 100px;
   }
@@ -177,44 +177,39 @@ export const AvatarStyled = styled.img<{ size?: string }>`
 
 export const HeaderStyled = styled.header`
   display: flex;
-  flex: 0 1 auto;
   justify-content: space-between;
-  background-color: ${({ theme }) => theme.colors.background};
-  height: 3rem;
-  width: 100%;
-  box-sizing: border-box;
-  margin: 0px;
   align-items: center;
+  width: 100%;
+  height: 3rem;
+  margin: 0px;
   padding: 5px;
   border-radius: 5px;
   box-shadow: ${({ theme }) => theme.config.box_shadow };
-  z-index: 100;
+  background-color: ${({ theme }) => theme.colors.background};
 
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
     width: 100%;
     height: 5%;
   }
 `;
 
 export const HeaderLinks = styled.div`
-  display: flex;
-  gap: 1rem; 
+  padding-left: 10px;
 
   a {
-    color: ${({ theme }) => theme.colors.text};
-    text-decoration: none;
     font-size: 1rem;
-    font-weight: bold;
+    text-decoration: none;
+    padding: 10px;
+    color: ${({ theme }) => theme.colors.text};
 
     &:hover {
-      background-color: ${({ theme }) => theme.colors.background};
-      color: ${({ theme }) => theme.colors.primary};
+      background-color: ${({ theme }) => theme.colors.primaryHover};
     }
   }
 `;
 
 export const HeaderBottonTheme = styled.div`
-
+  padding-right: 20px;
   display: flex;
   gap: 1rem; 
 
@@ -223,12 +218,11 @@ export const HeaderBottonTheme = styled.div`
     text-decoration: none;
     font-size: 0.8rem;
     font-weight: bold;
-    // padding: 10px;
     border-radius: 5px;
 
     &:hover {
-      background-color: ${({ theme }) => theme.colors.background};
       color: ${({ theme }) => theme.colors.primary};
+      background-color: ${({ theme }) => theme.colors.background};
     }
   }
 `;
@@ -245,12 +239,11 @@ export const ContactStyled = styled.div`
   margin: 10px;
   border-radius: 5px;
   padding: 10px;
-  box-shadow: 0 4px 8px rgba(0.1, 0.5, 0.5, 0.5);
   opacity: ${({ theme }) => theme.config.opacity}; 
+  box-shadow: ${({ theme }) => theme.config.box_shadow };
   background-color: ${({ theme }) => theme.colors.background};
-  z-index: 199;
 
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
     display: flex; 
     flex-direction: column;
     gap: 4rem;
@@ -261,46 +254,54 @@ export const ContactStyled = styled.div`
 `;
 
 export const AboutStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   overflow: hidden;
-  position: relative;
-  // justify-content: center;
   width: 98%;
   height: 80%;
   margin: 10px;
   border-radius: 5px;
   padding: 10px;
-  opacity: ${({ theme }) => theme.config.opacity};
-  box-shadow: 0 4px 8px rgba(0.1, 0.5, 0.5, 0.5);
   color: ${({ theme }) => theme.colors.text};
-  background-color: ${({ theme }) => theme.colors.background};
+  opacity: ${({ theme }) => theme.config.opacity};
+  box-shadow: ${({ theme }) => theme.config.box_shadow };
   transform-origin: center;
-  z-index: 199;
+
+  @media (max-width: 992px) {
+    display: flex; 
+    justify-content: center;
+    width: 100%;
+    z-index: 1;
+  }
 `;
 
 export const EndCreditsText = styled.div`
-  position: absolute;
   width: 100%;
   height: 60%;
   animation: ${scroll} 20s linear infinite;
   text-align: center;
   font-size: 1.5rem; 
   line-height: 2;
-  z-index: -1;
 `;
+
+// Dashboard Home
+
 export const DashboardContainer = styled.div`
   display: flex; 
-  gap: 0.2rem;
-  justify-content: center;
-  background-color: ${({ theme }) => theme.colors.background};
+  justify-content: space-around;
+  gap: 1rem;
   width: 99%;
   height: 55vh;
   margin: 10px;
+  padding: 10px;
   border-radius: 5px;
-  padding: 10px; 
-  z-index: 199;
+  background-color: ${({ theme }) => theme.colors.background};
 
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
     display: flex;
+    align-items: center;
     flex-direction: column-reverse;
     width: 99%;
     height: 100%;
@@ -310,18 +311,17 @@ export const DashboardContainer = styled.div`
 
 export const DashboardInfo = styled.div`
   display: flex;
-  justify-content: start;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.colors.background};
-  opacity: ${({ theme }) => theme.config.opacity}; 
+  justify-content: center;
   width: 100%;
   height: 100%;
   text-align: left;
   border-radius: 8px;
-  color: ${({ theme }) => theme.colors.text};  
-  box-shadow: 0 4px 8px rgba(0.2, 0.2, 0.2, 0.2);
   padding: 0px 30px 0px;
-  z-index: 200;
+  color: ${({ theme }) => theme.colors.text};  
+  opacity: ${({ theme }) => theme.config.opacity}; 
+  box-shadow: ${({ theme }) => theme.config.box_shadow };
+  background-color: ${({ theme }) => theme.colors.background};
 
   h2{
     font-size: 2.5rem;
@@ -334,7 +334,9 @@ export const DashboardInfo = styled.div`
     z-index: 201;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
+    width: 70%;
+
     h2{
       font-size: 1rem;
       z-index: 201;
@@ -348,23 +350,18 @@ export const DashboardInfo = styled.div`
 `;
 
 export const DashboardProjects = styled.div`
-  gap: 0.2rem
-  background-color: ${({ theme }) => theme.colors.background};
   width: 35%;
   height: 100%;
   border: 10px;
   overflow-y: auto;
   overflow-x: hidden;
-  box-sizing: border-box;
   border-radius: 8px; 
-  box-shadow: 0 0px 8px rgba(0, 0, 0, 0.2);
-  z-index: 200;
 
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
     display: flex;
-    justify-content: start;
     justify-content: center;
     flex-direction: column;
+    gap: 1rem;
     width: 100%;
     height: 70%;
   }
@@ -372,16 +369,16 @@ export const DashboardProjects = styled.div`
 `;
 
 export const DashboardCard  = styled.div`
-  background-color: ${({ theme }) => theme.colors.background};
-  color: ${({ theme }) => theme.colors.text};
-  gap: 0.2rem;
+  overflow: auto;
   text-align: left;
+  align-items: center;
   width: 100%;
   height: 50%;
-  overflow: auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 10px;
   border-radius: 8px;
-  box-sizing: border-box;
+  color: ${({ theme }) => theme.colors.text};
+  box-shadow: ${({ theme }) => theme.config.box_shadow };
+  background-color: ${({ theme }) => theme.colors.background};
 
   h4{
     color: ${({ theme }) => theme.colors.text};
@@ -390,17 +387,12 @@ export const DashboardCard  = styled.div`
   }
   
   p{
-    color: ${({ theme }) => theme.colors.text};
     font-size: 1rem;
     font-weight: bold;
+    color: ${({ theme }) => theme.colors.text};
   }
 
-  ::-webkit-scrollbar {
-    width: 200px; 
-  }
-
-  @media (max-width: 768px) {
-    gap: 0.1rem;
+  @media (max-width: 992px) {
     h4{
       font-size: 0.8rem;
       z-index: 201;
@@ -408,38 +400,30 @@ export const DashboardCard  = styled.div`
     p{
       font-size: 0.6rem;
     }
+    border-radius: 0;
     width: 100%;
     height: 60%;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 4px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    padding: 10px;
   }
 
 `;
+
+// Footer
 
 export const FooterStyled = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  botton: 0px;
+  text-align: center;
+  bottom: 0px;
   margin: 5px;
   width: 99%;
   height: 15%;
-  padding: 10px;
+  padding-bottom: 20px;
   font-size: 0.8rem;
   border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   color: ${({ theme }) => theme.colors.primary};
+  box-shadow: ${({ theme }) => theme.config.box_shadow };
   background-color: ${({ theme }) => theme.colors.background};
   z-index: 100;
   
@@ -447,7 +431,7 @@ export const FooterStyled = styled.div`
     color: ${({ theme }) => theme.colors.text}
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
     botton: 0px;
     width: 99%;
     height: 15%;
@@ -456,32 +440,32 @@ export const FooterStyled = styled.div`
 
 export const FooterLinks = styled.div`
   a {
-    color: ${({ theme }) => theme.colors.text};
-    text-decoration: none;
     font-size: 0.8rem;
-    font-weight: bold;
+    text-decoration: none;
     padding: 10px;
     border-radius: 5px;
+    color: ${({ theme }) => theme.colors.text};
 
     &:hover {
-      background-color: ${({ theme }) => theme.colors.background};
       color: ${({ theme }) => theme.colors.primary};
+      background-color: ${({ theme }) => theme.colors.primaryHover};
     }
   }
 `;
 
+// Black Hole
+
 export const BlackHoleStyled = styled.div`
-    background: ${({ theme }) => theme.colors.background};
     display: grid;
-    // opacity: ${({ theme }) => theme.config.opacity}; 
     place-content: center;
-    position: fixed;
     top: -5%;
     left: -5%;
     width: 110%;
     height: 110vh;
-    filter: blur(8px);
-    // border: 10px;
+    position: fixed;
+    // filter: blur(8px);
+    opacity: ${({ theme }) => theme.config.opacity}; 
+    background: ${({ theme }) => theme.colors.background};
     z-index: -1;
 
     
@@ -516,4 +500,61 @@ export const BlackHoleStyled = styled.div`
         opacity: 0.03;
         left: -14vmin;
     }
+`;
+
+// NotFound
+
+export const NoteFoundStyledBory = styled.body`
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  background-color: ${({ theme }) => theme.colors.background};
+  color: white;
+  font-family: Arial, sans-serif;
+
+  @media (max-width: 992px) {
+    display: flex;
+    justify-content: start;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 70%;
+  }
+`;
+
+export const NotFoundContainerStyled = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  padding-bottom: 0%;
+  background-color: ${({ theme }) => theme.colors.background};
+
+  h1{
+    align-items: center;
+  }
+`;
+
+export const SmarllText = styled.p`
+  padding-left: 30%;
+  font-size: 1rem;
+  color: ${({ theme }) => theme.colors.text};
+
+`
+
+export const ErrorCode = styled.h1`
+  margin: 0;
+  padding: 0;
+  font-size: 30rem;
+  align-self: center;
+  font-family: 'Ditoit';
+  color: ${({ theme }) => theme.colors.text};
+`;
+
+export const SmarllTextFooter = styled.p`
+  font-size: 1rem;
+  padding-left: 65%;
+  color: ${({ theme }) => theme.colors.text};
 `;
