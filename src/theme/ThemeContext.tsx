@@ -1,4 +1,4 @@
-import React, { createContext, useState, ReactNode, useEffect } from 'react';
+import React, { createContext, useState, ReactNode, useEffect, useMemo } from 'react';
 
 interface ThemeContextType {
   theme: string;
@@ -20,8 +20,10 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
+  const contextValue = useMemo(() => ({ theme, setTheme }), [theme, setTheme]);
+
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider value={ contextValue }>
       {children}
     </ThemeContext.Provider>
   );
