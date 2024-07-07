@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from '../Views/Home';
 import About from '../Views/About';
 import Contact from '../Views/Contact';
+import NotFound from '../NotFound/NotFound';
 
 const AppRouter: React.FC = () => {
     return (
@@ -10,6 +11,7 @@ const AppRouter: React.FC = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>
     );
