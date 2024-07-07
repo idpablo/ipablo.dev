@@ -13,7 +13,7 @@ const defaultTheme = 'light';
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const storedTheme = localStorage.getItem('theme') || defaultTheme;
+  const storedTheme = localStorage.getItem('theme') ?? defaultTheme;
   const [theme, setTheme] = useState(storedTheme);
 
   useEffect(() => {
