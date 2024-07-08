@@ -46,7 +46,7 @@ export const darkTheme = {
   },
   config: {
     opacity: '2',
-    box_shadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+    box_shadow: '0px 8px 8px 8px rgba(0, 0, 0, 0.2)',
   },
 };
 
@@ -146,11 +146,24 @@ export const HomeStyled = styled.div`
 
 export const LinkStyled = styled.a`
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  width: 110px;
+  height: 30px;
+  font-size: 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
   color: ${({ theme }) => theme.colors.text};
+  background: ${({ theme }) => theme.colors.botton};
+  box-shadow: ${({ theme }) => theme.config.box_shadow };
+
+  &:hover {
+      background-color: ${({ theme }) => theme.colors.primaryHover};
+    }
 
   @media (max-width: 992px) {
+    display: flex;
     gap: 1rem;
   }
 `;
@@ -376,19 +389,25 @@ export const DashboardCard  = styled.div`
   height: 50%;
   padding: 10px;
   border-radius: 8px;
+  text-decoration: none;
   color: ${({ theme }) => theme.colors.text};
   box-shadow: ${({ theme }) => theme.config.box_shadow };
   background-color: ${({ theme }) => theme.colors.background};
 
   h4{
-    color: ${({ theme }) => theme.colors.text};
     font-size: 1rem;
     font-weight: bold;
+    font-family: 'Roboto', Arial, sans-serif;
+    color: ${({ theme }) => theme.colors.text};
   }
   
   p{
-    font-size: 1rem;
-    font-weight: bold;
+    width: 70%;
+    padding-left: 30px;
+    padding-bottom: 30px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    font-family: 'Roboto', Arial, sans-serif;
     color: ${({ theme }) => theme.colors.text};
   }
 
