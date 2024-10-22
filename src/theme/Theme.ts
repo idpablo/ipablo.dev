@@ -164,6 +164,7 @@ export const LinkStyled = styled.a`
 
   @media (max-width: 992px) {
     display: flex;
+    width: 30%;
     gap: 1rem;
   }
 `;
