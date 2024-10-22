@@ -165,7 +165,7 @@ export const LinkStyled = styled.a`
   @media (max-width: 1080px) and (max-height: 2340px) {
     width: 60%; 
     height: 50px; 
-    font-size: 0.4rem;
+    font-size: 0.6rem;
     gap: 1.5rem;
   }
 
