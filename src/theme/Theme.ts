@@ -162,6 +162,13 @@ export const LinkStyled = styled.a`
       background-color: ${({ theme }) => theme.colors.primaryHover};
     }
 
+  @media (max-width: 1080px) and (max-height: 2340px) {
+    width: 60%; 
+    height: 50px; 
+    font-size: 1.4rem;
+    gap: 1.5rem;
+  }
+
   @media (max-width: 992px) {
     display: flex;
     width: 30%;
