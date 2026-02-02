@@ -2,7 +2,6 @@ import Footer from '../Footer/Footer';
 import Avatar from '../Avatar/Avatar'; 
 import Header from '../Header/Header';
 import React, { ReactNode } from 'react';
-import BlackHole from '../Blackhole/Blackhole';
 import userAvatar from '../../theme/assets/ipablo.dev.webp';
 import { HomeStyled, AboutStyled, EndCreditsText } from '../../theme/Theme';
 
@@ -13,7 +12,6 @@ export interface AppProps {
 export const About: React.FC<AppProps> = ({ rightContent }) => {
   return (
     <HomeStyled>
-      <BlackHole />
       <Header />
       <AboutStyled>
         <Avatar src={userAvatar} alt="User Avatar" size="100px" />

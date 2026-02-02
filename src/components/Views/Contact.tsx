@@ -2,7 +2,6 @@ import Footer from '../Footer/Footer';
 import Avatar from '../Avatar/Avatar'; 
 import Header from '../Header/Header';
 import React, { ReactNode } from 'react';
-import BlackHole from '../Blackhole/Blackhole';
 import userAvatar from '../../theme/assets/ipablo.dev.webp';
 import { HomeStyled, ContactStyled, LinkStyled } from '../../theme/Theme';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
@@ -17,7 +16,6 @@ export interface AppProps {
 export const Contact: React.FC<AppProps> = ({ rightContent }) => {
   return (
     <HomeStyled>
-      <BlackHole />
       <Header />
       <ContactStyled>
         <div><Avatar src={userAvatar} alt="User Avatar" size="100px" /></div>

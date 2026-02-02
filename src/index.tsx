@@ -5,7 +5,7 @@ import AppRouter from './components/Router/Router';
 import { store } from './store/store';
 import { ThemeProvider } from 'styled-components';
 import { useAppSelector } from './store/hooks/Hooks';
-import { lightTheme, darkTheme } from './theme/Theme';
+import { lightTheme, darkTheme, GlobalStyles } from './theme/Theme';
 
 // Componente para prover o tema
 const ThemedApp: React.FC = () => {
@@ -13,6 +13,7 @@ const ThemedApp: React.FC = () => {
 
   return (
     <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
+      <GlobalStyles />
       <AppRouter />
     </ThemeProvider>
   );
