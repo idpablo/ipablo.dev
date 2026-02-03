@@ -20,9 +20,20 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "types": ["node", "react", "react-dom", "styled-components"],
-    "typeRoots": ["./node_modules/@types", "./src/types"]
+    "typeRoots": ["./node_modules/@types", "./src/types"],
+    "baseUrl": ".",
+    "paths": {
+      "@core/*": ["src/core/*"],
+      "@constants": ["src/constants"],
+      "@pages/*": ["src/pages/*"],
+      "@ui/*": ["src/ui/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@utils/*": ["src/utils/*"],
+      "@types/*": ["src/core/types/*"]
+    }
   },
   "include": [
-    "src"
+    "src",
+    "vite.config.ts"
   ]
 }
