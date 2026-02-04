@@ -26,6 +26,7 @@ if ('serviceWorker' in navigator) {
               newWorker.state === 'installed' &&
               navigator.serviceWorker.controller
             ) {
+              // New Service Worker version available - user can refresh
             }
           });
         }

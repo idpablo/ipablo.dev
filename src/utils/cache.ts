@@ -15,13 +15,14 @@ export const cacheManager = {
     try {
       localStorage.setItem(`cache_${key}`, JSON.stringify(entry));
     } catch (error) {
+      // localStorage may fail in private mode or when full - silent failure is acceptable
     }
   },
 
   /**
-   * Recupera dados do cache se ainda forem válidos
-   * @param key - Chave do cache
-   * @returns Dados do cache ou null se expirado/não encontrado
+   * Retrieves data from cache if still valid
+   * @param key - Cache key
+   * @returns Cache data or null if expired/not found
    */
   get<T>(key: string): T | null {
     try {
@@ -39,6 +40,7 @@ export const cacheManager = {
 
       return entry.data;
     } catch (error) {
+      // Cache read/parse failure - returns null and continues without cache
       return null;
     }
   },
@@ -47,6 +49,7 @@ export const cacheManager = {
     try {
       localStorage.removeItem(`cache_${key}`);
     } catch (error) {
+      // localStorage unavailable - silent failure is acceptable
     }
   },
 
@@ -59,6 +62,7 @@ export const cacheManager = {
         }
       });
     } catch (error) {
+      // localStorage unavailable - silent failure is acceptable
     }
   },
 
