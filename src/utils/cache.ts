@@ -19,11 +19,6 @@ export const cacheManager = {
     }
   },
 
-  /**
-   * Retrieves data from cache if still valid
-   * @param key - Cache key
-   * @returns Cache data or null if expired/not found
-   */
   get<T>(key: string): T | null {
     try {
       const item = localStorage.getItem(`cache_${key}`);

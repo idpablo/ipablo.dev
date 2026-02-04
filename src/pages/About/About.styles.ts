@@ -663,7 +663,6 @@ export const TimelineIcon = styled.div`
   }
 `;
 
-// Vertical timeline connector
 export const TimelineConnector = styled.div`
   position: absolute;
   top: 50%;
