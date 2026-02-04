@@ -14,6 +14,17 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      (function () {
+        const redirectPath = sessionStorage.getItem('redirectPath');
+        if (redirectPath) {
+          sessionStorage.removeItem('redirectPath');
+          if (redirectPath !== window.location.pathname) {
+            window.history.replaceState(null, '', redirectPath);
+          }
+        }
+      })();
+    </script>
     <script type="module" src="/src/index.tsx"></script>
   </body>
 </html>
