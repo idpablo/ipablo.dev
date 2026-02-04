@@ -37,6 +37,7 @@ const HomePage: React.FC = () => {
           setProjects(data);
         }
       } catch (error) {
+        console.log('GitHub API fetch failed', error);
         setProjects([]);
       }
     };
