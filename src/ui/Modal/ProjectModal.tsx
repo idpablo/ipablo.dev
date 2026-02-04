@@ -32,10 +32,11 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, project, onClose })
   const projectDescriptions = getProjectDescriptionsFromCache() || defaultProjectDescriptions;
   const projectKey = project.name.toLowerCase().replace(/ /g, '_');
   const projectData = projectDescriptions[projectKey as keyof typeof projectDescriptions];
-  const enhancedDescription = projectData?.enhancedDescription || project.description || 'Projeto sem descrição';
-  const features = projectData?.features || [];
-  const hasPreview = projectData?.hasPreview || false;
-  const previewUrl = projectData?.previewUrl;
+  
+  const enhancedDescription = (projectData as any)?.enhancedDescription || project.description || 'Projeto sem descrição';
+  const features = (projectData as any)?.features || [];
+  const hasPreview = (projectData as any)?.hasPreview || false;
+  const previewUrl = (projectData as any)?.previewUrl;
 
   return (
     <ModalOverlay isOpen={isOpen} onClick={onClose}>
