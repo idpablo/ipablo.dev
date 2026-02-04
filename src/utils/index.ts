@@ -1,0 +1,1 @@
+export { cacheManager } from './cache';

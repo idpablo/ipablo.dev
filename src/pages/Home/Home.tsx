@@ -9,6 +9,7 @@ import { HomeStyled, DashboardContainer, DashboardInfo, DashboardProjects } from
 import { ProjectCard } from '../../ui/Card';
 import avatarImg from '../../assets/avatar.webp';
 import { useLanguage } from '../../core/i18n';
+import { cacheManager } from '../../utils/cache';
 
 const HomePage: React.FC = () => {
   const { t } = useLanguage();
@@ -21,14 +22,24 @@ const HomePage: React.FC = () => {
 
   useEffect(() => {
     const fetchGitHubProjects = async () => {
+      // Tenta recuperar do cache primeiro (24 horas de TTL)
+      const cachedProjects = cacheManager.get<Project[]>('github_projects');
+      if (cachedProjects) {
+        setProjects(cachedProjects);
+        return;
+      }
+
+      // Se não houver cache, busca da API
       try {
         const response = await fetch(GITHUB_API.getReposUrl(GITHUB_API.USER));
         if (response.ok) {
           const data = await response.json();
+          cacheManager.set('github_projects', data, 24); // Cache por 24 horas
           setProjects(data);
         }
       } catch (error) {
         // Erro silencioso em produção
+        console.warn('Erro ao buscar projetos do GitHub:', error);
       }
     };
 
