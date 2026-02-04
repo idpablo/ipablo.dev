@@ -1,6 +1,6 @@
 # Portfólio - Pablo Desenvolvedor
 
-Portfólio responsivo e otimizado desenvolvido com React 18, TypeScript e Vite. Site conta com múltiplas camadas de cache, internacionalização (PT-BR/EN-US) e design responsivo com tema claro/escuro.
+Portfólio responsivo e otimizado desenvolvido com React 18, TypeScript e Vite. Site conta com múltiplas camadas de cache, internacionalização (PT-BR/EN-US/ZH-CH) e design responsivo com tema claro/escuro.
 
 ## 🚀 Visite [ipablo.dev](https://ipablo.dev)
 
@@ -46,9 +46,6 @@ Site disponibilizado com **GitHub Pages** + **Cloudflare**. Build e deploy são 
 # Instalar dependências
 npm install
 
-# Variáveis de ambiente (opcional, apenas para Cloudflare setup)
-cp .env.example .env
-# Edite .env com suas credenciais Cloudflare se quiser configurar cache
 ```
 
 ---
@@ -64,9 +61,6 @@ npm run build
 
 # Preview do build
 npm preview
-
-# Setup do Cloudflare Cache Rules (após DNS propagar)
-npm run setup-cloudflare
 
 # Auditoria de segurança
 npm audit
