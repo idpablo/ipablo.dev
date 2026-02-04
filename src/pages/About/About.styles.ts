@@ -10,7 +10,6 @@ export const HomeStyled = styled.div`
   background-color: ${({ theme }) => theme.colors.background};
 `;
 
-// Animations
 const fadeInUp = keyframes`
   from {
     opacity: 0;
@@ -74,7 +73,6 @@ const wave = keyframes`
   }
 `;
 
-// Main Container
 export const AboutContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -110,7 +108,6 @@ export const AboutContainer = styled.div`
   }
 `;
 
-// Hero Section
 export const AvatarContainer = styled.div`
   position: relative;
   display: inline-flex;
@@ -303,7 +300,6 @@ export const HeroSection = styled.div`
   }
 `;
 
-// Minecraft Blocks Grid
 export const BlocksGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -394,7 +390,6 @@ export const BlockContent = styled.div`
   }
 `;
 
-// Story Section
 export const StorySection = styled.div`
   width: 100%;
   max-width: 800px;
@@ -436,7 +431,6 @@ export const StorySection = styled.div`
   }
 `;
 
-// Timeline
 export const AdventureTimeline = styled.div`
   width: 100%;
   max-width: 1200px;
@@ -524,7 +518,6 @@ export const TimelineItem = styled.div<{ $isLeft?: boolean }>`
   padding: 0 3rem;
   z-index: 1;
 
-  /* Linha Neon Conectora */
   &::before {
     content: '';
     position: absolute;
@@ -570,7 +563,6 @@ export const TimelineContent = styled.div`
   transition: all 0.4s ease;
   border: 2px solid transparent;
 
-  /* Efeito Holofote */
   background: ${({ theme }) => {
     const isDark = theme.colors.background === '#1a1a2e' || theme.colors.background === '#0f0f1e';
     return isDark
@@ -687,7 +679,6 @@ export const TimelineConnector = styled.div`
   }
 `;
 
-// Skills Showcase
 export const SkillsShowcase = styled.div`
   width: 100%;
   max-width: 1000px;
@@ -767,7 +758,6 @@ export const Passion = styled.div`
   }
 `;
 
-// Easter Egg Modal
 export const EasterEggModal = styled.div`
   position: fixed;
   top: 50%;
@@ -816,12 +806,10 @@ export const EasterEggContent = styled.div`
   }
 `;
 
-// Animated Text
 export const AnimatedText = styled.div`
   animation: ${fadeInUp} 0.8s ease 0.2s backwards;
 `;
 
-// Keep old styles for compatibility
 export const AboutStyled = styled.div`
   display: flex;
   flex-direction: column;

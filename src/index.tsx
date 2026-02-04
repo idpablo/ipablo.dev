@@ -7,6 +7,12 @@ import { ThemeProvider } from 'styled-components';
 import { useAppSelector } from './hooks';
 import { lightTheme, darkTheme, GlobalStyles } from './core/theme';
 import { LanguageProvider } from './core/i18n';
+import { initializeStaticCache } from './utils/staticCache';
+import { initializePageCache } from './utils/pageCache';
+
+initializeStaticCache();
+initializePageCache('about');
+initializePageCache('contact');
 
 const ThemedApp: React.FC = () => {
   const theme = useAppSelector((state) => state.theme.theme);

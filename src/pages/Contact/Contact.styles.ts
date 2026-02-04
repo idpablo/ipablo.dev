@@ -1,6 +1,5 @@
 import styled, { keyframes } from 'styled-components';
 
-// Animations
 const fadeInUp = keyframes`
   from {
     opacity: 0;

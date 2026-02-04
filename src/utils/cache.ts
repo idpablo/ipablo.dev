@@ -1,20 +1,10 @@
 interface CacheEntry<T> {
   data: T;
   timestamp: number;
-  ttl: number; // em milissegundos
+  ttl: number;
 }
 
-/**
- * Sistema de cache com localStorage
- * Permite persistir dados com TTL configurável
- */
 export const cacheManager = {
-  /**
-   * Armazena dados no cache
-   * @param key - Chave do cache
-   * @param data - Dados a serem armazenados
-   * @param ttlHours - TTL em horas (padrão: 24 horas = 1 dia)
-   */
   set<T>(key: string, data: T, ttlHours: number = 24): void {
     const ttlMs = ttlHours * 60 * 60 * 1000;
     const entry: CacheEntry<T> = {
@@ -55,9 +45,6 @@ export const cacheManager = {
     }
   },
 
-  /**
-   * Remove um item do cache
-   */
   remove(key: string): void {
     try {
       localStorage.removeItem(`cache_${key}`);
@@ -66,9 +53,6 @@ export const cacheManager = {
     }
   },
 
-  /**
-   * Limpa todo o cache (todos os itens com prefixo cache_)
-   */
   clear(): void {
     try {
       const keys = Object.keys(localStorage);
@@ -82,9 +66,6 @@ export const cacheManager = {
     }
   },
 
-  /**
-   * Obtém info sobre um cache específico
-   */
   getInfo(key: string): { expiresIn: number; isExpired: boolean } | null {
     try {
       const item = localStorage.getItem(`cache_${key}`);
@@ -103,11 +84,6 @@ export const cacheManager = {
   },
 };
 
-/**
- * Hook para usar cache com dados assincronos
- * Exemplo de uso:
- * const data = useCache('github-repos', () => fetchGitHubProjects(), 24);
- */
 export const useCache = <T>(
   key: string,
   fetchFn: () => Promise<T>,
@@ -146,5 +122,4 @@ export const useCache = <T>(
   return { data, loading, error, refetch: fetchAndCache };
 };
 
-// Necesário importar React para useCache
 import React from 'react';

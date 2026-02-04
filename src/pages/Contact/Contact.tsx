@@ -298,7 +298,6 @@ const ContactPage: React.FC = () => {
           return;
         }
       } catch {
-        // ignore invalid storage
       }
     }
 
@@ -419,7 +418,6 @@ const ContactPage: React.FC = () => {
       <HomeStyled>
         <Header />
         <ContactContainer>
-          {/* Hero Section */}
           <HeroSection>
             <AvatarContainer onClick={() => setIsProfileModalOpen(true)} style={{ cursor: 'pointer' }}>
               <SeaPixel />
@@ -436,7 +434,6 @@ const ContactPage: React.FC = () => {
             <p>Estou sempre aberto para discutir novos projetos, ideias criativas ou oportunidades.</p>
           </HeroSection>
 
-          {/* Terminal Window */}
           <TerminalWindow>
             <TerminalHeader>
               <div style={{ display: 'flex', gap: '8px' }}>
@@ -465,7 +462,6 @@ const ContactPage: React.FC = () => {
             </TerminalBody>
           </TerminalWindow>
 
-          {/* Quick Stats */}
           <QuickStats>
             {stats.map((stat, index) => (
               <StatItem key={index}>
@@ -475,7 +471,6 @@ const ContactPage: React.FC = () => {
             ))}
           </QuickStats>
 
-          {/* Contact Cards */}
           <ContactGrid>
             {contactMethods.map((method) => (
               <ContactCard
@@ -509,7 +504,6 @@ const ContactPage: React.FC = () => {
             ))}
           </ContactGrid>
 
-          {/* Social Links Footer */}
           <SocialLinks>
             <h3>Outras Formas de Conexão</h3>
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>

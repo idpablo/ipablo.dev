@@ -6,12 +6,6 @@ interface UseCacheAsyncOptions {
   onError?: (error: Error) => void;
 }
 
-/**
- * Hook para gerenciar dados com cache automático
- * @param key - Chave única para o cache
- * @param fetchFn - Função assincronous para buscar dados
- * @param options - Opções de configuração
- */
 export const useCacheAsync = <T,>(
   key: string,
   fetchFn: () => Promise<T>,

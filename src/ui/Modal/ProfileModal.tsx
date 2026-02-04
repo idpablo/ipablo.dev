@@ -1,6 +1,7 @@
 import React from 'react';
-import { profileData, ProfileStat } from '../../data/profileStats';
+import { ProfileStat, profileData as defaultProfileData } from '../../data/profileStats';
 import avatarImg from '../../assets/avatar.webp';
+import { getProfileDataFromCache } from '../../utils/staticCache';
 import {
   ProfileModalOverlay,
   ProfileModalContainer,
@@ -32,6 +33,9 @@ interface ProfileModalProps {
 const ProfileModal: React.FC<ProfileModalProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
+  const cachedData = getProfileDataFromCache();
+  const profileData = cachedData || defaultProfileData;
+
   const getCategoryEmoji = (category: string) => {
     const emojis: Record<string, string> = {
       devops: '🚀',
@@ -42,13 +46,16 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ isOpen, onClose }) => {
     return emojis[category] || '💻';
   };
 
-  const groupedStats = profileData.stats.reduce((acc, stat) => {
-    if (!acc[stat.category]) {
-      acc[stat.category] = [];
-    }
-    acc[stat.category].push(stat);
-    return acc;
-  }, {} as Record<string, ProfileStat[]>);
+  const groupedStats = ((profileData as typeof defaultProfileData)?.stats || []).reduce(
+    (acc: Record<string, ProfileStat[]>, stat: ProfileStat) => {
+      if (!acc[stat.category]) {
+        acc[stat.category] = [];
+      }
+      acc[stat.category].push(stat);
+      return acc;
+    },
+    {} as Record<string, ProfileStat[]>
+  );
 
   const categoryNames: Record<string, string> = {
     devops: 'DevOps & Infrastructure',
@@ -82,18 +89,18 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ isOpen, onClose }) => {
         <BrowserContent>
           <ProfileHeader>
             <ProfileAvatarContainer>
-              <img src={avatarImg} alt={profileData.name} />
-              <LevelBadge>Lv {profileData.level}</LevelBadge>
+              <img src={avatarImg} alt={(profileData as typeof defaultProfileData).name} />
+              <LevelBadge>Lv {(profileData as typeof defaultProfileData).level}</LevelBadge>
             </ProfileAvatarContainer>
 
             <ProfileInfo>
-              <h2>{profileData.name}</h2>
-              <h3>{profileData.title}</h3>
-              <span className="class">⚔️ {profileData.class}</span>
+              <h2>{(profileData as typeof defaultProfileData).name}</h2>
+              <h3>{(profileData as typeof defaultProfileData).title}</h3>
+              <span className="class">⚔️ {(profileData as typeof defaultProfileData).class}</span>
             </ProfileInfo>
           </ProfileHeader>
 
-          <ProfileBio>{profileData.bio}</ProfileBio>
+          <ProfileBio>{(profileData as typeof defaultProfileData).bio}</ProfileBio>
 
           <StatsSection>
             <h3>Character Stats</h3>
@@ -105,7 +112,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ isOpen, onClose }) => {
                   <h4>
                     {getCategoryEmoji(category)} {categoryNames[category]}
                   </h4>
-                  {stats.map((stat) => (
+                  {(stats as ProfileStat[]).map((stat) => (
                     <StatItem key={stat.name}>
                       <StatHeader>
                         <span>{stat.name}</span>

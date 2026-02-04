@@ -50,7 +50,7 @@ const AboutPage: React.FC = () => {
   const [clickCount, setClickCount] = useState(0);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const [dragCount, setDragCount] = useState(0);
-  const [requiredDrags] = useState(() => Math.floor(Math.random() * 10) + 15); // 15-24 manipulações
+  const [requiredDrags] = useState(() => Math.floor(Math.random() * 10) + 15);
   const [treasureUnlocked, setTreasureUnlocked] = useState(false);
   const [showTreasureModal, setShowTreasureModal] = useState(false);
 
@@ -187,9 +187,7 @@ const AboutPage: React.FC = () => {
     const newBlocks = [...blocks];
     const draggedBlock = newBlocks[draggedIndex];
     
-    // Remove o bloco da posição original
     newBlocks.splice(draggedIndex, 1);
-    // Insere na nova posição
     newBlocks.splice(index, 0, draggedBlock);
     
     setBlocks(newBlocks);
@@ -199,11 +197,9 @@ const AboutPage: React.FC = () => {
   const handleDragEnd = () => {
     setDraggedIndex(null);
     
-    // Incrementa contador de manipulações
     const newDragCount = dragCount + 1;
     setDragCount(newDragCount);
     
-    // Desbloqueia tesouro quando atingir o número necessário
     if (newDragCount >= requiredDrags && !treasureUnlocked) {
       setTreasureUnlocked(true);
       handleEasterEgg('unlocked');
@@ -221,7 +217,6 @@ const AboutPage: React.FC = () => {
       <HomeStyled>
         <Header />
         <AboutContainer>
-          {/* Hero Section */}
           <HeroSection>
             <AvatarContainer onClick={() => setIsProfileModalOpen(true)} style={{ cursor: 'pointer' }}>
               <SeaPixel />
@@ -240,7 +235,6 @@ const AboutPage: React.FC = () => {
             </AnimatedText>
           </HeroSection>
 
-          {/* Minecraft-style Blocks */}
           <BlocksGrid>
             {blocks.map((block, index) => (
               <Block
@@ -265,7 +259,6 @@ const AboutPage: React.FC = () => {
               </Block>
             ))}
             
-            {/* Tesouro Oculto - Aparece após manipulações */}
             {treasureUnlocked && (
               <Block
                 bgColor="#FFD700"
@@ -284,7 +277,6 @@ const AboutPage: React.FC = () => {
             )}
           </BlocksGrid>
 
-          {/* Story Section */}
           <StorySection>
             <h2>📖 A História</h2>
             <p>
@@ -298,7 +290,6 @@ const AboutPage: React.FC = () => {
             </p>
           </StorySection>
 
-          {/* Timeline - Visual Timeline */}
           <AdventureTimeline>
             <h2>🎯 A Odisseia Técnica</h2>
             <TimelineWrapper>
@@ -337,7 +328,6 @@ const AboutPage: React.FC = () => {
             </div>
           </SkillsShowcase>
 
-          {/* Easter Egg Modal */}
           {easterEgg && easterEgg !== 'unlocked' && (
             <EasterEggModal>
               <EasterEggContent>
@@ -363,7 +353,6 @@ const AboutPage: React.FC = () => {
           {showTreasureModal && (
             <EasterEggModal onClick={() => setShowTreasureModal(false)}>
               <TreasureModalContent onClick={(e) => e.stopPropagation()}>
-                {/* macOS Browser Header */}
                 <div style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -387,7 +376,6 @@ const AboutPage: React.FC = () => {
                   </div>
                 </div>
                 
-                {/* Content */}
                 <div style={{ 
                   textAlign: 'center',
                   padding: '2rem 0'
