@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { SOCIAL_LINKS } from '../../constants';
 import ProfileModal from '../../ui/Modal/ProfileModal';
+import { useLanguage } from '../../core/i18n';
 import pescadorImg from '../../assets/pescador.webp';
 import { 
   HomeStyled, 
@@ -16,7 +17,6 @@ import {
   TerminalHeader,
   TerminalBody,
   TerminalLine,
-  Cursor,
   TerminalRow,
   TerminalPrompt,
   TerminalInput,
@@ -47,6 +47,7 @@ interface ContactMethod {
 }
 
 const ContactPage: React.FC = () => {
+  const { t } = useLanguage();
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [terminalHistory, setTerminalHistory] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState('');
@@ -55,15 +56,18 @@ const ContactPage: React.FC = () => {
   const [commandIndex, setCommandIndex] = useState<number | null>(null);
   const [currentPath, setCurrentPath] = useState<string[]>([]);
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const [currentLanguage, setCurrentLanguage] = useState(t.contact.terminal.initializing);
+  const [easterEggType, setEasterEggType] = useState<'root' | 'sudosu' | null>(null);
   const terminalRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const storageKey = 'contact-terminal-history-v1';
 
   const terminalLines = [
-    '> Iniciando sistema de comunicação...',
-    '> Carregando canais de contato...',
-    '> Status: ONLINE ✓',
-    '> Todos os sistemas operacionais',
-    '> Aguardando conexão...',
+    `> ${t.contact.terminal.initializing}`,
+    `> ${t.contact.terminal.loadingChannels}`,
+    `> ${t.contact.terminal.statusOnline}`,
+    `> ${t.contact.terminal.allSystemsOperational}`,
+    `> ${t.contact.terminal.awaitingConnection}`,
   ];
 
   const skillTree = {
@@ -90,8 +94,46 @@ const ContactPage: React.FC = () => {
 
   const getPrompt = () => {
     const path = currentPath.length ? `/${currentPath.join('/')}` : '/';
-    return `pablo@ipablo.dev:${path}$`;
+    return `${t.contact.terminal.prompt}:${path}$`;
   };
+
+  // Injetar animação popup global
+  useEffect(() => {
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes popup {
+        0% {
+          transform: scale(0.5);
+          opacity: 0;
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+    return () => {
+      if (document.head.contains(style)) {
+        document.head.removeChild(style);
+      }
+    };
+  }, []);
+
+  // Limpar histórico quando a linguagem muda
+  useEffect(() => {
+    if (currentLanguage !== t.contact.terminal.initializing) {
+      localStorage.removeItem(storageKey);
+      setTerminalHistory([]);
+      setCommandHistory([]);
+      setCurrentPath([]);
+      setIsReady(false);
+      setCurrentLanguage(t.contact.terminal.initializing);
+    }
+  }, [t]);
 
   const resolveNode = () => {
     let node: any = skillTree;
@@ -118,7 +160,7 @@ const ContactPage: React.FC = () => {
 
   const renderDf = () => {
     const courses = skillTree.courses;
-    const lines = ['Filesystem            Size  Used  Avail  Use%  Mounted on'];
+    const lines = [t.contact.terminal.df_header];
     Object.entries(courses).forEach(([name, pct]) => {
       const used = `${pct}%`;
       lines.push(`${name.padEnd(20)} 100G  ${used.padEnd(4)}  ${String(100 - pct).padEnd(4)}  ${used.padEnd(4)} /courses`);
@@ -188,7 +230,7 @@ const ContactPage: React.FC = () => {
     switch (cmd) {
       case 'help':
         return [
-          'Comandos disponíveis:',
+          t.contact.terminalCommands.help,
           '  ls              lista skills/contatos/cursos',
           '  cd <dir>        entra em uma skill ou contato',
           '  cd ..           volta um nível',
@@ -201,7 +243,7 @@ const ContactPage: React.FC = () => {
         return renderLs();
       case 'df':
         if (args.join(' ') === '-lh') return renderDf();
-        return ['use: df -lh'];
+        return [t.contact.terminalCommands.df];
       case 'tree':
         return renderTree();
       case 'pwd':
@@ -212,7 +254,7 @@ const ContactPage: React.FC = () => {
         setTerminalHistory([]);
         return [];
       default:
-        return [`comando não encontrado: ${cmd}`, 'use: help'];
+        return [t.contact.terminalCommands.invalidCommand.replace('found', `found: ${cmd}`), t.contact.terminalCommands.use];
     }
   };
 
@@ -236,49 +278,49 @@ const ContactPage: React.FC = () => {
     {
       id: 'email',
       icon: faEnvelope,
-      title: 'E-mail',
-      subtitle: 'Resposta em 24h',
+      title: t.contact.contactMethods.email.title,
+      subtitle: t.contact.contactMethods.email.subtitle,
       link: `mailto:${SOCIAL_LINKS.EMAIL}`,
       color: '#EA4335',
       status: 'active',
-      response: 'Resposta profissional',
+      response: t.contact.contactMethods.email.response,
     },
     {
       id: 'github',
       icon: faGithub,
-      title: 'GitHub',
-      subtitle: 'Veja meus projetos',
+      title: t.contact.contactMethods.github.title,
+      subtitle: t.contact.contactMethods.github.subtitle,
       link: SOCIAL_LINKS.GITHUB,
       color: '#333',
       status: 'online',
-      response: 'Código & Colaboração',
+      response: t.contact.contactMethods.github.response,
     },
     {
       id: 'instagram',
       icon: faInstagram,
-      title: 'Instagram',
-      subtitle: 'Conteúdo casual',
+      title: t.contact.contactMethods.instagram.title,
+      subtitle: t.contact.contactMethods.instagram.subtitle,
       link: SOCIAL_LINKS.INSTAGRAM,
       color: '#E4405F',
       status: 'available',
-      response: 'DM aberta',
+      response: t.contact.contactMethods.instagram.response,
     },
     {
       id: 'linkedin',
       icon: faLinkedin,
-      title: 'LinkedIn',
-      subtitle: 'Networking profissional',
+      title: t.contact.contactMethods.linkedin.title,
+      subtitle: t.contact.contactMethods.linkedin.subtitle,
       link: SOCIAL_LINKS.LINKEDIN || '#',
       color: '#0A66C2',
       status: 'active',
-      response: 'Conexões business',
+      response: t.contact.contactMethods.linkedin.response,
     },
   ];
 
   const stats = [
-    { label: 'Tempo de Resposta', value: '< 24h' },
-    { label: 'Taxa de Resposta', value: '98%' },
-    { label: 'Conexões Ativas', value: '500+' },
+    { label: t.contact.statsLabels.responseTime, value: t.contact.stats.responseTime },
+    { label: t.contact.statsLabels.responseRate, value: t.contact.stats.responseRate },
+    { label: t.contact.statsLabels.activeConnections, value: t.contact.stats.activeConnections },
   ];
 
   useEffect(() => {
@@ -318,7 +360,7 @@ const ContactPage: React.FC = () => {
     };
     enqueue();
     return () => timers.forEach(clearTimeout);
-  }, []);
+  }, [currentLanguage]);
 
   useEffect(() => {
     if (!terminalHistory.length && !commandHistory.length && !currentPath.length) return;
@@ -379,6 +421,29 @@ const ContactPage: React.FC = () => {
     if (event.key === 'Enter') {
       const command = inputValue.trim();
       if (!command) return;
+      
+      // Verificar comandos sudo su (negado)
+      if (command.toLowerCase() === 'sudo su' || command.toLowerCase() === 'sudo root') {
+        setEasterEggType('sudosu');
+        const prompt = getPrompt();
+        setTerminalHistory((prev) => [...prev, `${prompt} ${command}`]);
+        setInputValue('');
+        setCommandHistory((prev) => [...prev, command]);
+        setCommandIndex(null);
+        return;
+      }
+
+      // Verificar comandos root (desbloqueado)
+      if (command.toLowerCase() === 'su root') {
+        setEasterEggType('root');
+        const prompt = getPrompt();
+        setTerminalHistory((prev) => [...prev, `${prompt} ${command}`]);
+        setInputValue('');
+        setCommandHistory((prev) => [...prev, command]);
+        setCommandIndex(null);
+        return;
+      }
+      
       const prompt = getPrompt();
       const outputs = handleCommand(command);
       setTerminalHistory((prev) => [
@@ -413,6 +478,12 @@ const ContactPage: React.FC = () => {
     }
   };
 
+  const handleTerminalClick = () => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  };
+
   return (
     <>
       <HomeStyled>
@@ -430,18 +501,18 @@ const ContactPage: React.FC = () => {
                 style={{ border: 'none', boxShadow: 'none' }}
               />
             </AvatarContainer>
-            <h1>Vamos Construir Algo Incrível?</h1>
-            <p>Estou sempre aberto para discutir novos projetos, ideias criativas ou oportunidades.</p>
+            <h1>{t.contact.hero.title}</h1>
+            <p>{t.contact.hero.description}</p>
           </HeroSection>
 
-          <TerminalWindow>
+          <TerminalWindow onClick={handleTerminalClick}>
             <TerminalHeader>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#ff5f56' }}></span>
                 <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#ffbd2e' }}></span>
                 <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#27c93f' }}></span>
               </div>
-              <span>contact@pablo.dev</span>
+              <span>Terminal</span>
               <div style={{ width: '60px' }}></div>
             </TerminalHeader>
             <TerminalBody ref={terminalRef}>
@@ -451,13 +522,13 @@ const ContactPage: React.FC = () => {
               <TerminalRow>
                 <TerminalPrompt>{getPrompt()}</TerminalPrompt>
                 <TerminalInput
+                  ref={inputRef}
                   value={inputValue}
                   onChange={(event) => setInputValue(event.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder={isReady ? 'digite um comando… (help)' : ''}
+                  placeholder={isReady ? t.contact.terminal.placeholder : ''}
                   disabled={!isReady}
                 />
-                <Cursor>█</Cursor>
               </TerminalRow>
             </TerminalBody>
           </TerminalWindow>
@@ -531,6 +602,109 @@ const ContactPage: React.FC = () => {
         <Footer />
       </HomeStyled>
       <ProfileModal isOpen={isProfileModalOpen} onClose={() => setIsProfileModalOpen(false)} />
+      
+      {/* Easter Egg Modal */}
+      {easterEggType && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'rgba(0, 0, 0, 0.7)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 9999,
+        }} onClick={() => setEasterEggType(null)}>
+          <div style={{
+            background: '#1a1a1a',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            borderRadius: '12px',
+            padding: '2rem',
+            maxWidth: '500px',
+            width: '90%',
+            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)',
+            backdropFilter: 'blur(10px)',
+          }} onClick={(e) => e.stopPropagation()}>
+            {/* macOS window header */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              padding: '0.75rem 1rem',
+              borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+              marginBottom: '2rem',
+            }}>
+              <div style={{ display: 'flex', gap: '0.5rem' }}>
+                <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#ff5f56' }}></div>
+                <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#ffbd2e' }}></div>
+                <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#27c93f' }}></div>
+              </div>
+              <div style={{ 
+                flex: 1, 
+                textAlign: 'center', 
+                fontSize: '0.85rem', 
+                opacity: 0.6,
+                marginLeft: '-60px'
+              }}>
+                root@pablo.dev
+              </div>
+            </div>
+            
+            {/* Content */}
+            <div style={{ 
+              textAlign: 'center',
+              padding: '2rem 0'
+            }}>
+              <div style={{ 
+                fontSize: '8rem',
+                lineHeight: 1,
+                marginBottom: '1.5rem',
+                animation: 'popup 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'
+              }}>
+                {easterEggType === 'root' ? t.rootEasterEgg.emoji : t.sudoSuEasterEgg.emoji}
+              </div>
+              <h2 style={{
+                fontSize: '1.5rem', 
+                marginBottom: '1rem',
+                fontWeight: 700,
+                color: '#fff'
+              }}>
+                {easterEggType === 'root' ? t.rootEasterEgg.title : t.sudoSuEasterEgg.title}
+              </h2>
+              <p style={{ 
+                fontSize: '1rem', 
+                opacity: 0.8,
+                lineHeight: 1.6,
+                marginBottom: '1.5rem',
+                color: '#ccc'
+              }}>
+                {easterEggType === 'root' ? t.rootEasterEgg.message : t.sudoSuEasterEgg.message}
+              </p>
+            </div>
+            
+            <button
+              onClick={() => setEasterEggType(null)}
+              style={{
+                width: '100%',
+                padding: '0.75rem',
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                border: 'none',
+                borderRadius: '8px',
+                color: 'white',
+                fontSize: '1rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+              }}
+              onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+              onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+            >
+              {t.common.close}
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 };

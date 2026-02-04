@@ -1,5 +1,6 @@
 import React from 'react';
 import { ProfileStat, profileData as defaultProfileData } from '../../data/profileStats';
+import { useLanguage } from '../../core/i18n';
 import avatarImg from '../../assets/avatar.webp';
 import { getProfileDataFromCache } from '../../utils/staticCache';
 import {
@@ -31,6 +32,7 @@ interface ProfileModalProps {
 }
 
 const ProfileModal: React.FC<ProfileModalProps> = ({ isOpen, onClose }) => {
+  const { t } = useLanguage();
   if (!isOpen) return null;
 
   const cachedData = getProfileDataFromCache();
@@ -58,10 +60,10 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ isOpen, onClose }) => {
   );
 
   const categoryNames: Record<string, string> = {
-    devops: 'DevOps & Infrastructure',
-    backend: 'Backend Development',
-    tools: 'Systems & Networking',
-    'soft-skills': 'Soft Skills',
+    devops: t.modal.categoryNames.devops,
+    backend: t.modal.categoryNames.backend,
+    tools: t.modal.categoryNames.tools,
+    'soft-skills': t.modal.categoryNames.softSkills,
   };
 
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -81,7 +83,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ isOpen, onClose }) => {
           </BrowserTraffic>
           <BrowserAddressBar>
             <span>🔒</span>
-            <span>ipablo.dev/profile</span>
+            <span>{t.modal.profileUrl}</span>
           </BrowserAddressBar>
           <CloseButton onClick={onClose}>×</CloseButton>
         </BrowserHeader>
@@ -89,22 +91,22 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ isOpen, onClose }) => {
         <BrowserContent>
           <ProfileHeader>
             <ProfileAvatarContainer>
-              <img src={avatarImg} alt={(profileData as typeof defaultProfileData).name} />
+              <img src={avatarImg} alt={t.profile.name} />
               <LevelBadge>Lv {(profileData as typeof defaultProfileData).level}</LevelBadge>
             </ProfileAvatarContainer>
 
             <ProfileInfo>
-              <h2>{(profileData as typeof defaultProfileData).name}</h2>
-              <h3>{(profileData as typeof defaultProfileData).title}</h3>
-              <span className="class">⚔️ {(profileData as typeof defaultProfileData).class}</span>
+              <h2>{t.profile.name}</h2>
+              <h3>{t.profile.title}</h3>
+              <span className="class">⚔️ {t.profile.class}</span>
             </ProfileInfo>
           </ProfileHeader>
 
-          <ProfileBio>{(profileData as typeof defaultProfileData).bio}</ProfileBio>
+          <ProfileBio>{t.profile.bio}</ProfileBio>
 
           <StatsSection>
-            <h3>Character Stats</h3>
-            <p>Habilidades desenvolvidas através de quests e experiência em projetos</p>
+            <h3>{t.modal.characterStats}</h3>
+            <p>{t.modal.skillsDescription}</p>
 
             <StatsGrid>
               {Object.entries(groupedStats).map(([category, stats]) => (
@@ -113,9 +115,9 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ isOpen, onClose }) => {
                     {getCategoryEmoji(category)} {categoryNames[category]}
                   </h4>
                   {(stats as ProfileStat[]).map((stat) => (
-                    <StatItem key={stat.name}>
+                    <StatItem key={stat.nameKey}>
                       <StatHeader>
-                        <span>{stat.name}</span>
+                        <span>{(t.stats as any)?.[stat.nameKey] || stat.nameKey}</span>
                         <span className="level">
                           {stat.level}/{stat.maxLevel}
                         </span>

@@ -56,6 +56,23 @@ const HomePage: React.FC = () => {
     setSelectedProject(null);
   };
 
+  const getProjectKey = (projectName: string): string => {
+    return projectName
+      .toLowerCase()
+      .replace(/ /g, '_')
+      .replace(/\./g, '_');
+  };
+
+  const getProjectDescription = (project: Project): string => {
+    const projectKey = getProjectKey(project.name) as keyof typeof t.projects;
+    
+    if (t.projects && t.projects[projectKey]) {
+      return (t.projects[projectKey] as any)?.description || project.description || '';
+    }
+    
+    return project.description || '';
+  };
+
   useEffect(() => {
     const element = projectsRef.current;
     if (!element || projects.length === 0) return;
@@ -125,7 +142,7 @@ const HomePage: React.FC = () => {
                 style={{ cursor: 'pointer', background: 'none', border: 'none', padding: 0 }}
               >
                 <h4>{project.name}</h4>
-                <p>{project.description || 'Sem descrição disponível'}</p>
+                <p>{getProjectDescription(project)}</p>
                 {project.language && <p style={{ fontSize: '0.8rem', opacity: 0.6 }}>📌 {project.language}</p>}
               </ProjectCard>
             ))}
@@ -137,7 +154,7 @@ const HomePage: React.FC = () => {
                 style={{ cursor: 'pointer', background: 'none', border: 'none', padding: 0 }}
               >
                 <h4>{project.name}</h4>
-                <p>{project.description || 'Sem descrição disponível'}</p>
+                <p>{getProjectDescription(project)}</p>
                 {project.language && <p style={{ fontSize: '0.8rem', opacity: 0.6 }}>📌 {project.language}</p>}
               </ProjectCard>
             ))}

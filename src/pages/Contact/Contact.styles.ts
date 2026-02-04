@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, createGlobalStyle } from 'styled-components';
 
 const fadeInUp = keyframes`
   from {
@@ -11,7 +11,19 @@ const fadeInUp = keyframes`
   }
 `;
 
-
+const popup = keyframes`
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+`;
 
 const pulse = keyframes`
   0%, 100% {
@@ -337,13 +349,17 @@ export const TerminalLine = styled.div`
 export const TerminalRow = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
+  gap: 0;
+  flex-wrap: nowrap;
+  width: 100%;
 `;
 
 export const TerminalPrompt = styled.span`
   color: ${({ theme }) => theme.colors.primary};
   font-weight: 600;
+  margin-right: 0.5rem;
+  white-space: nowrap;
+  flex-shrink: 0;
 `;
 
 export const TerminalInput = styled.input`
@@ -365,12 +381,6 @@ export const TerminalInput = styled.input`
   &:disabled {
     opacity: 0.6;
   }
-`;
-
-export const Cursor = styled.span`
-  display: inline-block;
-  animation: ${blink} 1s step-end infinite;
-  color: ${({ theme }) => theme.colors.primary};
 `;
 
 export const QuickStats = styled.div`

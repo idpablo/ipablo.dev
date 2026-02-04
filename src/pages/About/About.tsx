@@ -4,6 +4,7 @@ import { Avatar } from '../../ui/Avatar';
 import ProfileModal from '../../ui/Modal/ProfileModal';
 import taNaMaoImg from '../../assets/ta_na_mao.webp';
 import { HomeStyled } from './About.styles';
+import { useLanguage } from '../../core/i18n';
 import {
   AboutContainer,
   HeroSection,
@@ -45,6 +46,7 @@ interface BlockData {
 }
 
 const AboutPage: React.FC = () => {
+  const { t } = useLanguage();
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [easterEgg, setEasterEgg] = useState<string | null>(null);
   const [clickCount, setClickCount] = useState(0);
@@ -59,51 +61,51 @@ const AboutPage: React.FC = () => {
       id: 1,
       bgColor: '#8B4513',
       icon: '🏗️',
-      title: 'Construtor',
-      description: 'Começou da infraestrutura, aprendendo a construir os alicerces que sustentam tudo',
+      title: t.about.blocks.constructor.title,
+      description: t.about.blocks.constructor.description,
       isSpecial: true,
     },
     {
       id: 2,
       bgColor: '#1f4788',
       icon: '💻',
-      title: 'Explorador Digital',
-      description: 'Java, Python, JavaScript - linguagens que abrem novos mundos de possibilidades',
+      title: t.about.blocks.digital_explorer.title,
+      description: t.about.blocks.digital_explorer.description,
     },
     {
       id: 3,
       bgColor: '#2d5a2d',
       icon: '⚙️',
-      title: 'Maestro da Automação',
-      description: 'Scripts que automatizam tarefas e liberam tempo para novas aventuras',
+      title: t.about.blocks.automation_maestro.title,
+      description: t.about.blocks.automation_maestro.description,
     },
     {
       id: 4,
       bgColor: '#4a3728',
       icon: '📊',
-      title: 'Guardião da Escalabilidade',
-      description: 'Kubernetes, Docker - ferramentas para expandir impérios digitais',
+      title: t.about.blocks.scalability_guardian.title,
+      description: t.about.blocks.scalability_guardian.description,
     },
     {
       id: 6,
       bgColor: '#FF6B6B',
       icon: '⚽',
-      title: 'Paixão pelo Futebol',
-      description: 'Quando não está codando, está no campo buscando o gol perfeito',
+      title: t.about.blocks.soccer_passion.title,
+      description: t.about.blocks.soccer_passion.description,
     },
     {
       id: 7,
       bgColor: '#4ECDC4',
       icon: '🎣',
-      title: 'Pescador Tranquilo',
-      description: 'Paciência, precisão e timing - os mesmos atributos do bom desenvolvedor',
+      title: t.about.blocks.calm_fisherman.title,
+      description: t.about.blocks.calm_fisherman.description,
     },
     {
       id: 8,
       bgColor: '#95E1D3',
       icon: '🌟',
-      title: 'Criador de Sonhos',
-      description: 'Bots, customizações Android e desafios pessoais - sempre criando algo novo',
+      title: t.about.blocks.dream_creator.title,
+      description: t.about.blocks.dream_creator.description,
     },
   ];
 
@@ -114,50 +116,50 @@ const AboutPage: React.FC = () => {
       date: '07/11/1997',
       year: 1997,
       icon: '👶',
-      title: 'Origem da Jornada',
-      description: 'O aventureiro nasce. A odisseia técnica começa sem ele saber.',
+      title: t.about.timeline.origin.title,
+      description: t.about.timeline.origin.description,
     },
     {
       date: '2021',
       year: 2021,
       icon: '🛡️',
-      title: 'Guardião da Infraestrutura',
-      description: 'Pandemia, estágio em infraestrutura. Linux virou rotina. Tá aí até hoje.',
+      title: t.about.timeline.infrastructure_guardian.title,
+      description: t.about.timeline.infrastructure_guardian.description,
     },
     {
       date: '2022',
       year: 2022,
       icon: '🌐',
-      title: 'Analista de Infraestrutura',
-      description: 'Efetivado. Redes, servidores, networking. Documentação é meu melhor amigo aqui.',
+      title: t.about.timeline.infrastructure_analyst.title,
+      description: t.about.timeline.infrastructure_analyst.description,
     },
     {
       date: '2023',
       year: 2023,
       icon: '☕',
-      title: 'Java Junior',
-      description: 'Começou a real. Agora tenho que fazer 10 linhas de código fazer sentido em meetings.',
+      title: t.about.timeline.java_junior.title,
+      description: t.about.timeline.java_junior.description,
     },
     {
       date: '2024',
       year: 2024,
       icon: '🐳',
-      title: 'DevOps Era',
-      description: 'Ensinando devs que seu laptop não é servidor e ambiente não é sentimento.',
+      title: t.about.timeline.devops_era.title,
+      description: t.about.timeline.devops_era.description,
     },
     {
       date: '2025',
       year: 2025,
       icon: '⚡',
-      title: 'Eterno Aprendiz',
-      description: 'Descobri que quanto mais sênior, menos você sabe. DevOps ainda é meu favorito problema.',
+      title: t.about.timeline.eternal_learner.title,
+      description: t.about.timeline.eternal_learner.description,
     },
     {
       date: '2026',
       year: 2026,
       icon: '🌟',
-      title: 'A Odisseia Continua',
-      description: 'Construindo systems, debuggando. Perguntando por que tudo tá broken.',
+      title: t.about.timeline.odyssey_continues.title,
+      description: t.about.timeline.odyssey_continues.description,
     },
   ];
 
@@ -230,8 +232,8 @@ const AboutPage: React.FC = () => {
               />
             </AvatarContainer>
             <AnimatedText>
-              <h1>🎮 A Jornada do Aventureiro 🗺️</h1>
-              <p>Bem-vindo à história de um curioso!</p>
+              <h1>🎮 {t.about.timeline.title.split('🎯 ')[1]} 🗺️</h1>
+              <p>{t.about.welcome}</p>
             </AnimatedText>
           </HeroSection>
 
@@ -270,28 +272,21 @@ const AboutPage: React.FC = () => {
               >
                 <BlockContent>
                   <span className="icon">⭐</span>
-                  <h3>Tesouro Desbloqueado!</h3>
-                  <p>Você manipulou os blocos {dragCount} vezes e desbloqueou o tesouro! Clique aqui... 👀</p>
+                  <h3>{t.about.treasureUnlocked.title}</h3>
+                  <p>{t.about.treasureCount.replace('{count}', dragCount.toString())}</p>
                 </BlockContent>
               </Block>
             )}
           </BlocksGrid>
 
           <StorySection>
-            <h2>📖 A História</h2>
-            <p>
-              Pablo é um desenvolvedor que começou sua jornada na infraestrutura, aprendendo desde cedo que a base sólida é essencial. 
-              Com o passar do tempo, expandiu seus horizontes, dominando múltiplas linguagens de programação e se tornando especialista 
-              em automação e escalabilidade.
-            </p>
-            <p>
-              Mas além de código, ele carrega paixões genuínas: a competição saudável do futebol e a paciência meditativa da pesca. 
-              Essas experiências moldaram seu caráter como desenvolvedor - disciplina, foco e criatividade.
-            </p>
+            <h2>📖 {t.about.story.title}</h2>
+            <p>{t.about.story.paragraph1}</p>
+            <p>{t.about.story.paragraph2}</p>
           </StorySection>
 
           <AdventureTimeline>
-            <h2>🎯 A Odisseia Técnica</h2>
+            <h2>{t.about.timeline.title}</h2>
             <TimelineWrapper>
               {timelineEvents.map((event, index) => (
                 <TimelineItem key={index} $isLeft={index % 2 === 0}>
@@ -308,22 +303,22 @@ const AboutPage: React.FC = () => {
 
           {/* Passions */}
           <SkillsShowcase>
-            <h2>🎪 As 3 Paixões</h2>
+            <h2>🎪 {t.about.skills.title}</h2>
             <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', justifyContent: 'center' }}>
               <Passion>
                 <span className="passion-icon">💻</span>
-                <h3>Código</h3>
-                <p>O meio onde expressa sua criatividade técnica</p>
+                <h3>{t.about.skills.code.title}</h3>
+                <p>{t.about.skills.code.description}</p>
               </Passion>
               <Passion>
                 <span className="passion-icon">⚽</span>
-                <h3>Futebol</h3>
-                <p>Competição, trabalho em equipe e pura adrenalina</p>
+                <h3>{t.about.skills.soccer.title}</h3>
+                <p>{t.about.skills.soccer.description}</p>
               </Passion>
               <Passion>
                 <span className="passion-icon">🎣</span>
-                <h3>Pesca</h3>
-                <p>Contemplação, paciência e conexão com a natureza</p>
+                <h3>{t.about.skills.fishing.title}</h3>
+                <p>{t.about.skills.fishing.description}</p>
               </Passion>
             </div>
           </SkillsShowcase>
@@ -333,16 +328,16 @@ const AboutPage: React.FC = () => {
               <EasterEggContent>
                 {easterEgg === 'treasure' && (
                   <>
-                    <h2>✨ TESOURO ENCONTRADO! ✨</h2>
-                    <p>Você descobriu que Pablo ama desafios!</p>
-                    <p>Se você chegou até aqui, você também é um explorador 🗺️</p>
+                    <h2>✨ {t.about.treasureUnlocked.title} ✨</h2>
+                    <p>{t.about.treasureUnlocked.message}</p>
+                    <p>{t.about.treasureUnlocked.blockCount.replace('{count}', dragCount.toString())}</p>
                   </>
                 )}
                 {easterEgg === 'secret' && (
                   <>
-                    <h2>🔓 SEGREDO DESBLOQUEADO! 🔓</h2>
-                    <p>Você é persistente! Essa é a qualidade que mais define bons desenvolvedores.</p>
-                    <p>Keep clicking, maybe there's more... 👀</p>
+                    <h2>🔓 {t.about.secretUnlocked.title} 🔓</h2>
+                    <p>{t.about.secretUnlocked.message}</p>
+                    <p>{t.about.secretUnlocked.extraMessage}</p>
                   </>
                 )}
               </EasterEggContent>
@@ -386,23 +381,23 @@ const AboutPage: React.FC = () => {
                     marginBottom: '1.5rem',
                     animation: 'popup 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'
                   }}>
-                    �
+                    💎
                   </div>
-                  <h2 style={{ 
+                  <h2 style={{
                     fontSize: '1.5rem', 
                     marginBottom: '1rem',
                     fontWeight: 700 
                   }}>
-                    Parabéns, Explorador!
+                    {t.about.treasureUnlocked.title}
                   </h2>
                   <p style={{ 
                     fontSize: '1rem', 
                     opacity: 0.8,
                     lineHeight: 1.6 
                   }}>
-                    Você encontrou o verdadeiro tesouro: a persistência.
+                    {t.about.treasureUnlocked.message}
                     <br />
-                    Manipulou {dragCount} blocos para chegar aqui! 🎮
+                    {t.about.treasureUnlocked.blockCount.replace('{count}', dragCount.toString())}
                   </p>
                 </div>
                 
@@ -423,7 +418,7 @@ const AboutPage: React.FC = () => {
                   onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
                   onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
                 >
-                  Fechar
+                  {t.about.treasureUnlocked.title}
                 </button>
               </TreasureModalContent>
             </EasterEggModal>
