@@ -29,10 +29,8 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.34",
     "@vitejs/plugin-react": "^4.3.4",
-    "axios": "^1.7.7",
     "dotenv": "^16.4.5",
     "terser": "^5.46.0",
-    "ts-node": "^10.9.2",
     "typescript": "^5.1.6",
     "vite": "^6.0.11"
   },
@@ -40,8 +38,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "audit": "npm audit",
-    "setup-cloudflare": "npx ts-node scripts/setup-cloudflare.ts"
+    "audit": "npm audit"
   },
   "browserslist": {
     "production": [
