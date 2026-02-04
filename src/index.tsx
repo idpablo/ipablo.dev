@@ -26,7 +26,7 @@ if ('serviceWorker' in navigator) {
               newWorker.state === 'installed' &&
               navigator.serviceWorker.controller
             ) {
-              // eslint-disable-next-line no-empty
+              console.log('Service Worker updated');
             }
           });
         }

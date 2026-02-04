@@ -15,7 +15,7 @@ export const cacheManager = {
     try {
       localStorage.setItem(`cache_${key}`, JSON.stringify(entry));
     } catch (error) {
-      // eslint-disable-next-line no-empty
+      console.log('Cache set failed', error);
     }
   },
 
@@ -48,7 +48,7 @@ export const cacheManager = {
     try {
       localStorage.removeItem(`cache_${key}`);
     } catch (error) {
-      // eslint-disable-next-line no-empty
+      console.log('Cache remove failed', error);
     }
   },
 
@@ -61,7 +61,7 @@ export const cacheManager = {
         }
       });
     } catch (error) {
-      // eslint-disable-next-line no-empty
+      console.log('Cache clear failed', error);
     }
   },
 
