@@ -46,9 +46,6 @@ Site disponibilizado com **GitHub Pages** + **Cloudflare**. Build e deploy são 
 # Instalar dependências
 npm install
 
-# Variáveis de ambiente (opcional, apenas para Cloudflare setup)
-cp .env.example .env
-# Edite .env com suas credenciais Cloudflare se quiser configurar cache
 ```
 
 ---
