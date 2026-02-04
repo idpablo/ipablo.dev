@@ -47,7 +47,7 @@ interface ContactMethod {
 }
 
 const ContactPage: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, currentLanguage } = useLanguage();
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [terminalHistory, setTerminalHistory] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState('');
@@ -56,19 +56,11 @@ const ContactPage: React.FC = () => {
   const [commandIndex, setCommandIndex] = useState<number | null>(null);
   const [currentPath, setCurrentPath] = useState<string[]>([]);
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
-  const [currentLanguage, setCurrentLanguage] = useState(t.contact.terminal.initializing);
   const [easterEggType, setEasterEggType] = useState<'root' | 'sudosu' | null>(null);
   const terminalRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const storageKey = 'contact-terminal-history-v1';
-
-  const terminalLines = [
-    `> ${t.contact.terminal.initializing}`,
-    `> ${t.contact.terminal.loadingChannels}`,
-    `> ${t.contact.terminal.statusOnline}`,
-    `> ${t.contact.terminal.allSystemsOperational}`,
-    `> ${t.contact.terminal.awaitingConnection}`,
-  ];
+  const previousLanguageRef = useRef<string>(currentLanguage);
+  const storageKey = `contact-terminal-history-${currentLanguage}`;
 
   const skillTree = {
     skills: {
@@ -125,15 +117,20 @@ const ContactPage: React.FC = () => {
 
   // Limpar histórico quando a linguagem muda
   useEffect(() => {
-    if (currentLanguage !== t.contact.terminal.initializing) {
-      localStorage.removeItem(storageKey);
+    if (previousLanguageRef.current !== currentLanguage) {
+      // Limpar todos os históricos armazenados
+      ['pt-BR', 'en-US', 'zh-CN'].forEach(lang => {
+        if (lang !== currentLanguage) {
+          localStorage.removeItem(`contact-terminal-history-${lang}`);
+        }
+      });
       setTerminalHistory([]);
       setCommandHistory([]);
       setCurrentPath([]);
       setIsReady(false);
-      setCurrentLanguage(t.contact.terminal.initializing);
+      previousLanguageRef.current = currentLanguage;
     }
-  }, [t]);
+  }, [currentLanguage]);
 
   const resolveNode = () => {
     let node: any = skillTree;
@@ -324,8 +321,9 @@ const ContactPage: React.FC = () => {
   ];
 
   useEffect(() => {
+    // Não carregar do cache se estamos mudando de idioma
     const saved = localStorage.getItem(storageKey);
-    if (saved) {
+    if (saved && previousLanguageRef.current === currentLanguage) {
       try {
         const parsed = JSON.parse(saved) as {
           history: string[];
@@ -342,6 +340,14 @@ const ContactPage: React.FC = () => {
       } catch {
       }
     }
+
+    const terminalLines = [
+      `> ${t.contact.terminal.initializing}`,
+      `> ${t.contact.terminal.loadingChannels}`,
+      `> ${t.contact.terminal.statusOnline}`,
+      `> ${t.contact.terminal.allSystemsOperational}`,
+      `> ${t.contact.terminal.awaitingConnection}`,
+    ];
 
     let index = 0;
     const timers: Array<ReturnType<typeof setTimeout>> = [];
@@ -360,10 +366,11 @@ const ContactPage: React.FC = () => {
     };
     enqueue();
     return () => timers.forEach(clearTimeout);
-  }, [currentLanguage]);
+  }, [currentLanguage, storageKey, t.contact.terminal.initializing, t.contact.terminal.loadingChannels, t.contact.terminal.statusOnline, t.contact.terminal.allSystemsOperational, t.contact.terminal.awaitingConnection]);
 
   useEffect(() => {
     if (!terminalHistory.length && !commandHistory.length && !currentPath.length) return;
+    const storageKey = `contact-terminal-history-${currentLanguage}`;
     localStorage.setItem(
       storageKey,
       JSON.stringify({
@@ -372,7 +379,7 @@ const ContactPage: React.FC = () => {
         path: currentPath,
       })
     );
-  }, [terminalHistory, commandHistory, currentPath]);
+  }, [terminalHistory, commandHistory, currentPath, currentLanguage]);
 
   useEffect(() => {
     if (!terminalRef.current) return;
@@ -576,7 +583,7 @@ const ContactPage: React.FC = () => {
           </ContactGrid>
 
           <SocialLinks>
-            <h3>Outras Formas de Conexão</h3>
+            <h3>{t.contact.otherConnectionMethods}</h3>
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
               <SocialButton href={`mailto:${SOCIAL_LINKS.EMAIL}`}>
                 <FontAwesomeIcon icon={faEnvelope} />

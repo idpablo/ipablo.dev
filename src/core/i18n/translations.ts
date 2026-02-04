@@ -117,6 +117,7 @@ export interface Translations {
     github: string;
     instagram: string;
     linkedin: string;
+    otherConnectionMethods: string;
     hero: {
       title: string;
       description: string;
@@ -400,6 +401,7 @@ export const translations: Record<LanguageCode, Translations> = {
       github: 'GitHub',
       instagram: 'Instagram',
       linkedin: 'LinkedIn',
+      otherConnectionMethods: 'Outras Formas de Conexão',
       hero: {
         title: '📬 Vamos Conversar?',
         description: 'Ou tomar uma cervejinha?',
@@ -681,6 +683,7 @@ export const translations: Record<LanguageCode, Translations> = {
       github: 'GitHub',
       instagram: 'Instagram',
       linkedin: 'LinkedIn',
+      otherConnectionMethods: 'Other Ways to Connect',
       hero: {
         title: '📬 Let\'s Talk?',
         description: 'Or grab a beer?',
@@ -962,6 +965,7 @@ export const translations: Record<LanguageCode, Translations> = {
       github: 'GitHub',
       instagram: 'Instagram',
       linkedin: 'LinkedIn',
+      otherConnectionMethods: '其他联系方式',
       hero: {
         title: '📬 我们来聊天？',
         description: '或者来一杯啤酒？',
