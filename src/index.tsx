@@ -26,7 +26,6 @@ if ('serviceWorker' in navigator) {
               newWorker.state === 'installed' &&
               navigator.serviceWorker.controller
             ) {
-              console.log('Atualização de serviço disponível');
             }
           });
         }

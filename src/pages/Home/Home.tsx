@@ -37,7 +37,6 @@ const HomePage: React.FC = () => {
           setProjects(data);
         }
       } catch (error) {
-        console.warn('Erro ao buscar projetos do GitHub:', error);
       }
     };
 

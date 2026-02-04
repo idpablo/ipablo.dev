@@ -31,7 +31,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, project, onClose })
 
   const projectDescriptions = getProjectDescriptionsFromCache() || defaultProjectDescriptions;
   const projectKey = project.name.toLowerCase().replace(/ /g, '_');
-  const projectData = projectDescriptions[projectKey as keyof typeof projectDescriptions] as any;
+  const projectData = projectDescriptions[projectKey as keyof typeof projectDescriptions];
   const enhancedDescription = projectData?.enhancedDescription || project.description || 'Projeto sem descrição';
   const features = projectData?.features || [];
   const hasPreview = projectData?.hasPreview || false;

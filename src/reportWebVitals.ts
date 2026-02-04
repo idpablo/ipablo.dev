@@ -1,20 +1,20 @@
+interface WebVitalsModule {
+  onCLS?: (metric: any) => void;
+  onFCP?: (metric: any) => void;
+  onLCP?: (metric: any) => void;
+  onTTFB?: (metric: any) => void;
+}
+
 type ReportHandler = (metric: any) => void;
 
 const reportWebVitals = (onPerfEntry?: ReportHandler) => {
-  if (onPerfEntry && onPerfEntry instanceof Function) {
+  if (onPerfEntry && typeof onPerfEntry === 'function') {
     import('web-vitals').then((webVitals) => {
-      if ((webVitals as any).onCLS) {
-        (webVitals as any).onCLS(onPerfEntry);
-      }
-      if ((webVitals as any).onFCP) {
-        (webVitals as any).onFCP(onPerfEntry);
-      }
-      if ((webVitals as any).onLCP) {
-        (webVitals as any).onLCP(onPerfEntry);
-      }
-      if ((webVitals as any).onTTFB) {
-        (webVitals as any).onTTFB(onPerfEntry);
-      }
+      const vitals = webVitals as unknown as WebVitalsModule;
+      vitals.onCLS?.(onPerfEntry);
+      vitals.onFCP?.(onPerfEntry);
+      vitals.onLCP?.(onPerfEntry);
+      vitals.onTTFB?.(onPerfEntry);
     });
   }
 };

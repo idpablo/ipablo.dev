@@ -15,7 +15,6 @@ export const cacheManager = {
     try {
       localStorage.setItem(`cache_${key}`, JSON.stringify(entry));
     } catch (error) {
-      console.warn(`Erro ao armazenar cache para ${key}:`, error);
     }
   },
 
@@ -40,7 +39,6 @@ export const cacheManager = {
 
       return entry.data;
     } catch (error) {
-      console.warn(`Erro ao recuperar cache para ${key}:`, error);
       return null;
     }
   },
@@ -49,7 +47,6 @@ export const cacheManager = {
     try {
       localStorage.removeItem(`cache_${key}`);
     } catch (error) {
-      console.warn(`Erro ao remover cache para ${key}:`, error);
     }
   },
 
@@ -62,7 +59,6 @@ export const cacheManager = {
         }
       });
     } catch (error) {
-      console.warn('Erro ao limpar cache:', error);
     }
   },
 
@@ -104,7 +100,6 @@ export const useCache = <T>(
     } catch (err) {
       const error = err instanceof Error ? err : new Error(String(err));
       setError(error);
-      console.error(`Erro ao buscar ${key}:`, error);
     } finally {
       setLoading(false);
     }
