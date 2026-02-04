@@ -126,13 +126,21 @@ export const AvatarContainer = styled.div`
     transform-origin: center bottom;
     position: relative;
     z-index: 2;
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    width: 140px;
+    height: 125px;
   }
 `;
 
 export const SeaPixel = styled.div`
   position: absolute;
   left: 50%;
-  bottom: 25px;
+  bottom: var(--sea-bottom, 25px);
   transform-origin: center top;
   width: 120px;
   height: 20px;
@@ -242,6 +250,12 @@ export const SeaPixel = styled.div`
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
+
+  @media (max-width: 768px) {
+    width: 140px;
+    height: 24px;
+    --sea-bottom: 18px;
+  }
 `;
 
 

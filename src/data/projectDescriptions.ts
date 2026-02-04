@@ -37,7 +37,7 @@ export const projectDescriptions: Record<string, any> = {
     technologies: ["React", "TypeScript", "styled-components", "Redux"],
     hasPreview: true,
     githubPages: true,
-    previewUrl: "https://idpablo.github.io/ipablo.dev"
+    previewUrl: "https://www.ipablo.dev"
   },
   crud_with_jpa: {
     enhancedDescription: "Implementação de padrão CRUD completo utilizando JPA (Java Persistence API). Demonstra boas práticas em persistência de dados, mapeamento objeto-relacional e operações de banco de dados com Java.",

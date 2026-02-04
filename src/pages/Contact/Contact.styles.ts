@@ -191,13 +191,21 @@ export const AvatarContainer = styled.div`
     transform-origin: center bottom;
     position: relative;
     z-index: 2;
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    width: 140px;
+    height: 110px;
   }
 `;
 
 export const SeaPixel = styled.div`
   position: absolute;
   left: 50%;
-  bottom: -30px;
+  bottom: var(--sea-bottom, -30px);
   transform-origin: center top;
   width: 120px;
   height: 45px;
@@ -260,6 +268,12 @@ export const SeaPixel = styled.div`
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
   pointer-events: none;
+
+  @media (max-width: 768px) {
+    width: 140px;
+    height: 52px;
+    --sea-bottom: -34px;
+  }
 `;
 
 export const TerminalWindow = styled.div`
