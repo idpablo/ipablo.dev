@@ -18,8 +18,24 @@ export default defineConfig({
   server: {
     port: 3000,
     open: true,
+    headers: {
+      'Cache-Control': 'public, max-age=3600, must-revalidate',
+    },
   },
   build: {
     outDir: 'build',
+    minify: 'terser',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-redux', 'redux', '@reduxjs/toolkit'],
+          icons: ['react-icons/fa'],
+        },
+        entryFileNames: 'assets/[name]-[hash].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash][extname]',
+      },
+    },
+    chunkSizeWarningLimit: 500,
   },
 });
