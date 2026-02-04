@@ -20,7 +20,9 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     if (savedLanguage) return savedLanguage;
     
     const browserLanguage = navigator.language;
-    return browserLanguage?.startsWith('en') ? 'en-US' : 'pt-BR';
+    if (browserLanguage?.startsWith('zh')) return 'zh-CN';
+    if (browserLanguage?.startsWith('en')) return 'en-US';
+    return 'pt-BR';
   };
 
   const [currentLanguage, setCurrentLanguage] = useState<LanguageCode>(getInitialLanguage);

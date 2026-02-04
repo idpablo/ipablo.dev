@@ -38,6 +38,16 @@ const Header: React.FC = () => {
           >
             EN
           </button>
+          <span>/</span>
+          <button
+            onClick={() => setLanguage('zh-CN')}
+            style={{
+              opacity: currentLanguage === 'zh-CN' ? 1 : 0.5,
+              fontWeight: currentLanguage === 'zh-CN' ? 'bold' : 'normal',
+            }}
+          >
+            ZH
+          </button>
         </LanguageToggle>
         <ThemeToggle isDark={theme === 'light'} onToggle={toggleTheme} />
       </HeaderBottonTheme>
