@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Header, Footer } from '../../ui';
 import { Avatar } from '../../ui/Avatar';
 import ProfileModal from '../../ui/Modal/ProfileModal';
-import taNaMaoImg from '../../assets/ta_na_mao.png';
+import taNaMaoImg from '../../assets/ta_na_mao.webp';
 import { HomeStyled } from './About.styles';
 import {
   AboutContainer,
@@ -115,63 +115,49 @@ const AboutPage: React.FC = () => {
       year: 1997,
       icon: '👶',
       title: 'Origem da Jornada',
-      description: 'O aventureiro nasce e inicia sua odisseia no mundo terrestre.',
-    },
-    {
-      date: '2015',
-      year: 2015,
-      icon: '🎓',
-      title: 'Primeiros Passos na Tech',
-      description: 'Aos 18 anos, começou a explorar o mundo da tecnologia e programação.',
-    },
-    {
-      date: '2017',
-      year: 2017,
-      icon: '🛡️',
-      title: 'Guardião da Infraestrutura',
-      description: 'Dominou Linux, Windows e estruturas de monitoramento. Aprendeu os alicerces da tecnologia.',
-    },
-    {
-      date: '2018',
-      year: 2018,
-      icon: '🐍',
-      title: 'Mago dos Scripts',
-      description: 'Criou automações em Python e Shell. Começou a economizar horas de trabalho manual.',
-    },
-    {
-      date: '2019',
-      year: 2019,
-      icon: '☕',
-      title: 'Guerreiro Java',
-      description: 'Dominou Java e construiu sistemas robustos e escaláveis. Força bruta do backend.',
+      description: 'O aventureiro nasce. A odisseia técnica começa sem ele saber.',
     },
     {
       date: '2021',
       year: 2021,
-      icon: '🐳',
-      title: 'Containerizador',
-      description: 'Conquistou Docker e Kubernetes. Orquestrou impérios digitais na nuvem.',
+      icon: '🛡️',
+      title: 'Guardião da Infraestrutura',
+      description: 'Pandemia, estágio em infraestrutura. Linux virou rotina. Tá aí até hoje.',
+    },
+    {
+      date: '2022',
+      year: 2022,
+      icon: '🌐',
+      title: 'Analista de Infraestrutura',
+      description: 'Efetivado. Redes, servidores, networking. Documentação é meu melhor amigo aqui.',
     },
     {
       date: '2023',
       year: 2023,
-      icon: '☁️',
-      title: 'Arquiteto em Nuvem',
-      description: 'Aprofundou conhecimentos em AWS e infraestrutura como código. Arquiteto de soluções.',
+      icon: '☕',
+      title: 'Java Junior',
+      description: 'Começou a real. Agora tenho que fazer 10 linhas de código fazer sentido em meetings.',
     },
     {
       date: '2024',
       year: 2024,
-      icon: '⚛️',
-      title: 'Explorador Frontend',
-      description: 'Descobriu React e JavaScript. Expandiu horizonte para novos territórios web.',
+      icon: '🐳',
+      title: 'DevOps Era',
+      description: 'Ensinando devs que seu laptop não é servidor e ambiente não é sentimento.',
+    },
+    {
+      date: '2025',
+      year: 2025,
+      icon: '⚡',
+      title: 'Eterno Aprendiz',
+      description: 'Descobri que quanto mais sênior, menos você sabe. DevOps ainda é meu favorito problema.',
     },
     {
       date: '2026',
       year: 2026,
       icon: '🌟',
-      title: 'Full-Stack Aventureiro',
-      description: 'Hoje combina conhecimento de backend, infraestrutura e frontend em uma única jornada épica.',
+      title: 'A Odisseia Continua',
+      description: 'Construindo systems, debuggando. Perguntando por que tudo tá broken.',
     },
   ];
 

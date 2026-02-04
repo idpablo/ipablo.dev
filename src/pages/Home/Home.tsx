@@ -8,8 +8,10 @@ import { GITHUB_API } from '../../constants';
 import { HomeStyled, DashboardContainer, DashboardInfo, DashboardProjects } from './Home.styles';
 import { ProjectCard } from '../../ui/Card';
 import avatarImg from '../../assets/avatar.webp';
+import { useLanguage } from '../../core/i18n';
 
 const HomePage: React.FC = () => {
+  const { t } = useLanguage();
   const [projects, setProjects] = useState<Project[]>([]);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,11 +26,9 @@ const HomePage: React.FC = () => {
         if (response.ok) {
           const data = await response.json();
           setProjects(data);
-        } else {
-          console.error('Erro ao buscar projetos do GitHub:', response.statusText);
         }
       } catch (error) {
-        console.error('Erro ao buscar projetos do GitHub:', error);
+        // Erro silencioso em produção
       }
     };
 
@@ -95,15 +95,15 @@ const HomePage: React.FC = () => {
             <div onClick={() => setIsProfileModalOpen(true)} style={{ cursor: 'pointer' }}>
               <Avatar src={avatarImg} alt="Pablo Bento Soares" size="160px" />
             </div>
-            <h2>Meu Nome é Pablo Bento Soares</h2>
+            <h2>{t.home.title}</h2>
             <p>
-              Sou um desenvolvedor de software que teve o início da carreira na infraestrutura, experiência em scripts de automação, servidores e estruturas de escalabilidade e monitoramento, dando ênfase nas linguagens; Java, Python e JavaScript. Uma pessoa que ama a tecnologia desde que me entendo por gente, sempre criando meus brinquedinhos e desafios pessoais, como fazer alguns bots, customização do sistema Android e scripting para pagar minhas contas.
+              {t.home.description1}
             </p>
             <p>
-              Não tenho medo de abrir a documentação de uma linguagem aleatória no final de semana para fazer alguma implementação "boba". Estudo paradigmas e estruturas de algoritmo que nunca vou usar novamente. Me encontro encantado com o mundo das IA's e dou ênfase na matemática e estatística envolvida em treinamento das mesmas.
+              {t.home.description2}
             </p>
-            <p style={{ fontSize: '1.1rem', fontWeight: 600, marginTop: '1rem' }}>
-              #DevOPS é cultura.
+            <p style={{ fontSize: '1.3rem', fontWeight: 600, marginTop: '1rem' }}>
+              {t.home.devopsMessage}
             </p>
           </DashboardInfo>
           <DashboardProjects ref={projectsRef}>

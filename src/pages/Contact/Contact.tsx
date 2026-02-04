@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { SOCIAL_LINKS } from '../../constants';
 import ProfileModal from '../../ui/Modal/ProfileModal';
-import pescadorImg from '../../assets/pescador.png';
+import pescadorImg from '../../assets/pescador.webp';
 import { 
   HomeStyled, 
   ContactContainer, 

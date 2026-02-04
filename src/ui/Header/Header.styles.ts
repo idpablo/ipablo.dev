@@ -84,3 +84,31 @@ export const HeaderBottonTheme = styled.div`
     }
   }
 `;
+
+export const LanguageToggle = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+
+  button {
+    background: transparent;
+    border: none;
+    color: ${({ theme }) => theme.colors.text};
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.background};
+      color: ${({ theme }) => theme.colors.primary};
+    }
+  }
+
+  span {
+    color: ${({ theme }) => theme.colors.text};
+    opacity: 0.5;
+  }
+`;

@@ -53,8 +53,8 @@ export const DashboardInfo = styled.div`
   }
 
   p {
-    font-size: 1rem;
-    line-height: 1.8;
+    font-size: 1.30rem;
+    line-height: 1.9;
     margin-bottom: 1.5rem;
     color: ${({ theme }) => theme.colors.text};
     opacity: 0.9;
@@ -69,8 +69,8 @@ export const DashboardInfo = styled.div`
     }
 
     p {
-      font-size: 0.95rem;
-      line-height: 1.6;
+      font-size: 1rem;
+      line-height: 1.7;
       margin-bottom: 1rem;
     }
   }

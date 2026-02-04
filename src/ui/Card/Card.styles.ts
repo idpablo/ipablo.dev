@@ -7,7 +7,7 @@ export const ProjectCard = styled.a`
   border-radius: 12px;
   background: ${({ theme }) => theme.colors.botton} !important;
   border: 1px solid ${({ theme }) => theme.colors.primary}33;
-  box-shadow: ${({ theme }) => theme.config.cardGlow || theme.config.box_shadow_card || theme.config.box_shadow};
+  box-shadow: ${({ theme }) => theme.config.box_shadow_card || theme.config.box_shadow};
   backdrop-filter: saturate(120%) blur(2px);
   text-decoration: none;
   color: ${({ theme }) => theme.colors.text};
@@ -40,7 +40,7 @@ export const ProjectCard = styled.a`
 
   &:hover {
     transform: translateY(-8px);
-    box-shadow: ${({ theme }) => theme.config.cardGlowHover || theme.config.cardGlow || theme.config.box_shadow_card || theme.config.box_shadow};
+    box-shadow: ${({ theme }) => theme.config.box_shadow_card || theme.config.box_shadow};
     border-color: ${({ theme }) => theme.colors.primary};
     z-index: 2;
 
