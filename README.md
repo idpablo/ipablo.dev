@@ -62,9 +62,6 @@ npm run build
 # Preview do build
 npm preview
 
-# Setup do Cloudflare Cache Rules (após DNS propagar)
-npm run setup-cloudflare
-
 # Auditoria de segurança
 npm audit
 ```
