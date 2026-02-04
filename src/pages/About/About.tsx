@@ -386,7 +386,7 @@ const AboutPage: React.FC = () => {
                     marginBottom: '1.5rem',
                     animation: 'popup 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'
                   }}>
-                    🖕
+                    �
                   </div>
                   <h2 style={{ 
                     fontSize: '1.5rem', 
