@@ -15,7 +15,7 @@ export const cacheManager = {
     try {
       localStorage.setItem(`cache_${key}`, JSON.stringify(entry));
     } catch (error) {
-      // localStorage may fail in private mode or when full - silent failure is acceptable
+      // eslint-disable-next-line no-empty
     }
   },
 
@@ -40,7 +40,6 @@ export const cacheManager = {
 
       return entry.data;
     } catch (error) {
-      // Cache read/parse failure - returns null and continues without cache
       return null;
     }
   },
@@ -49,7 +48,7 @@ export const cacheManager = {
     try {
       localStorage.removeItem(`cache_${key}`);
     } catch (error) {
-      // localStorage unavailable - silent failure is acceptable
+      // eslint-disable-next-line no-empty
     }
   },
 
@@ -62,7 +61,7 @@ export const cacheManager = {
         }
       });
     } catch (error) {
-      // localStorage unavailable - silent failure is acceptable
+      // eslint-disable-next-line no-empty
     }
   },
 
