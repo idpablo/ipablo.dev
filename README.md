@@ -40,13 +40,13 @@ npm install
 ### Iniciar aplicação
 
 ```bash
-node run start 
+npm start
 ```
 
 ### Executar testes
 
 ```bash
-node test 
+npm test
 ```
 
 ### gerar build
