@@ -1,4 +1,4 @@
-# Portfólio - Pablo Desenvolvedor
+# Portfólio - Pablo Bento Soares
 
 Portfólio responsivo e otimizado desenvolvido com React 18, TypeScript e Vite. Site conta com múltiplas camadas de cache, internacionalização (PT-BR/EN-US/ZH-CH) e design responsivo com tema claro/escuro.
 
