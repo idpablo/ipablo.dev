@@ -19,12 +19,13 @@ export const AvatarContainer = styled.div`
   width: 120px;
   height: 110px;
   overflow: hidden;
-  margin-bottom: 24px;
+  margin-bottom: 0px;
 
   .fisherman-avatar {
     animation: ${sway} 5s ease-in-out infinite;
     transform-origin: center bottom;
     position: relative;
+    bottom: -60px;
     z-index: 2;
     max-width: 100%;
     height: auto;
@@ -40,10 +41,10 @@ export const AvatarContainer = styled.div`
 export const SeaPixel = styled.div`
   position: absolute;
   left: 50%;
-  bottom: var(--sea-bottom, 25px);
+  bottom: var(--sea-bottom, -30px);
   transform-origin: center top;
   width: 120px;
-  height: 20px;
+  height: 40px;
   background:
     repeating-linear-gradient(
       90deg,
@@ -149,5 +150,7 @@ export const SeaPixel = styled.div`
 
   @media (max-width: 768px) {
     width: 140px;
+    height: 24px;
+    bottom: var(--sea-bottom, -15px);
   }
 `;

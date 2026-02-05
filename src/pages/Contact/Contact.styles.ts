@@ -97,9 +97,28 @@ export const HeroSection = styled.div`
 
 
 
-export const AvatarContainer = BaseAvatarContainer;
+export const AvatarContainer = styled(BaseAvatarContainer)`
+  height: 100px;
 
-export const SeaPixel = BaseSeaPixel;
+  .fisherman-avatar {
+    width: 120px;
+    height: 90px;
+    bottom: -15px;
+    object-fit: contain;
+  }
+
+  @media (max-width: 768px) {
+    height: 110px;
+  }
+`;
+
+export const SeaPixel = styled(BaseSeaPixel)`
+  bottom: var(--sea-bottom, -30px);
+
+  @media (max-width: 768px) {
+    bottom: var(--sea-bottom, -15px); 
+  }
+`;
 
 export const TerminalWindow = styled.div`
   width: 100%;
