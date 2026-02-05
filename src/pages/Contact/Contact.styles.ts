@@ -1,40 +1,14 @@
-import styled, { keyframes, createGlobalStyle } from 'styled-components';
-
-const fadeInUp = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
-const popup = keyframes`
-  0% {
-    transform: scale(0.5);
-    opacity: 0;
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-`;
-
-const pulse = keyframes`
-  0%, 100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 0.8;
-  }
-`;
+import styled, { keyframes } from 'styled-components';
+import { 
+  fadeInUp, 
+  pulse, 
+  float, 
+  ripple, 
+  dotBounce,
+  PageContainer as HomeStyled,
+  AvatarContainer as BaseAvatarContainer,
+  SeaPixel as BaseSeaPixel
+} from '../../core/theme';
 
 const typing = keyframes`
   from {
@@ -54,62 +28,6 @@ const blink = keyframes`
   }
 `;
 
-const float = keyframes`
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-`;
-
-const sway = keyframes`
-  0%, 100% {
-    transform: rotate(-1.5deg);
-  }
-  50% {
-    transform: rotate(1.5deg);
-  }
-`;
-
-const seaSway = keyframes`
-  0%, 100% {
-    transform: translateX(-50%) rotate(-1.5deg);
-  }
-  50% {
-    transform: translateX(-50%) rotate(1.5deg);
-  }
-`;
-
-const wave = keyframes`
-  0% {
-    background-position: 0 0, 40px 0, 80px 0;
-  }
-  100% {
-    background-position: 40px 0, 80px 0, 120px 0;
-  }
-`;
-
-const ripple = keyframes`
-  0% {
-    transform: scale(0.8);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(2.5);
-    opacity: 0;
-  }
-`;
-
-const dotBounce = keyframes`
-  0%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-10px);
-  }
-`;
-
 const cardHover = keyframes`
   0% {
     transform: translateY(0) rotateX(0deg);
@@ -119,15 +37,7 @@ const cardHover = keyframes`
   }
 `;
 
-export const HomeStyled = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  width: 100%;
-  flex: 1;
-  background-color: ${({ theme }) => theme.colors.background};
-`;
+export { HomeStyled };
 
 export const ContactContainer = styled.div`
   display: flex;
@@ -187,105 +97,9 @@ export const HeroSection = styled.div`
 
 
 
-export const AvatarContainer = styled.div`
-  position: relative;
-  display: inline-flex;
-  align-items: flex-start;
-  justify-content: center;
-  width: 120px;
-  height: 90px;
-  overflow: hidden;
-  margin-bottom: 24px;
+export const AvatarContainer = BaseAvatarContainer;
 
-  .fisherman-avatar {
-    animation: ${sway} 5s ease-in-out infinite;
-    transform-origin: center bottom;
-    position: relative;
-    z-index: 2;
-    max-width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  @media (max-width: 768px) {
-    width: 140px;
-    height: 110px;
-  }
-`;
-
-export const SeaPixel = styled.div`
-  position: absolute;
-  left: 50%;
-  bottom: var(--sea-bottom, -30px);
-  transform-origin: center top;
-  width: 120px;
-  height: 45px;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #4A90E2 0px, #4A90E2 8px,
-      #5BA3F5 8px, #5BA3F5 16px,
-      #6BB6FF 16px, #6BB6FF 24px,
-      #5BA3F5 24px, #5BA3F5 32px,
-      #4A90E2 32px, #4A90E2 40px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      #5BA3F5 0px, #5BA3F5 8px,
-      #6BB6FF 8px, #6BB6FF 16px,
-      #7AC8FF 16px, #7AC8FF 24px,
-      #6BB6FF 24px, #6BB6FF 32px,
-      #5BA3F5 32px, #5BA3F5 40px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      #6BB6FF 0px, #6BB6FF 8px,
-      #7AC8FF 8px, #7AC8FF 16px,
-      #8AD5FF 16px, #8AD5FF 24px,
-      #7AC8FF 24px, #7AC8FF 32px,
-      #6BB6FF 32px, #6BB6FF 40px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      #3A7FD2 0px, #3A7FD2 8px,
-      #4A90E2 8px, #4A90E2 16px,
-      #5BA3F5 16px, #5BA3F5 24px,
-      #4A90E2 24px, #4A90E2 32px,
-      #3A7FD2 32px, #3A7FD2 40px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      #2A6FC2 0px, #2A6FC2 8px,
-      #3A7FD2 8px, #3A7FD2 16px,
-      #4A90E2 16px, #4A90E2 24px,
-      #3A7FD2 24px, #3A7FD2 32px,
-      #2A6FC2 32px, #2A6FC2 40px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      #1A5FB2 0px, #1A5FB2 8px,
-      #2A6FC2 8px, #2A6FC2 16px,
-      #3A7FD2 16px, #3A7FD2 24px,
-      #2A6FC2 24px, #2A6FC2 32px,
-      #1A5FB2 32px, #1A5FB2 40px
-    );
-  background-size: 40px 8px, 40px 8px, 40px 8px, 40px 8px, 40px 8px, 40px 8px;
-  background-position: 0 0, 40px 8px, 80px 16px, 0 24px, 40px 32px, 80px 40px;
-  background-repeat: repeat-x;
-  animation: ${wave} 2s linear infinite, ${seaSway} 5s ease-in-out infinite;
-  opacity: 0.85;
-  z-index: 1;
-  image-rendering: pixelated;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: crisp-edges;
-  pointer-events: none;
-
-  @media (max-width: 768px) {
-    width: 140px;
-    height: 52px;
-    --sea-bottom: -34px;
-  }
-`;
+export const SeaPixel = BaseSeaPixel;
 
 export const TerminalWindow = styled.div`
   width: 100%;
