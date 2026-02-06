@@ -9,6 +9,57 @@ import {
 } from '../../core/theme';
 
 export { HomeStyled };
+const blink = keyframes`
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+`;
+
+const blockBreathing = keyframes`
+  0%, 100% {
+    transform: scale(1) skewY(0deg);
+  }
+  50% {
+    transform: scale(1.04) skewY(0.5deg);
+  }
+`;
+
+const blockGlowPulse = keyframes`
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.08);
+  }
+`;
+
+const treasureGlow = keyframes`
+  0%, 100% {
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.6), inset -2px -2px 0px rgba(0, 0, 0, 0.3), inset 2px 2px 0px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.9), 0 0 70px rgba(255, 215, 0, 0.5), inset -2px -2px 0px rgba(0, 0, 0, 0.4), inset 2px 2px 0px rgba(255, 255, 255, 0.3);
+  }
+`;
+
+const treasureSpinFloat = keyframes`
+  0%, 100% {
+    transform: rotate(0deg) translateY(0px);
+  }
+  25% {
+    transform: rotate(5deg) translateY(-8px);
+  }
+  50% {
+    transform: rotate(0deg) translateY(0px);
+  }
+  75% {
+    transform: rotate(-5deg) translateY(-8px);
+  }
+`;
+
 export const AboutContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -68,13 +119,30 @@ export const HeroSection = styled.div`
   }
 
   p {
-    font-size: 1.3rem;
+    font-size: 1.05rem;
+    font-family: 'Courier New', monospace;
     color: ${({ theme }) => theme.colors.text};
     opacity: 0.85;
     text-align: center;
     max-width: 600px;
     line-height: 1.6;
     letter-spacing: 0.3px;
+    min-height: 1.4em;
+
+    .typed-text {
+      display: inline;
+    }
+
+    .terminal-cursor {
+      display: inline-block;
+      width: 0.55em;
+      height: 1em;
+      background: ${({ theme }) => theme.colors.primary};
+      animation: ${blink} 1s steps(1) infinite;
+      border-radius: 2px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
   }
 
   @media (max-width: 768px) {
@@ -85,18 +153,43 @@ export const HeroSection = styled.div`
     }
 
     p {
-      font-size: 1rem;
+      font-size: 0.9rem;
     }
   }
 `;
 
 export const BlocksGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, minmax(220px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, minmax(150px, 1fr));
+  gap: 1.2rem;
   width: 100%;
-  max-width: 1200px;
+  max-width: 960px;
   padding: 0 1rem;
+
+  & > div:nth-child(1) {
+    animation-delay: 0s, 0s;
+  }
+  & > div:nth-child(2) {
+    animation-delay: 0.3s, 0.4s;
+  }
+  & > div:nth-child(3) {
+    animation-delay: 0.6s, 0.8s;
+  }
+  & > div:nth-child(4) {
+    animation-delay: 0.4s, 0.5s;
+  }
+  & > div:nth-child(5) {
+    animation-delay: 0.7s, 0.9s;
+  }
+  & > div:nth-child(6) {
+    animation-delay: 0.5s, 0.6s;
+  }
+  & > div:nth-child(7) {
+    animation-delay: 0.8s, 1s;
+  }
+  & > div:nth-child(8) {
+    animation-delay: 0.2s, 0.3s;
+  }
 
   @media (max-width: 768px) {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -107,24 +200,87 @@ export const BlocksGrid = styled.div`
 
 export const Block = styled.div<{ bgColor: string; $isDragging?: boolean }>`
   background-color: ${(props) => props.bgColor};
-  border: 3px solid rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  padding: 1.5rem;
+  background-image: ${({ theme }) =>
+    theme.colors.backgroundBlackHole === '#0B0620'
+      ? `linear-gradient(155deg, rgba(10, 10, 16, 0.9), rgba(22, 20, 28, 0.92) 55%, rgba(6, 6, 10, 0.95)),
+         radial-gradient(circle at 15% 10%, rgba(255, 255, 255, 0.06), transparent 55%),
+         repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0, rgba(255, 255, 255, 0.04) 1px, transparent 1px, transparent 7px)`
+      : `linear-gradient(160deg, rgba(246, 250, 255, 0.98), rgba(210, 226, 255, 0.75) 60%),
+        radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.5), transparent 55%),
+        repeating-linear-gradient(45deg, rgba(122, 158, 210, 0.04) 0, rgba(122, 158, 210, 0.04) 1px, transparent 1px, transparent 10px)`};
+  background-blend-mode: overlay;
+  border: 1px solid
+    ${({ theme }) =>
+      theme.colors.backgroundBlackHole === '#0B0620'
+        ? 'rgba(210, 200, 255, 0.18)'
+        : 'rgba(132, 166, 220, 0.45)'};
+  border-radius: 6px;
+  padding: 1.2rem;
   cursor: ${(props) => (props.$isDragging ? 'grabbing' : 'grab')};
   transition: all 0.3s ease;
   animation: ${fadeInUp} 0.6s ease;
   position: relative;
   overflow: hidden;
-  box-shadow: inset -2px -2px 0px rgba(0, 0, 0, 0.3), inset 2px 2px 0px rgba(255, 255, 255, 0.2);
+  box-shadow:
+    inset 0 0 0 1px
+      ${({ theme }) =>
+        theme.colors.backgroundBlackHole === '#0B0620'
+          ? 'rgba(255, 255, 255, 0.12)'
+          : 'rgba(255, 255, 255, 0.65)'},
+    inset 0 0 28px
+      ${({ theme }) =>
+        theme.colors.backgroundBlackHole === '#0B0620'
+          ? 'rgba(0, 0, 0, 0.55)'
+          : 'rgba(150, 180, 230, 0.28)'},
+    0 10px 22px rgba(0, 0, 0, 0.32);
   opacity: ${(props) => (props.$isDragging ? 0.5 : 1)};
   transform: ${(props) => (props.$isDragging ? 'scale(0.95)' : 'scale(1)')};
+  animation: ${blockGlowPulse} 4s ease-in-out infinite;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border-radius: 4px;
+    border: 1px solid
+      ${({ theme }) =>
+        theme.colors.backgroundBlackHole === '#0B0620'
+          ? 'rgba(255, 255, 255, 0.12)'
+          : 'rgba(150, 185, 225, 0.35)'};
+    pointer-events: none;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 6px;
+    pointer-events: none;
+    background: ${({ theme }) =>
+      theme.colors.backgroundBlackHole === '#0B0620'
+        ? `radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.08), transparent 45%),
+           linear-gradient(180deg, rgba(0, 0, 0, 0.4), transparent 35%, rgba(0, 0, 0, 0.5) 100%)`
+        : `radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.55), transparent 55%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.25), transparent 40%, rgba(160, 190, 230, 0.18) 100%)`};
+    mix-blend-mode: screen;
+    opacity: ${({ theme }) => (theme.colors.backgroundBlackHole === '#0B0620' ? 0.5 : 0.7)};
+  }
 
   &:hover {
     transform: ${(props) => (props.$isDragging ? 'scale(0.95)' : 'translateY(-8px)')};
-    animation: ${blockScale} 0.3s ease;
-    box-shadow: inset -2px -2px 0px rgba(0, 0, 0, 0.3), 
-                inset 2px 2px 0px rgba(255, 255, 255, 0.2),
-                0 12px 24px rgba(0, 0, 0, 0.3);
+    animation: ${blockScale} 0.3s ease forwards, ${blockGlowPulse} 2.8s ease-in-out infinite;
+    box-shadow:
+      inset 0 0 0 1px
+        ${({ theme }) =>
+          theme.colors.backgroundBlackHole === '#0B0620'
+            ? 'rgba(255, 255, 255, 0.16)'
+            : 'rgba(255, 255, 255, 0.65)'},
+      inset 0 0 32px
+        ${({ theme }) =>
+          theme.colors.backgroundBlackHole === '#0B0620'
+            ? 'rgba(0, 0, 0, 0.6)'
+            : 'rgba(160, 190, 230, 0.3)'},
+      0 14px 28px rgba(0, 0, 0, 0.35);
   }
 
   &:active {
@@ -133,7 +289,28 @@ export const Block = styled.div<{ bgColor: string; $isDragging?: boolean }>`
   }
 
   @media (max-width: 768px) {
-    padding: 1rem;
+    padding: 0.9rem;
+  }
+
+  &.treasure-block {
+    background-size: 150% !important;
+    background-position: center !important;
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(255, 215, 0, 0.5), rgba(0, 0, 0, 0.8));
+      pointer-events: none;
+      z-index: 1;
+      animation: ${treasureGlow} 2s ease-in-out infinite;
+    }
+
+    &::before {
+      display: none;
+    }
   }
 `;
 
@@ -143,39 +320,56 @@ export const BlockContent = styled.div`
   align-items: center;
   gap: 0.5rem;
   text-align: center;
+  font-family: 'Georgia', 'Times New Roman', serif;
 
   .icon {
-    font-size: 2.5rem;
+    font-size: 2.1rem;
     display: block;
     animation: ${blockScale} 0.4s ease;
+    filter: ${({ theme }) =>
+      theme.colors.backgroundBlackHole === '#0B0620'
+        ? 'drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5))'
+        : 'drop-shadow(0 2px 6px rgba(160, 190, 230, 0.45))'};
   }
 
   h3 {
-    font-size: 1.1rem;
+    font-size: 0.8rem;
     font-weight: 700;
-    color: #ffffff;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    color: ${({ theme }) => (theme.colors.backgroundBlackHole === '#0B0620' ? '#E7E0FF' : '#2A1B44')};
+    text-shadow: ${({ theme }) =>
+      theme.colors.backgroundBlackHole === '#0B0620'
+        ? '0 2px 4px rgba(0, 0, 0, 0.6)'
+        : '0 1px 2px rgba(120, 150, 210, 0.45)'};
     margin: 0.5rem 0;
+    letter-spacing: 0.1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    padding: 0 0.25rem;
   }
 
   p {
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.9);
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    font-size: 0.78rem;
+    color: ${({ theme }) => (theme.colors.backgroundBlackHole === '#0B0620' ? 'rgba(226, 220, 255, 0.88)' : 'rgba(50, 38, 82, 0.82)')};
+    text-shadow: ${({ theme }) =>
+      theme.colors.backgroundBlackHole === '#0B0620'
+        ? '0 1px 2px rgba(0, 0, 0, 0.45)'
+        : '0 1px 2px rgba(160, 190, 230, 0.35)'};
     line-height: 1.4;
   }
 
   @media (max-width: 768px) {
     .icon {
-      font-size: 2rem;
+      font-size: 1.8rem;
     }
 
     h3 {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
 
     p {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
     }
   }
 `;

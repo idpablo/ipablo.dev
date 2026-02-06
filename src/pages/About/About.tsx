@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Header, Footer } from '../../ui';
 import { Avatar } from '../../ui/Avatar';
 import ProfileModal from '../../ui/Modal/ProfileModal';
 import taNaMaoImg from '../../assets/ta_na_mao.webp';
+import hitohitoImg from '../../assets/hitohito.webp';
+import { CloseButton } from '../../ui/Modal/Modal.styles';
 import { HomeStyled } from './About.styles';
 import { useLanguage } from '../../core/i18n';
 import {
@@ -55,6 +57,32 @@ const AboutPage: React.FC = () => {
   const [requiredDrags] = useState(() => Math.floor(Math.random() * 10) + 15);
   const [treasureUnlocked, setTreasureUnlocked] = useState(false);
   const [showTreasureModal, setShowTreasureModal] = useState(false);
+  const [typedWelcome, setTypedWelcome] = useState('');
+  const [isTypingWelcome, setIsTypingWelcome] = useState(false);
+
+  useEffect(() => {
+    const fullText = t.about.welcome;
+    let index = 0;
+    setTypedWelcome('');
+    setIsTypingWelcome(false);
+
+    if (!fullText) {
+      return;
+    }
+
+    setIsTypingWelcome(true);
+    const intervalId = window.setInterval(() => {
+      index += 1;
+      setTypedWelcome(fullText.slice(0, index));
+
+      if (index >= fullText.length) {
+        window.clearInterval(intervalId);
+        setIsTypingWelcome(false);
+      }
+    }, 110);
+
+    return () => window.clearInterval(intervalId);
+  }, [t.about.welcome]);
 
   const initialBlocks: BlockData[] = [
     {
@@ -232,8 +260,11 @@ const AboutPage: React.FC = () => {
               />
             </AvatarContainer>
             <AnimatedText>
-              <h1>🎮 {t.about.timeline.title.split('🎯 ')[1]} 🗺️</h1>
-              <p>{t.about.welcome}</p>
+              <h1>{t.about.timeline.title}</h1>
+              <p>
+                <span className="typed-text">{typedWelcome}</span>
+                {isTypingWelcome && <span className="terminal-cursor" aria-hidden="true" />}
+              </p>
             </AnimatedText>
           </HeroSection>
 
@@ -265,13 +296,30 @@ const AboutPage: React.FC = () => {
               <Block
                 bgColor="#FFD700"
                 onClick={handleTreasureClick}
+                className="treasure-block"
                 style={{ 
-                  animation: 'fadeInUp 0.8s ease, glow 1s ease infinite',
-                  boxShadow: '0 0 30px rgba(255, 215, 0, 0.6), inset -2px -2px 0px rgba(0, 0, 0, 0.3), inset 2px 2px 0px rgba(255, 255, 255, 0.2)'
+                  animation: 'fadeInUp 0.8s ease, treasureGlow 2s ease-in-out infinite',
+                  boxShadow: '0 0 30px rgba(255, 215, 0, 0.6), inset -2px -2px 0px rgba(0, 0, 0, 0.3), inset 2px 2px 0px rgba(255, 255, 255, 0.2)',
+                  backgroundImage: `url(${hitohitoImg})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundAttachment: 'fixed'
                 }}
               >
-                <BlockContent>
-                  <span className="icon">⭐</span>
+                <BlockContent style={{ position: 'relative', zIndex: 2 }}>
+                  <img 
+                    src={hitohitoImg} 
+                    alt="Hito Hito no Mi" 
+                    style={{
+                      width: '60px',
+                      height: '60px',
+                      objectFit: 'cover',
+                      borderRadius: '8px',
+                      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.4)',
+                      animation: 'treasureSpinFloat 3s ease-in-out infinite'
+                    }}
+                    className="treasure-icon"
+                  />
                   <h3>{t.about.treasureUnlocked.title}</h3>
                   <p>{t.about.treasureCount.replace('{count}', dragCount.toString())}</p>
                 </BlockContent>
@@ -351,6 +399,7 @@ const AboutPage: React.FC = () => {
                 <div style={{
                   display: 'flex',
                   alignItems: 'center',
+                  justifyContent: 'space-between',
                   padding: '0.75rem 1rem',
                   borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
                   marginBottom: '2rem',
@@ -367,36 +416,49 @@ const AboutPage: React.FC = () => {
                     opacity: 0.6,
                     marginLeft: '-60px'
                   }}>
-                    treasure://unlocked
+                    one-piece://found
                   </div>
+                  <CloseButton onClick={() => setShowTreasureModal(false)}>×</CloseButton>
                 </div>
                 
                 <div style={{ 
                   textAlign: 'center',
                   padding: '2rem 0'
                 }}>
-                  <div style={{ 
-                    fontSize: '10rem',
-                    lineHeight: 1,
-                    marginBottom: '1.5rem',
-                    animation: 'popup 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'
-                  }}>
-                    💎
-                  </div>
+                  <img 
+                    src={hitohitoImg} 
+                    alt="Hito Hito no Mi" 
+                    style={{ 
+                      width: '180px',
+                      height: 'auto',
+                      marginBottom: '1.5rem',
+                      animation: 'popup 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                      filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))'
+                    }}
+                  />
                   <h2 style={{
-                    fontSize: '1.5rem', 
-                    marginBottom: '1rem',
-                    fontWeight: 700 
+                    fontSize: '1.8rem', 
+                    marginBottom: '1.2rem',
+                    fontWeight: 700,
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text'
                   }}>
                     {t.about.treasureUnlocked.title}
                   </h2>
                   <p style={{ 
-                    fontSize: '1rem', 
-                    opacity: 0.8,
-                    lineHeight: 1.6 
+                    fontSize: '1.1rem', 
+                    opacity: 0.85,
+                    lineHeight: 1.8,
+                    marginBottom: '1rem'
                   }}>
                     {t.about.treasureUnlocked.message}
-                    <br />
+                  </p>
+                  <p style={{
+                    fontSize: '0.9rem',
+                    opacity: 0.7
+                  }}>
                     {t.about.treasureUnlocked.blockCount.replace('{count}', dragCount.toString())}
                   </p>
                 </div>
@@ -418,7 +480,7 @@ const AboutPage: React.FC = () => {
                   onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
                   onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
                 >
-                  {t.about.treasureUnlocked.title}
+                  Fechar
                 </button>
               </TreasureModalContent>
             </EasterEggModal>

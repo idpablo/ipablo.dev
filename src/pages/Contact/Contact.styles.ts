@@ -84,13 +84,27 @@ export const HeroSection = styled.div`
   }
 
   p {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
+    font-family: 'Courier New', monospace;
     color: ${({ theme }) => theme.colors.text};
     opacity: 0.8;
     line-height: 1.6;
+    min-height: 1.4em;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 
     @media (max-width: 768px) {
-      font-size: 1rem;
+      font-size: 0.85rem;
+    }
+
+    .terminal-cursor {
+      display: inline-block;
+      width: 0.55em;
+      height: 1em;
+      background: ${({ theme }) => theme.colors.primary};
+      animation: ${blink} 1s steps(1) infinite;
+      border-radius: 2px;
     }
   }
 `;

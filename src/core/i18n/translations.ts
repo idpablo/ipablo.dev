@@ -292,9 +292,9 @@ export const translations: Record<LanguageCode, Translations> = {
     home: {
       title: 'Meu Nome é Pablo Bento Soares',
       description1:
-        'Desenvolvedor de software que começou do lado "dark" - infraestrutura. Scripts, servidores, escalabilidade e monitoramento é meu playground. Java, Python e JavaScript rodando nas veias. Alguém que ama tecnologia desde sempre, criando bots, customizando Android e fazendo scripts para pagar as contas.',
+        'Desenvolvedor de software que começou pelo lado “dark” — infraestrutura. Scripts, servidores, escalabilidade e monitoramento me moldaram como profissional. Java, Python e JavaScript resolvem qualquer coisa (porém, depende).',
       description2:
-        'Documentação é meu melhor amigo. Estudo paradigmas e estruturas de algoritmo, mexo com matemática e estatística por trás de IA e treinamento de modelos.',
+        'Alguém que ama tecnologia desde sempre: criando bots, customizando Android e escrevendo scripts por puro ódio a tarefas repetitivas.\n\nDocumentação é o caminho da salvação.',
       devopsMessage: '#DevOPS é cultura.',
     },
     about: {
@@ -330,7 +330,7 @@ export const translations: Record<LanguageCode, Translations> = {
         },
       },
       timeline: {
-        title: '🎯 A Odisseia Técnica',
+        title: 'A Odisseia Técnica',
         origin: {
           title: 'Origem da Jornada',
           description: 'O aventureiro nasce. A odisseia técnica começa sem ele saber.',
@@ -367,7 +367,7 @@ export const translations: Record<LanguageCode, Translations> = {
         paragraph2:
           'Mas além de código, ele carrega paixões genuínas: a competição saudável do futebol e a paciência meditativa da pesca. Essas experiências moldaram seu caráter como desenvolvedor - disciplina, foco e criatividade.',
       },
-      welcome: 'Bem-vindo à minha jornada técnica. Explore os capítulos da minha história de desenvolvimento.',
+      welcome: 'Não sou estrada nem destino, mas me atravessam histórias. Quem sou eu?',
       skills: {
         title: '⚽ Paixões',
         code: {
@@ -384,9 +384,9 @@ export const translations: Record<LanguageCode, Translations> = {
         },
       },
       treasureUnlocked: {
-        title: '✨ TESOURO ENCONTRADO! ✨',
-        message: 'Você descobriu que Pablo ama desafios!',
-        blockCount: 'Se você chegou até aqui, você também é um explorador 🗺️ ({count} blocos movidos)',
+        title: '💜 Hito Hito no Mi ENCONTRADA! 💜',
+        message: 'O ONE PIECE é o network que fizemos pelo caminho!',
+        blockCount: 'Blocos movidos: {count}',
       },
       treasureCount: 'Blocos movidos: {count}',
       secretUnlocked: {
@@ -404,7 +404,7 @@ export const translations: Record<LanguageCode, Translations> = {
       otherConnectionMethods: 'Outras Formas de Conexão',
       hero: {
         title: '📬 Vamos Conversar?',
-        description: 'Ou tomar uma cervejinha?',
+        description: 'ou tomar uma cervejinha!',
       },
       terminal: {
         initializing: 'Inicializando sistema',
@@ -574,9 +574,9 @@ export const translations: Record<LanguageCode, Translations> = {
     home: {
       title: 'My Name is Pablo Bento Soares',
       description1:
-        'Software developer who started on the "dark" side - infrastructure. Scripts, servers, scalability and monitoring is my playground. Java, Python and JavaScript running through my veins. Someone who has loved technology since forever, creating bots, customizing Android and writing scripts to pay the bills.',
+        'Software developer who started on the “dark” side — infrastructure. Scripts, servers, scalability, and monitoring shaped me as a professional. Java, Python, and JavaScript solve anything (but it depends).',
       description2:
-        'Documentation is my best friend. I study paradigms and algorithm structures, diving into the math and statistics behind AI and model training.',
+        'Someone who has loved technology forever: creating bots, customizing Android, and writing scripts out of pure hatred for repetitive tasks.\n\nDocumentation is the path to salvation.',
       devopsMessage: '#DevOPS is a culture.',
     },
     about: {
@@ -612,7 +612,7 @@ export const translations: Record<LanguageCode, Translations> = {
         },
       },
       timeline: {
-        title: '🎯 The Technical Odyssey',
+        title: 'The Technical Odyssey',
         origin: {
           title: 'Journey Origins',
           description: 'The adventurer is born. The technical odyssey begins without him knowing.',
@@ -649,7 +649,7 @@ export const translations: Record<LanguageCode, Translations> = {
         paragraph2:
           'But beyond code, he carries genuine passions: the healthy competition of soccer and the meditative patience of fishing. These experiences shaped his character as a developer - discipline, focus and creativity.',
       },
-      welcome: 'Welcome to my technical journey. Explore the chapters of my development story.',
+      welcome: 'I am neither road nor destination, yet stories pass through me. What am I?',
       skills: {
         title: '⚽ Passions',
         code: {
@@ -666,9 +666,9 @@ export const translations: Record<LanguageCode, Translations> = {
         },
       },
       treasureUnlocked: {
-        title: '✨ TREASURE FOUND! ✨',
-        message: 'You discovered that Pablo loves challenges!',
-        blockCount: 'If you got here, you\'re an explorer too 🗺️ ({count} blocks moved)',
+        title: '💜 Hito Hito no Mi FOUND! 💜',
+        message: 'The ONE PIECE is the network we made along the way!',
+        blockCount: 'Blocks moved: {count}',
       },
       treasureCount: 'Blocks moved: {count}',
       secretUnlocked: {
@@ -686,7 +686,7 @@ export const translations: Record<LanguageCode, Translations> = {
       otherConnectionMethods: 'Other Ways to Connect',
       hero: {
         title: '📬 Let\'s Talk?',
-        description: 'Or grab a beer?',
+        description: 'or grab a beer!',
       },
       terminal: {
         initializing: 'Initializing system',
@@ -856,9 +856,9 @@ export const translations: Record<LanguageCode, Translations> = {
     home: {
       title: '我是 Pablo Bento Soares',
       description1:
-        '从"黑暗"一侧开始的软件开发者 - 基础设施。脚本、服务器、可扩展性和监控是我的游乐场。Java、Python 和 JavaScript 在我的血管中流淌。一个一直热爱技术的人，创建机器人、自定义 Android 并编写脚本来支付账单。',
+        '从“黑暗”一侧开始的软件开发者 — 基础设施。脚本、服务器、可扩展性和监控塑造了我的职业能力。Java、Python 和 JavaScript 能解决任何事情（不过，取决于情况）。',
       description2:
-        '文档是我最好的朋友。我研究范例和算法结构，深入研究 AI 和模型训练背后的数学和统计学。',
+        '一个一直热爱技术的人：创建机器人、自定义 Android，并出于对重复性任务的纯粹厌恶而编写脚本。\n\n文档是通向救赎的道路。',
       devopsMessage: '#DevOPS 是一种文化。',
     },
     about: {
@@ -894,7 +894,7 @@ export const translations: Record<LanguageCode, Translations> = {
         },
       },
       timeline: {
-        title: '🎯 技术奥德赛',
+        title: '技术奥德赛',
         origin: {
           title: '旅程起源',
           description: '冒险家诞生。技术奥德赛在他不知情的情况下开始。',
@@ -931,7 +931,7 @@ export const translations: Record<LanguageCode, Translations> = {
         paragraph2:
           '但除了代码之外，他还怀有真挚的热情：足球的健康竞争和钓鱼的冥想式耐心。这些经历塑造了他作为开发者的品格 - 纪律、专注和创意。',
       },
-      welcome: '欢迎来到我的技术之旅。探索我的开发故事章节。',
+      welcome: '我不是道路也不是终点，却有故事从我身上经过。我是谁？',
       skills: {
         title: '⚽ 热情',
         code: {
@@ -948,9 +948,9 @@ export const translations: Record<LanguageCode, Translations> = {
         },
       },
       treasureUnlocked: {
-        title: '✨ 发现宝藏! ✨',
-        message: '你发现了 Pablo 喜欢挑战!',
-        blockCount: '如果你来到这里，你也是一个探险家 🗺️ ({count} 个块已移动)',
+        title: '💜 人人果实已找到! 💜',
+        message: '海贼王是我们一路走来创造的网络！',
+        blockCount: '已移动的块数：{count}',
       },
       treasureCount: '已移动的块数：{count}',
       secretUnlocked: {
@@ -968,7 +968,7 @@ export const translations: Record<LanguageCode, Translations> = {
       otherConnectionMethods: '其他联系方式',
       hero: {
         title: '📬 我们来聊天？',
-        description: '或者来一杯啤酒？',
+        description: '或者来一杯啤酒！',
       },
       terminal: {
         initializing: '初始化系统',

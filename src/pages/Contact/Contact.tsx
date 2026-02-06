@@ -57,6 +57,8 @@ const ContactPage: React.FC = () => {
   const [currentPath, setCurrentPath] = useState<string[]>([]);
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [easterEggType, setEasterEggType] = useState<'root' | 'sudosu' | null>(null);
+  const [typedHeroDescription, setTypedHeroDescription] = useState('');
+  const [isTypingHeroDescription, setIsTypingHeroDescription] = useState(false);
   const terminalRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const previousLanguageRef = useRef<string>(currentLanguage);
@@ -131,6 +133,31 @@ const ContactPage: React.FC = () => {
       previousLanguageRef.current = currentLanguage;
     }
   }, [currentLanguage]);
+
+  useEffect(() => {
+    const fullText = t.contact.hero.description;
+    let index = 0;
+    setTypedHeroDescription('');
+    setIsTypingHeroDescription(false);
+
+    if (!fullText) {
+      return;
+    }
+
+    setIsTypingHeroDescription(true);
+
+    const intervalId = window.setInterval(() => {
+      index += 1;
+      setTypedHeroDescription(fullText.slice(0, index));
+
+      if (index >= fullText.length) {
+        window.clearInterval(intervalId);
+        setIsTypingHeroDescription(false);
+      }
+    }, 110);
+
+    return () => window.clearInterval(intervalId);
+  }, [t.contact.hero.description]);
 
   const resolveNode = () => {
     let node: any = skillTree;
@@ -509,7 +536,10 @@ const ContactPage: React.FC = () => {
               />
             </AvatarContainer>
             <h1>{t.contact.hero.title}</h1>
-            <p>{t.contact.hero.description}</p>
+            <p>
+              {typedHeroDescription}
+              {isTypingHeroDescription && <span className="terminal-cursor" aria-hidden="true" />}
+            </p>
           </HeroSection>
 
           <TerminalWindow onClick={handleTerminalClick}>
