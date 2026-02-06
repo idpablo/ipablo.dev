@@ -100,3 +100,4 @@ export const dotBounce = keyframes`
     transform: translateY(-10px);
   }
 `;
+

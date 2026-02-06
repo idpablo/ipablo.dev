@@ -853,3 +853,4 @@ export const TreasureModalContent = styled.div`
     padding: 1.5rem;
   }
 `;
+

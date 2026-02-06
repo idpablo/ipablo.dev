@@ -44,3 +44,4 @@ export const getCachedData = <T,>(key: string, fallback: T): T => {
 export const setCachedData = <T,>(key: string, data: T, ttlHours: number = CACHE_TTL.STATIC_DATA) => {
   cacheManager.set(key, data, ttlHours);
 };
+

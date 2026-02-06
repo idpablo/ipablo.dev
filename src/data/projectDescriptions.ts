@@ -79,3 +79,4 @@ export const projectDescriptions: Record<string, any> = {
     githubPages: false
   }
 };
+

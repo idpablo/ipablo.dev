@@ -60,3 +60,4 @@ export const ThemeToggleButton = styled.div<{ isDark: boolean }>`
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(107, 76, 240, 0.2);
   }
 `;
+

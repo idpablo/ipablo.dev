@@ -22,3 +22,4 @@ declare module 'styled-components' {
     };
   }
 }
+

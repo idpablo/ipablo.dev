@@ -1127,3 +1127,4 @@ export const translations: Record<LanguageCode, Translations> = {
     },
   },
 };
+

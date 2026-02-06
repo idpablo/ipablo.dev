@@ -16,3 +16,4 @@ const Avatar: React.FC<AvatarProps> = ({ src, alt, size, width, height, style, c
 };
 
 export default Avatar;
+

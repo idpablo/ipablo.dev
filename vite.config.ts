@@ -1,3 +1,9 @@
+/**
+ * Vite Configuration for ipablo.dev Portfolio
+ * Optimized for performance with React 18 and TypeScript
+ * Last updated: 2026-02-06
+ */
+
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';

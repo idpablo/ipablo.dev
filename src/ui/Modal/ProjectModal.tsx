@@ -129,3 +129,4 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, project, onClose })
 };
 
 export default ProjectModal;
+

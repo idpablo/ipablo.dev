@@ -154,3 +154,4 @@ export const SeaPixel = styled.div`
     bottom: var(--sea-bottom, -15px);
   }
 `;
+

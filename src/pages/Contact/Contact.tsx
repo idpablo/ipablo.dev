@@ -91,7 +91,6 @@ const ContactPage: React.FC = () => {
     return `${t.contact.terminal.prompt}:${path}$`;
   };
 
-  // Injetar animação popup global
   useEffect(() => {
     const style = document.createElement('style');
     style.textContent = `
@@ -117,10 +116,8 @@ const ContactPage: React.FC = () => {
     };
   }, []);
 
-  // Limpar histórico quando a linguagem muda
   useEffect(() => {
     if (previousLanguageRef.current !== currentLanguage) {
-      // Limpar todos os históricos armazenados
       ['pt-BR', 'en-US', 'zh-CN'].forEach(lang => {
         if (lang !== currentLanguage) {
           localStorage.removeItem(`contact-terminal-history-${lang}`);

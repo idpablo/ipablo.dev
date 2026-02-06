@@ -23,3 +23,4 @@ export const AvatarStyled = styled.img<{ size?: string; width?: string; height?:
     margin-top: 1.5rem;
   }
 `;
+

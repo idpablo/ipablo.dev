@@ -26,3 +26,4 @@ export const GlobalStyles = createGlobalStyle`
     flex-direction: column;
   }
 `;
+

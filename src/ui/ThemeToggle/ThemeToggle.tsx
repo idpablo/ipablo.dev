@@ -19,3 +19,4 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ isDark, onToggle }) => {
 };
 
 export default ThemeToggle;
+

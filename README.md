@@ -1,5 +1,7 @@
 # Portfólio - Pablo Bento Soares
 
+> **Status**: v1.0.0 - Stable Release 🚀
+
 Portfólio responsivo e otimizado desenvolvido com React 18, TypeScript e Vite. Site conta com múltiplas camadas de cache, internacionalização (PT-BR/EN-US/ZH-CH) e design responsivo com tema claro/escuro.
 
 ## 🚀 Visite [ipablo.dev](https://ipablo.dev)

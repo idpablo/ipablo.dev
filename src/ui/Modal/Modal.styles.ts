@@ -276,3 +276,4 @@ export const CloseButton = styled.button`
     transform: scale(1.2);
   }
 `;
+

@@ -15,3 +15,4 @@ export const getProfileDataFromCache = () => {
 export const getProjectDescriptionsFromCache = () => {
   return cacheManager.get(CACHE_KEYS.PROJECT_DESCRIPTIONS) || projectDescriptions;
 };
+
