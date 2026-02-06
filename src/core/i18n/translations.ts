@@ -357,7 +357,7 @@ export const translations: Record<LanguageCode, Translations> = {
         },
         odyssey_continues: {
           title: 'A Odisseia Continua',
-          description: 'Construindo systems, debuggando. Perguntando por que tudo tá broken.',
+          description: 'Construindo sistemas, debuggando a vida; a curiosidade move o mundo!',
         },
       },
       story: {
@@ -639,7 +639,7 @@ export const translations: Record<LanguageCode, Translations> = {
         },
         odyssey_continues: {
           title: 'The Odyssey Continues',
-          description: 'Building systems, debugging. Asking why everything is broken.',
+          description: 'Building systems, debugging life, curiosity moves the world!',
         },
       },
       story: {
@@ -921,7 +921,7 @@ export const translations: Record<LanguageCode, Translations> = {
         },
         odyssey_continues: {
           title: '奥德赛继续',
-          description: '构建系统，调试。问为什么一切都坏了。',
+          description: '构建系统，调试生活，好奇心推动世界！',
         },
       },
       story: {
