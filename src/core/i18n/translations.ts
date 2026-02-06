@@ -333,19 +333,19 @@ export const translations: Record<LanguageCode, Translations> = {
         title: 'A Odisseia Técnica',
         origin: {
           title: 'Origem da Jornada',
-          description: 'O aventureiro nasce. A odisseia técnica começa sem ele saber.',
+          description: 'Eis que aqui nasce uma lenda!',
         },
         infrastructure_guardian: {
           title: 'Guardião da Infraestrutura',
-          description: 'Pandemia, estágio em infraestrutura. Linux virou rotina. Tá aí até hoje.',
+          description: 'Pandemia, caos global, mas foi quando a oportunidade apareceu; a infraestrutura é um ótimo lugar para ter contato com a tech.',
         },
         infrastructure_analyst: {
           title: 'Analista de Infraestrutura',
-          description: 'Efetivado. Redes, servidores, networking. Documentação é meu melhor amigo aqui.',
+          description: 'Efetivado. Redes, servidores, networking. Documentação, documentação e mais documentação.',
         },
         java_junior: {
           title: 'Java Junior',
-          description: 'Começou a real. Agora tenho que fazer 10 linhas de código fazer sentido em meetings.',
+          description: 'Então você faz sites? Tenho uma ideia milionária para a gente!',
         },
         devops_era: {
           title: 'DevOps Era',
@@ -353,7 +353,7 @@ export const translations: Record<LanguageCode, Translations> = {
         },
         eternal_learner: {
           title: 'Eterno Aprendiz',
-          description: 'Descobri que quanto mais sênior, menos você sabe. DevOps ainda é meu favorito problema.',
+          description: 'Só sei que nada sei.',
         },
         odyssey_continues: {
           title: 'A Odisseia Continua',
@@ -615,19 +615,19 @@ export const translations: Record<LanguageCode, Translations> = {
         title: 'The Technical Odyssey',
         origin: {
           title: 'Journey Origins',
-          description: 'The adventurer is born. The technical odyssey begins without him knowing.',
+          description: 'And so, a legend is born!',
         },
         infrastructure_guardian: {
           title: 'Infrastructure Guardian',
-          description: 'Pandemic, infrastructure internship. Linux became routine. Still there today.',
+          description: 'Pandemic, global chaos, but opportunity emerged; infrastructure is where you get real tech exposure.',
         },
         infrastructure_analyst: {
           title: 'Infrastructure Analyst',
-          description: 'Made permanent. Networks, servers, networking. Documentation is my best friend here.',
+          description: 'Made permanent. Networks, servers, networking. Documentation, documentation, and more documentation.',
         },
         java_junior: {
           title: 'Java Junior',
-          description: 'Things got real. Now I have to make 10 lines of code make sense in meetings.',
+          description: 'So you build websites? I have a million-dollar idea for us!',
         },
         devops_era: {
           title: 'DevOps Era',
@@ -635,7 +635,7 @@ export const translations: Record<LanguageCode, Translations> = {
         },
         eternal_learner: {
           title: 'Eternal Learner',
-          description: 'I discovered that the more senior you are, the less you know. DevOps is still my favorite problem.',
+          description: 'I know that I know nothing.',
         },
         odyssey_continues: {
           title: 'The Odyssey Continues',
@@ -897,19 +897,19 @@ export const translations: Record<LanguageCode, Translations> = {
         title: '技术奥德赛',
         origin: {
           title: '旅程起源',
-          description: '冒险家诞生。技术奥德赛在他不知情的情况下开始。',
+          description: '于是，一个传奇诞生了！',
         },
         infrastructure_guardian: {
           title: '基础设施守护者',
-          description: '大流行，基础设施实习。Linux 成为日常。至今仍在这里。',
+          description: '大流行，全球混乱，但机遇出现了；基础设施是与技术接触的绝佳场所。',
         },
         infrastructure_analyst: {
           title: '基础设施分析师',
-          description: '被永久录用。网络、服务器、网络。文档是我这里最好的朋友。',
+          description: '被永久录用。网络、服务器、网络。文档、文档、更多文档。',
         },
         java_junior: {
           title: 'Java 初级开发者',
-          description: '现在开始真正工作。现在我必须让 10 行代码在会议中有意义。',
+          description: '那么你做网站？我有个百万美元的想法给我们！',
         },
         devops_era: {
           title: 'DevOps 时代',
@@ -917,7 +917,7 @@ export const translations: Record<LanguageCode, Translations> = {
         },
         eternal_learner: {
           title: '永恒的学习者',
-          description: '我发现你越资深，你知道的越少。DevOps 仍然是我最喜欢的问题。',
+          description: '我知道我一无所知。',
         },
         odyssey_continues: {
           title: '奥德赛继续',

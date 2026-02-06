@@ -4,10 +4,10 @@ import { CACHE_KEYS, CACHE_TTL } from './cacheConfig';
 export const initializePageCache = (page: 'about' | 'contact') => {
   if (page === 'about') {
     const timelineEvents = [
-      { date: '07/11/1997', year: 1997, icon: '👶', title: 'Origem da Jornada', description: 'O aventureiro nasce. A odisseia técnica começa sem ele saber.' },
-      { date: '2021', year: 2021, icon: '🛡️', title: 'Guardião da Infraestrutura', description: 'Pandemia, estágio em infraestrutura. Linux virou rotina. Tá aí até hoje.' },
-      { date: '2022', year: 2022, icon: '🌐', title: 'Analista de Infraestrutura', description: 'Efetivado. Redes, servidores, networking. Documentação é meu melhor amigo aqui.' },
-      { date: '2023', year: 2023, icon: '☕', title: 'Java Junior', description: 'Começou a real. Agora tenho que fazer 10 linhas de código fazer sentido em meetings.' },
+      { date: '07/11/1997', year: 1997, icon: '👶', title: 'Origem da Jornada', description: 'Eis que aqui nasce uma lenda!' },
+      { date: '2021', year: 2021, icon: '🛡️', title: 'Guardião da Infraestrutura', description: 'Pandemia, caos global, mas foi quando a oportunidade apareceu; a infraestrutura é um ótimo lugar para ter contato com a tech.' },
+      { date: '2022', year: 2022, icon: '🌐', title: 'Analista de Infraestrutura', description: 'Efetivado. Redes, servidores, networking. Documentação, documentação e mais documentação.' },
+      { date: '2023', year: 2023, icon: '☕', title: 'Java Junior', description: 'Então você faz sites? Tenho uma ideia milionária para a gente!' },
       { date: '2024', year: 2024, icon: '🐳', title: 'DevOps Era', description: 'Ensinando devs que seu laptop não é servidor e ambiente não é sentimento.' },
       { date: '2025', year: 2025, icon: '🎯', title: 'Aprendiz Eterno', description: 'Nunca paramos de aprender. Cada desafio é uma nova lição.' },
       { date: '2026+', year: 2026, icon: '🚀', title: 'A Odisseia Continua', description: 'O futuro é incerto, mas repleto de possibilidades e desafios emocionantes.' },

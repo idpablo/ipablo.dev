@@ -376,7 +376,7 @@ export const BlockContent = styled.div`
 
 export const StorySection = styled.div`
   width: 100%;
-  max-width: 800px;
+  max-width: 960px;
   padding: 2rem;
   background: ${({ theme }) => theme.colors.botton};
   border-radius: 12px;
