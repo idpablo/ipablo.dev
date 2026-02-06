@@ -25,7 +25,7 @@ export const AvatarContainer = styled.div`
     animation: ${sway} 5s ease-in-out infinite;
     transform-origin: center bottom;
     position: relative;
-    bottom: -60px;
+    bottom: -65px;
     z-index: 2;
     max-width: 100%;
     height: auto;

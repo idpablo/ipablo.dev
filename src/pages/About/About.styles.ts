@@ -94,9 +94,15 @@ export const AboutContainer = styled.div`
     gap: 2rem;
   }
 `;
-export const AvatarContainer = BaseAvatarContainer;
+
 export const SeaPixel = BaseSeaPixel;
 
+export const AvatarContainer = styled(BaseAvatarContainer)`
+
+  .fisherman-avatar {
+    bottom: -65px;
+}
+`;
 
 export const HeroSection = styled.div`
   display: flex;

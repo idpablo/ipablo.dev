@@ -112,17 +112,8 @@ export const HeroSection = styled.div`
 
 
 export const AvatarContainer = styled(BaseAvatarContainer)`
-  height: 100px;
-
   .fisherman-avatar {
-    width: 120px;
-    height: 90px;
-    bottom: -15px;
-    object-fit: contain;
-  }
-
-  @media (max-width: 768px) {
-    height: 110px;
+    bottom: -30px;
   }
 `;
 
