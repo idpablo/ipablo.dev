@@ -20,6 +20,12 @@ export const HeaderStyled = styled.header`
     height: 3rem;
     padding: 0 1.5rem;
   }
+
+  @media (max-width: 430px) {
+    height: auto;
+    padding: 0.5rem 1rem;
+    gap: 0.5rem;
+  }
 `;
 
 export const HeaderLinks = styled.div`
@@ -62,6 +68,14 @@ export const HeaderLinks = styled.div`
       font-size: 0.85rem;
     }
   }
+
+  @media (max-width: 430px) {
+    gap: 1rem;
+
+    a {
+      font-size: 0.8rem;
+    }
+  }
 `;
 
 export const HeaderBottonTheme = styled.div`
@@ -82,6 +96,14 @@ export const HeaderBottonTheme = styled.div`
       color: ${({ theme }) => theme.colors.primary};
       background-color: ${({ theme }) => theme.colors.background};
     }
+  }
+
+  @media (max-width: 430px) {
+    padding-left: 0;
+    border-left: none;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
 `;
 
@@ -110,6 +132,15 @@ export const LanguageToggle = styled.div`
   span {
     color: ${({ theme }) => theme.colors.text};
     opacity: 0.5;
+  }
+
+  @media (max-width: 430px) {
+    gap: 0.25rem;
+
+    button {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.35rem;
+    }
   }
 `;
 
