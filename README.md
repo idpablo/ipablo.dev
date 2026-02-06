@@ -87,28 +87,6 @@ src/
 
 ---
 
-## 🔄 Sistema de Cache
-
-### Cloudflare (HTTP Headers)
-Configurado via `npm run setup-cloudflare` após DNS propagar:
-- **Assets** (`/assets/*.js|css|webp`): 1 ano
-- **HTML** (`/index.html`, `/`): 1 hora
-- **Manifest**: 7 dias
-- **Service Worker**: 1 dia
-
-### Service Worker (`public/sw.js`)
-Implementa cache do lado do navegador:
-- Assets com hash: Cache permanente
-- HTML: Revalidação obrigatória
-- Offline fallback automático
-
-### localStorage (`src/utils/cache.ts`)
-Cache de dados da aplicação:
-- Dados estáticos: 365 dias
-- Dados dinâmicos (API): 24 horas
-
----
-
 
 ## 📝 Sobre
 
