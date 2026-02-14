@@ -81,8 +81,8 @@ jobs:
 
       - name: Purge Cloudflare Cache
         run: |
-          curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
+          curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ CLOUDFLARE_ZONE_ID }}/purge_cache" \
             -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
             -H "Content-Type: application/json" \
             --data '{"files":["https://ipablo.dev/*"]}'
-        if: secrets.CLOUDFLARE_ZONE_ID != ''
+        if: CLOUDFLARE_ZONE_ID != ''
