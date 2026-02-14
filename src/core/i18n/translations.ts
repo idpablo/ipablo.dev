@@ -136,12 +136,22 @@ export interface Translations {
     };
     terminalCommands: {
       help: string;
+      helpLs: string;
+      helpCd: string;
+      helpCdBack: string;
+      helpDf: string;
+      helpTree: string;
+      helpClear: string;
+      helpPwd: string;
       skillsDescription: string;
       contactsDescription: string;
       courseProgress: string;
       invalidCommand: string;
       df: string;
       use: string;
+      cdInvalidDir: string;
+      cdNotDir: string;
+      opening: string;
     };
     contactMethods: {
       email: {
@@ -395,12 +405,22 @@ export const translations: Record<LanguageCode, Translations> = {
       },
       terminalCommands: {
         help: 'Comandos disponíveis: ls, cd, pwd, df, tree, clear, help',
+        helpLs: '  ls              lista skills/contatos/cursos',
+        helpCd: '  cd <dir>        entra em uma skill ou contato',
+        helpCdBack: '  cd ..           volta um nível',
+        helpDf: '  df -lh          mostra progresso técnico',
+        helpTree: '  tree            mostra a árvore de skills',
+        helpClear: '  clear           limpa o terminal',
+        helpPwd: '  pwd             mostra o caminho atual',
         skillsDescription: 'Estrutura de skills e especialidades técnicas',
         contactsDescription: 'Canais de contato disponíveis',
         courseProgress: 'Progresso em cursos e certificações',
         invalidCommand: 'Comando não encontrado. Digite "help" para ver comandos disponíveis.',
         df: '/dev/main          1.0T  512M  512M  50%',
         use: 'Use "help" para ver comandos disponíveis',
+        cdInvalidDir: 'diretório inválido',
+        cdNotDir: 'não é um diretório',
+        opening: 'abrindo',
       },
       contactMethods: {
         email: {
@@ -679,12 +699,22 @@ export const translations: Record<LanguageCode, Translations> = {
       },
       terminalCommands: {
         help: 'Available commands: ls, cd, pwd, df, tree, clear, help',
+        helpLs: '  ls              lists skills/contacts/courses',
+        helpCd: '  cd <dir>        enters a skill or contact',
+        helpCdBack: '  cd ..           goes back one level',
+        helpDf: '  df -lh          shows technical progress',
+        helpTree: '  tree            shows the skills tree',
+        helpClear: '  clear           clears the terminal',
+        helpPwd: '  pwd             shows current path',
         skillsDescription: 'Structure of skills and technical specialties',
         contactsDescription: 'Available contact channels',
         courseProgress: 'Progress in courses and certifications',
         invalidCommand: 'Command not found. Type "help" to see available commands.',
         df: '/dev/main          1.0T  512M  512M  50%',
         use: 'Use "help" to see available commands',
+        cdInvalidDir: 'invalid directory',
+        cdNotDir: 'not a directory',
+        opening: 'opening',
       },
       contactMethods: {
         email: {
@@ -963,12 +993,22 @@ export const translations: Record<LanguageCode, Translations> = {
       },
       terminalCommands: {
         help: '可用命令：ls, cd, pwd, df, tree, clear, help',
+        helpLs: '  ls              列出技能/联系人/课程',
+        helpCd: '  cd <目录>       进入技能或联系人',
+        helpCdBack: '  cd ..           返回上一级',
+        helpDf: '  df -lh          显示技术进度',
+        helpTree: '  tree            显示技能树',
+        helpClear: '  clear           清除终端',
+        helpPwd: '  pwd             显示当前路径',
         skillsDescription: '技能和技术专长的结构',
         contactsDescription: '可用的联系渠道',
         courseProgress: '课程和认证的进度',
         invalidCommand: '找不到命令。输入 "help" 查看可用命令。',
         df: '/dev/main          1.0T  512M  512M  50%',
         use: '使用 "help" 查看可用命令',
+        cdInvalidDir: '无效的目录',
+        cdNotDir: '不是目录',
+        opening: '正在打开',
       },
       contactMethods: {
         email: {

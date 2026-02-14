@@ -222,13 +222,13 @@ const ContactPage: React.FC = () => {
 
     const node = resolveNode() as Record<string, unknown>;
     if (!node || typeof node !== 'object') {
-      return [`cd: ${target}: diretório inválido`];
+      return [`cd: ${target}: ${t.contact.terminalCommands.cdInvalidDir}`];
     }
 
     const contacts = node.contacts as Record<string, string> | undefined;
     if (contacts && contacts[target]) {
       window.open(contacts[target], '_blank', 'noopener,noreferrer');
-      return [`abrindo ${target}...`];
+      return [`${t.contact.terminalCommands.opening} ${target}...`];
     }
 
     const targetValue = node[target];
@@ -239,9 +239,9 @@ const ContactPage: React.FC = () => {
       }
       if (typeof targetValue === 'string') {
         window.open(targetValue, '_blank', 'noopener,noreferrer');
-        return [`abrindo ${target}...`];
+        return [`${t.contact.terminalCommands.opening} ${target}...`];
       }
-      return [`cd: ${target}: não é um diretório`];
+      return [`cd: ${target}: ${t.contact.terminalCommands.cdNotDir}`];
     }
 
     if (skillTree.contacts[target as keyof typeof skillTree.contacts]) {
@@ -258,13 +258,13 @@ const ContactPage: React.FC = () => {
       case 'help':
         return [
           t.contact.terminalCommands.help,
-          '  ls              lista skills/contatos/cursos',
-          '  cd <dir>        entra em uma skill ou contato',
-          '  cd ..           volta um nível',
-          '  df -lh          mostra progresso técnico',
-          '  tree            mostra a árvore de skills',
-          '  clear           limpa o terminal',
-          '  pwd             mostra o caminho atual',
+          t.contact.terminalCommands.helpLs,
+          t.contact.terminalCommands.helpCd,
+          t.contact.terminalCommands.helpCdBack,
+          t.contact.terminalCommands.helpDf,
+          t.contact.terminalCommands.helpTree,
+          t.contact.terminalCommands.helpClear,
+          t.contact.terminalCommands.helpPwd,
         ];
       case 'ls':
         return renderLs();
@@ -318,7 +318,7 @@ const ContactPage: React.FC = () => {
       title: t.contact.contactMethods.github.title,
       subtitle: t.contact.contactMethods.github.subtitle,
       link: SOCIAL_LINKS.GITHUB,
-      color: '#333',
+      color: '#24292e',
       status: 'online',
       response: t.contact.contactMethods.github.response,
     },
