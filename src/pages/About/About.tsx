@@ -7,6 +7,7 @@ import hitohitoImg from '../../assets/hitohito.webp';
 import { CloseButton } from '../../ui/Modal/Modal.styles';
 import { HomeStyled } from './About.styles';
 import { useLanguage } from '../../core/i18n';
+import { TrafficLightColors, InlineStyles, CommonStyles } from '../../core/styles/inlineStyles';
 import {
   AboutContainer,
   HeroSection,
@@ -46,6 +47,9 @@ interface BlockData {
   description: string;
   isSpecial?: boolean;
 }
+
+const EASTER_EGG_TIMEOUT_MS = 3000;
+const SECRET_CLICK_COUNT = 7;
 
 const AboutPage: React.FC = () => {
   const { t } = useLanguage();
@@ -193,13 +197,13 @@ const AboutPage: React.FC = () => {
 
   const handleEasterEgg = (type: string) => {
     setEasterEgg(type);
-    setTimeout(() => setEasterEgg(null), 3000);
+    setTimeout(() => setEasterEgg(null), EASTER_EGG_TIMEOUT_MS);
   };
 
   const handleSecretClick = () => {
     const newCount = clickCount + 1;
     setClickCount(newCount);
-    if (newCount === 7) {
+    if (newCount === SECRET_CLICK_COUNT) {
       handleEasterEgg('secret');
       setClickCount(0);
     }
@@ -248,7 +252,7 @@ const AboutPage: React.FC = () => {
         <Header />
         <AboutContainer>
           <HeroSection>
-            <AvatarContainer onClick={() => setIsProfileModalOpen(true)} style={{ cursor: 'pointer' }}>
+            <AvatarContainer onClick={() => setIsProfileModalOpen(true)} style={CommonStyles.cursorPointer}>
               <SeaPixel />
               <Avatar
                 src={taNaMaoImg}
@@ -256,7 +260,7 @@ const AboutPage: React.FC = () => {
                 width="120px"
                 height="90px"
                 className="fisherman-avatar"
-                style={{ border: 'none', boxShadow: 'none' }}
+                style={{ ...CommonStyles.borderNone, ...CommonStyles.boxShadowNone }}
               />
             </AvatarContainer>
             <AnimatedText>
@@ -405,9 +409,9 @@ const AboutPage: React.FC = () => {
                   marginBottom: '2rem',
                 }}>
                   <div style={{ display: 'flex', gap: '0.5rem' }}>
-                    <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#ff5f56' }}></div>
-                    <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#ffbd2e' }}></div>
-                    <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#27c93f' }}></div>
+                <div style={InlineStyles.trafficLight(TrafficLightColors.red)}></div>
+                <div style={InlineStyles.trafficLight(TrafficLightColors.yellow)}></div>
+                <div style={InlineStyles.trafficLight(TrafficLightColors.green)}></div>
                   </div>
                   <div style={{ 
                     flex: 1, 

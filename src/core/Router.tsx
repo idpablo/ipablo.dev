@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ROUTES } from '@constants';
+import { InlineStyles } from './styles/inlineStyles';
 
 const HomePage = lazy(() => import('@pages/Home').then(module => ({ default: module.HomePage })));
 const AboutPage = lazy(() => import('@pages/About').then(module => ({ default: module.AboutPage })));
@@ -8,7 +9,7 @@ const ContactPage = lazy(() => import('@pages/Contact').then(module => ({ defaul
 const NotFoundPage = lazy(() => import('@pages/NotFound').then(module => ({ default: module.NotFoundPage })));
 
 const LoadingFallback: React.FC = () => (
-  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+  <div style={{ ...InlineStyles.flexCenter, minHeight: '100vh' }}>
     Loading...
   </div>
 );

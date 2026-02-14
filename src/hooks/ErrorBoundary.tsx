@@ -1,4 +1,5 @@
 import React, { Component, ErrorInfo, ReactNode } from 'react';
+import { InlineStyles, CommonStyles } from '../core/styles/inlineStyles';
 
 interface Props {
   children: ReactNode;
@@ -33,10 +34,8 @@ class ErrorBoundary extends Component<Props, State> {
       return (
         <div
           style={{
-            display: 'flex',
+            ...InlineStyles.flexCenter,
             flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
             minHeight: '100vh',
             padding: '2rem',
             textAlign: 'center',
@@ -52,10 +51,10 @@ class ErrorBoundary extends Component<Props, State> {
             style={{
               padding: '0.75rem 1.5rem',
               fontSize: '1rem',
-              cursor: 'pointer',
+              ...CommonStyles.cursorPointer,
               background: '#6c5ce7',
               color: 'white',
-              border: 'none',
+              ...CommonStyles.borderNone,
               borderRadius: '8px',
             }}
           >

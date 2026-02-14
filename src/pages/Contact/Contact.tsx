@@ -8,6 +8,7 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { SOCIAL_LINKS } from '../../constants';
 import ProfileModal from '../../ui/Modal/ProfileModal';
 import { useLanguage } from '../../core/i18n';
+import { TrafficLightColors, InlineStyles, CommonStyles } from '../../core/styles/inlineStyles';
 import pescadorImg from '../../assets/pescador.webp';
 import { 
   HomeStyled, 
@@ -526,7 +527,7 @@ const ContactPage: React.FC = () => {
         <Header />
         <ContactContainer>
           <HeroSection>
-            <AvatarContainer onClick={() => setIsProfileModalOpen(true)} style={{ cursor: 'pointer' }}>
+            <AvatarContainer onClick={() => setIsProfileModalOpen(true)} style={CommonStyles.cursorPointer}>
               <SeaPixel />
               <Avatar
                 src={pescadorImg}
@@ -534,7 +535,7 @@ const ContactPage: React.FC = () => {
                 width="120px"
                 height="90px"
                 className="fisherman-avatar"
-                style={{ border: 'none', boxShadow: 'none' }}
+                style={{ ...CommonStyles.borderNone, ...CommonStyles.boxShadowNone }}
               />
             </AvatarContainer>
             <h1>{t.contact.hero.title}</h1>
@@ -547,9 +548,9 @@ const ContactPage: React.FC = () => {
           <TerminalWindow onClick={handleTerminalClick}>
             <TerminalHeader>
               <div style={{ display: 'flex', gap: '8px' }}>
-                <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#ff5f56' }}></span>
-                <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#ffbd2e' }}></span>
-                <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#27c93f' }}></span>
+                <span style={InlineStyles.trafficLight(TrafficLightColors.red)}></span>
+                <span style={InlineStyles.trafficLight(TrafficLightColors.yellow)}></span>
+                <span style={InlineStyles.trafficLight(TrafficLightColors.green)}></span>
               </div>
               <span>Terminal</span>
               <div style={{ width: '60px' }}></div>
@@ -675,9 +676,9 @@ const ContactPage: React.FC = () => {
               marginBottom: '2rem',
             }}>
               <div style={{ display: 'flex', gap: '0.5rem' }}>
-                <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#ff5f56' }}></div>
-                <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#ffbd2e' }}></div>
-                <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#27c93f' }}></div>
+                <div style={InlineStyles.trafficLight(TrafficLightColors.red)}></div>
+                <div style={InlineStyles.trafficLight(TrafficLightColors.yellow)}></div>
+                <div style={InlineStyles.trafficLight(TrafficLightColors.green)}></div>
               </div>
               <div style={{ 
                 flex: 1, 
