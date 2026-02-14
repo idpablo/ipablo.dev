@@ -14,6 +14,7 @@ export interface Translations {
     description1: string;
     description2: string;
     devopsMessage: string;
+    languageIcon: string;
   };
   about: {
     title: string;
@@ -225,38 +226,11 @@ export interface Translations {
   common: {
     close: string;
   };
-  projects: {
-    api_backend_login: {
-      title: string;
-      description: string;
-      features: string[];
-    };
-    ipablo: {
-      title: string;
-      description: string;
-      features: string[];
-    };
-    ipablo_dev: {
-      title: string;
-      description: string;
-      features: string[];
-    };
-    crud_with_jpa: {
-      title: string;
-      description: string;
-      features: string[];
-    };
-    imerssao_alura_consumindo_api: {
-      title: string;
-      description: string;
-      features: string[];
-    };
-    imerssao_alura_criando_api: {
-      title: string;
-      description: string;
-      features: string[];
-    };
-  };
+  projects: Record<string, {
+    title: string;
+    description: string;
+    features: string[];
+  }>;
   stats: {
     linux: string;
     windows: string;
@@ -296,6 +270,7 @@ export const translations: Record<LanguageCode, Translations> = {
       description2:
         'Alguém que ama tecnologia desde sempre: criando bots, customizando Android e escrevendo scripts por puro ódio a tarefas repetitivas.\n\nDocumentação é o caminho da salvação.',
       devopsMessage: '#DevOPS é cultura.',
+      languageIcon: '📌',
     },
     about: {
       title: 'Sobre',
@@ -578,6 +553,7 @@ export const translations: Record<LanguageCode, Translations> = {
       description2:
         'Someone who has loved technology forever: creating bots, customizing Android, and writing scripts out of pure hatred for repetitive tasks.\n\nDocumentation is the path to salvation.',
       devopsMessage: '#DevOPS is a culture.',
+      languageIcon: '📌',
     },
     about: {
       title: 'About',
@@ -860,6 +836,7 @@ export const translations: Record<LanguageCode, Translations> = {
       description2:
         '一个一直热爱技术的人：创建机器人、自定义 Android，并出于对重复性任务的纯粹厌恶而编写脚本。\n\n文档是通向救赎的道路。',
       devopsMessage: '#DevOPS 是一种文化。',
+      languageIcon: '📌',
     },
     about: {
       title: '关于',

@@ -19,7 +19,7 @@ const HomePage: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const projectsRef = useRef<HTMLDivElement>(null);
-  const scrollTimeout = useRef<NodeJS.Timeout>();
+  const scrollTimeout = useRef<ReturnType<typeof setTimeout>>();
 
   useEffect(() => {
     const fetchGitHubProjects = async () => {
@@ -64,10 +64,10 @@ const HomePage: React.FC = () => {
   };
 
   const getProjectDescription = (project: Project): string => {
-    const projectKey = getProjectKey(project.name) as keyof typeof t.projects;
+    const projectKey = getProjectKey(project.name);
     
     if (t.projects && t.projects[projectKey]) {
-      return (t.projects[projectKey] as any)?.description || project.description || '';
+      return t.projects[projectKey]?.description || project.description || '';
     }
     
     return project.description || '';
@@ -138,24 +138,24 @@ const HomePage: React.FC = () => {
               <ProjectCard
                 key={project.id}
                 as="button"
-                onClick={(e: any) => handleProjectClick(project, e)}
+                onClick={(e: React.MouseEvent) => handleProjectClick(project, e)}
                 style={{ cursor: 'pointer', background: 'none', border: 'none', padding: 0 }}
               >
                 <h4>{project.name}</h4>
                 <p>{getProjectDescription(project)}</p>
-                {project.language && <p style={{ fontSize: '0.8rem', opacity: 0.6 }}>📌 {project.language}</p>}
+                {project.language && <p style={{ fontSize: '0.8rem', opacity: 0.6 }}>{t.home.languageIcon} {project.language}</p>}
               </ProjectCard>
             ))}
             {projects.map((project) => (
               <ProjectCard
                 key={`${project.id}-duplicate`}
                 as="button"
-                onClick={(e: any) => handleProjectClick(project, e)}
+                onClick={(e: React.MouseEvent) => handleProjectClick(project, e)}
                 style={{ cursor: 'pointer', background: 'none', border: 'none', padding: 0 }}
               >
                 <h4>{project.name}</h4>
                 <p>{getProjectDescription(project)}</p>
-                {project.language && <p style={{ fontSize: '0.8rem', opacity: 0.6 }}>📌 {project.language}</p>}
+                {project.language && <p style={{ fontSize: '0.8rem', opacity: 0.6 }}>{t.home.languageIcon} {project.language}</p>}
               </ProjectCard>
             ))}
           </DashboardProjects>
