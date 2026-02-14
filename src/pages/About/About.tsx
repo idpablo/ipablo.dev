@@ -7,7 +7,8 @@ import hitohitoImg from '../../assets/hitohito.webp';
 import { CloseButton } from '../../ui/Modal/Modal.styles';
 import { HomeStyled } from './About.styles';
 import { useLanguage } from '../../core/i18n';
-import { TrafficLightColors, InlineStyles, CommonStyles } from '../../core/styles/inlineStyles';
+import { InlineStyles, CommonStyles } from '../../core/styles/inlineStyles';
+import TrafficLight from '../../core/styles/TrafficLight';
 import {
   AboutContainer,
   HeroSection,
@@ -409,9 +410,7 @@ const AboutPage: React.FC = () => {
                   marginBottom: '2rem',
                 }}>
                   <div style={{ display: 'flex', gap: '0.5rem' }}>
-                <div style={InlineStyles.trafficLight(TrafficLightColors.red)}></div>
-                <div style={InlineStyles.trafficLight(TrafficLightColors.yellow)}></div>
-                <div style={InlineStyles.trafficLight(TrafficLightColors.green)}></div>
+                <TrafficLight />
                   </div>
                   <div style={{ 
                     flex: 1, 

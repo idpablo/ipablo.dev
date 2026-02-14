@@ -8,7 +8,8 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { SOCIAL_LINKS } from '../../constants';
 import ProfileModal from '../../ui/Modal/ProfileModal';
 import { useLanguage } from '../../core/i18n';
-import { TrafficLightColors, InlineStyles, CommonStyles } from '../../core/styles/inlineStyles';
+import { InlineStyles, CommonStyles } from '../../core/styles/inlineStyles';
+import TrafficLight from '../../core/styles/TrafficLight';
 import pescadorImg from '../../assets/pescador.webp';
 import { 
   HomeStyled, 
@@ -548,9 +549,7 @@ const ContactPage: React.FC = () => {
           <TerminalWindow onClick={handleTerminalClick}>
             <TerminalHeader>
               <div style={{ display: 'flex', gap: '8px' }}>
-                <span style={InlineStyles.trafficLight(TrafficLightColors.red)}></span>
-                <span style={InlineStyles.trafficLight(TrafficLightColors.yellow)}></span>
-                <span style={InlineStyles.trafficLight(TrafficLightColors.green)}></span>
+                <TrafficLight variant="span" />
               </div>
               <span>Terminal</span>
               <div style={{ width: '60px' }}></div>
@@ -676,9 +675,7 @@ const ContactPage: React.FC = () => {
               marginBottom: '2rem',
             }}>
               <div style={{ display: 'flex', gap: '0.5rem' }}>
-                <div style={InlineStyles.trafficLight(TrafficLightColors.red)}></div>
-                <div style={InlineStyles.trafficLight(TrafficLightColors.yellow)}></div>
-                <div style={InlineStyles.trafficLight(TrafficLightColors.green)}></div>
+                <TrafficLight />
               </div>
               <div style={{ 
                 flex: 1, 
