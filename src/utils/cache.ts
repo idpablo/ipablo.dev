@@ -34,7 +34,7 @@ export const cacheManager = {
       }
 
       return entry.data;
-    } catch (error) {
+    } catch {
       return null;
     }
   },
@@ -42,8 +42,8 @@ export const cacheManager = {
   remove(key: string): void {
     try {
       localStorage.removeItem(`cache_${key}`);
-    } catch (error) {
-      console.log('Cache remove failed', error);
+    } catch {
+      console.log('Cache remove failed');
     }
   },
 
@@ -55,8 +55,8 @@ export const cacheManager = {
           localStorage.removeItem(key);
         }
       });
-    } catch (error) {
-      console.log('Cache clear failed', error);
+    } catch {
+      console.log('Cache clear failed');
     }
   },
 
@@ -72,7 +72,7 @@ export const cacheManager = {
       const isExpired = expiresIn <= 0;
 
       return { expiresIn: Math.max(0, expiresIn), isExpired };
-    } catch (error) {
+    } catch {
       return null;
     }
   },

@@ -18,15 +18,6 @@ const blink = keyframes`
   }
 `;
 
-const blockBreathing = keyframes`
-  0%, 100% {
-    transform: scale(1) skewY(0deg);
-  }
-  50% {
-    transform: scale(1.04) skewY(0.5deg);
-  }
-`;
-
 const blockGlowPulse = keyframes`
   0%, 100% {
     filter: brightness(1);
@@ -42,21 +33,6 @@ const treasureGlow = keyframes`
   }
   50% {
     box-shadow: 0 0 50px rgba(255, 215, 0, 0.9), 0 0 70px rgba(255, 215, 0, 0.5), inset -2px -2px 0px rgba(0, 0, 0, 0.4), inset 2px 2px 0px rgba(255, 255, 255, 0.3);
-  }
-`;
-
-const treasureSpinFloat = keyframes`
-  0%, 100% {
-    transform: rotate(0deg) translateY(0px);
-  }
-  25% {
-    transform: rotate(5deg) translateY(-8px);
-  }
-  50% {
-    transform: rotate(0deg) translateY(0px);
-  }
-  75% {
-    transform: rotate(-5deg) translateY(-8px);
   }
 `;
 

@@ -2,7 +2,6 @@ import styled, { keyframes } from 'styled-components';
 import { 
   fadeInUp, 
   pulse, 
-  float, 
   ripple, 
   dotBounce,
   PageContainer as HomeStyled,
@@ -10,30 +9,12 @@ import {
   SeaPixel as BaseSeaPixel
 } from '../../core/theme';
 
-const typing = keyframes`
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-`;
-
 const blink = keyframes`
   0%, 100% {
     opacity: 1;
   }
   50% {
     opacity: 0;
-  }
-`;
-
-const cardHover = keyframes`
-  0% {
-    transform: translateY(0) rotateX(0deg);
-  }
-  100% {
-    transform: translateY(-5px) rotateX(5deg);
   }
 `;
 

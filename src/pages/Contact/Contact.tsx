@@ -53,6 +53,7 @@ const ContactPage: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
   const [isReady, setIsReady] = useState(false);
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [commandIndex, setCommandIndex] = useState<number | null>(null);
   const [currentPath, setCurrentPath] = useState<string[]>([]);
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
@@ -362,6 +363,7 @@ const ContactPage: React.FC = () => {
           return;
         }
       } catch {
+        // Silently ignore parse errors
       }
     }
 
