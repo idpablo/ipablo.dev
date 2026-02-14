@@ -7,7 +7,7 @@ import hitohitoImg from '../../assets/hitohito.webp';
 import { CloseButton } from '../../ui/Modal/Modal.styles';
 import { HomeStyled } from './About.styles';
 import { useLanguage } from '../../core/i18n';
-import { InlineStyles, CommonStyles } from '../../core/styles/inlineStyles';
+import { CommonStyles } from '../../core/styles/inlineStyles';
 import TrafficLight from '../../core/styles/TrafficLight';
 import {
   AboutContainer,

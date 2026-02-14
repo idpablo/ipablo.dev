@@ -185,6 +185,13 @@ export interface Translations {
       responseRate: string;
       activeConnections: string;
     };
+    terminalSkills: {
+      backend: string[];
+      devops: string[];
+      frontend: string[];
+      tools: string[];
+    };
+    terminalCourses: Record<string, number>;
   };
   rootEasterEgg: {
     emoji: string;
@@ -453,6 +460,19 @@ export const translations: Record<LanguageCode, Translations> = {
         responseTime: '< 24h',
         responseRate: '100%',
         activeConnections: '24/7',
+      },
+      terminalSkills: {
+        backend: ['Java', 'Python', 'Node.js', 'APIs REST'],
+        devops: ['Docker', 'Kubernetes', 'AWS', 'Linux'],
+        frontend: ['React', 'TypeScript', 'UI/UX'],
+        tools: ['Git', 'CI/CD', 'Observabilidade'],
+      },
+      terminalCourses: {
+        'Docker & Containers': 92,
+        'Kubernetes & Orchestration': 85,
+        'AWS Cloud': 78,
+        'Linux Admin': 95,
+        'React + TS': 72,
       },
     },
     rootEasterEgg: {
@@ -748,6 +768,19 @@ export const translations: Record<LanguageCode, Translations> = {
         responseRate: '100%',
         activeConnections: '24/7',
       },
+      terminalSkills: {
+        backend: ['Java', 'Python', 'Node.js', 'REST APIs'],
+        devops: ['Docker', 'Kubernetes', 'AWS', 'Linux'],
+        frontend: ['React', 'TypeScript', 'UI/UX'],
+        tools: ['Git', 'CI/CD', 'Observability'],
+      },
+      terminalCourses: {
+        'Docker & Containers': 92,
+        'Kubernetes & Orchestration': 85,
+        'AWS Cloud': 78,
+        'Linux Admin': 95,
+        'React + TS': 72,
+      },
     },
     rootEasterEgg: {
       emoji: '🔐',
@@ -1041,6 +1074,19 @@ export const translations: Record<LanguageCode, Translations> = {
         responseTime: '< 24h',
         responseRate: '100%',
         activeConnections: '24/7',
+      },
+      terminalSkills: {
+        backend: ['Java', 'Python', 'Node.js', 'REST API'],
+        devops: ['Docker', 'Kubernetes', 'AWS', 'Linux'],
+        frontend: ['React', 'TypeScript', 'UI/UX'],
+        tools: ['Git', 'CI/CD', '可观测性'],
+      },
+      terminalCourses: {
+        'Docker & Containers': 92,
+        'Kubernetes & Orchestration': 85,
+        'AWS Cloud': 78,
+        'Linux Admin': 95,
+        'React + TS': 72,
       },
     },
     rootEasterEgg: {

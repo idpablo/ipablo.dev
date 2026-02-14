@@ -8,7 +8,7 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { SOCIAL_LINKS } from '../../constants';
 import ProfileModal from '../../ui/Modal/ProfileModal';
 import { useLanguage } from '../../core/i18n';
-import { InlineStyles, CommonStyles } from '../../core/styles/inlineStyles';
+import { CommonStyles } from '../../core/styles/inlineStyles';
 import TrafficLight from '../../core/styles/TrafficLight';
 import pescadorImg from '../../assets/pescador.webp';
 import { 
@@ -69,25 +69,14 @@ const ContactPage: React.FC = () => {
   const storageKey = `contact-terminal-history-${currentLanguage}`;
 
   const skillTree = {
-    skills: {
-      backend: ['Java', 'Python', 'Node.js', 'APIs REST'],
-      devops: ['Docker', 'Kubernetes', 'AWS', 'Linux'],
-      frontend: ['React', 'TypeScript', 'UI/UX'],
-      tools: ['Git', 'CI/CD', 'Observabilidade'],
-    },
+    skills: t.contact.terminalSkills,
     contacts: {
       email: `mailto:${SOCIAL_LINKS.EMAIL}`,
       github: SOCIAL_LINKS.GITHUB,
       instagram: SOCIAL_LINKS.INSTAGRAM,
       linkedin: SOCIAL_LINKS.LINKEDIN,
     },
-    courses: {
-      'Docker & Containers': 92,
-      'Kubernetes & Orchestration': 85,
-      'AWS Cloud': 78,
-      'Linux Admin': 95,
-      'React + TS': 72,
-    },
+    courses: t.contact.terminalCourses,
   };
 
   const getPrompt = () => {
@@ -351,7 +340,6 @@ const ContactPage: React.FC = () => {
   ];
 
   useEffect(() => {
-    // Não carregar do cache se estamos mudando de idioma
     const saved = localStorage.getItem(storageKey);
     if (saved && previousLanguageRef.current === currentLanguage) {
       try {
@@ -460,7 +448,6 @@ const ContactPage: React.FC = () => {
       const command = inputValue.trim();
       if (!command) return;
       
-      // Verificar comandos sudo su (negado)
       if (command.toLowerCase() === 'sudo su' || command.toLowerCase() === 'sudo root') {
         setEasterEggType('sudosu');
         const prompt = getPrompt();
@@ -471,7 +458,6 @@ const ContactPage: React.FC = () => {
         return;
       }
 
-      // Verificar comandos root (desbloqueado)
       if (command.toLowerCase() === 'su root') {
         setEasterEggType('root');
         const prompt = getPrompt();
