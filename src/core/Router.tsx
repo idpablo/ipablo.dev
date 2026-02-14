@@ -1,23 +1,31 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { HomePage } from '@pages/Home';
-import { AboutPage } from '@pages/About';
-import { ContactPage } from '@pages/Contact';
-import { NotFoundPage } from '@pages/NotFound';
 import { ROUTES } from '@constants';
+
+const HomePage = lazy(() => import('@pages/Home').then(module => ({ default: module.HomePage })));
+const AboutPage = lazy(() => import('@pages/About').then(module => ({ default: module.AboutPage })));
+const ContactPage = lazy(() => import('@pages/Contact').then(module => ({ default: module.ContactPage })));
+const NotFoundPage = lazy(() => import('@pages/NotFound').then(module => ({ default: module.NotFoundPage })));
+
+const LoadingFallback: React.FC = () => (
+  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+    Loading...
+  </div>
+);
 
 const Router: React.FC = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path={ROUTES.HOME} element={<HomePage />} />
-        <Route path={ROUTES.ABOUT} element={<AboutPage />} />
-        <Route path={ROUTES.CONTACT} element={<ContactPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+      <Suspense fallback={<LoadingFallback />}>
+        <Routes>
+          <Route path={ROUTES.HOME} element={<HomePage />} />
+          <Route path={ROUTES.ABOUT} element={<AboutPage />} />
+          <Route path={ROUTES.CONTACT} element={<ContactPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 };
 
 export default Router;
-

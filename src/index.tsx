@@ -9,10 +9,17 @@ import { lightTheme, darkTheme, GlobalStyles } from './core/theme';
 import { LanguageProvider } from './core/i18n';
 import { initializeStaticCache } from './utils/staticCache';
 import { initializePageCache } from './utils/pageCache';
+import { ROUTES } from './constants';
 
 initializeStaticCache();
-initializePageCache('about');
-initializePageCache('contact');
+Object.values(ROUTES).forEach(route => {
+  if (route !== ROUTES.HOME) {
+    const pageName = route.replace('/', '') as 'about' | 'contact';
+    if (pageName === 'about' || pageName === 'contact') {
+      initializePageCache(pageName);
+    }
+  }
+});
 
 if ('serviceWorker' in navigator) {
   if (import.meta.env.PROD) {
