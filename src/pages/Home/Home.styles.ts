@@ -83,7 +83,7 @@ export const DashboardProjects = styled.div`
   gap: 2rem;
   overflow-y: scroll;
   overflow-x: hidden;
-  max-height: calc(100vh - 240px);
+  max-height: 80vh;
   padding-left: 2rem;
   padding-bottom: 1rem;
   padding-right: 1rem;
