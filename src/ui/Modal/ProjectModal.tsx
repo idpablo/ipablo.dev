@@ -26,6 +26,12 @@ interface ProjectModalProps {
   onClose: () => void;
 }
 
+interface ProjectTranslation {
+  title: string;
+  description: string;
+  features: string[];
+}
+
 const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, project, onClose }) => {
   const { t } = useLanguage();
   if (!project) return null;
@@ -36,11 +42,11 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, project, onClose })
     .replace(/\./g, '_');
   const projectData = defaultProjectDescriptions[projectKey as keyof typeof defaultProjectDescriptions];
   
-  const projectTranslation = (t.projects as any)?.[projectKey];
+  const projectTranslation = (t.projects as Record<string, ProjectTranslation>)?.[projectKey];
   const enhancedDescription = projectTranslation?.description || project.description || '';
-  const features = projectTranslation?.features || (projectData as any)?.features || [];
-  const hasPreview = (projectData as any)?.hasPreview || false;
-  const previewUrl = (projectData as any)?.previewUrl;
+  const features = projectTranslation?.features || projectData?.features || [];
+  const hasPreview = projectData?.hasPreview || false;
+  const previewUrl = projectData?.previewUrl;
 
   return (
     <ModalOverlay isOpen={isOpen} onClick={onClose}>

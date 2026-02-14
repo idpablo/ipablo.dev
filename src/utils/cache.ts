@@ -82,7 +82,7 @@ export const useCache = <T>(
   key: string,
   fetchFn: () => Promise<T>,
   ttlHours: number = 24,
-  dependencies: any[] = []
+  dependencies: React.DependencyList = []
 ): { data: T | null; loading: boolean; error: Error | null; refetch: () => Promise<void> } => {
   const [data, setData] = React.useState<T | null>(() => cacheManager.get<T>(key));
   const [loading, setLoading] = React.useState(false);

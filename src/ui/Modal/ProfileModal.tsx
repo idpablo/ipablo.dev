@@ -117,7 +117,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ isOpen, onClose }) => {
                   {(stats as ProfileStat[]).map((stat) => (
                     <StatItem key={stat.nameKey}>
                       <StatHeader>
-                        <span>{(t.stats as any)?.[stat.nameKey] || stat.nameKey}</span>
+                        <span>{(t.stats as Record<string, string>)?.[stat.nameKey] || stat.nameKey}</span>
                         <span className="level">
                           {stat.level}/{stat.maxLevel}
                         </span>

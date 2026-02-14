@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Header, Footer } from '../../ui';
 import { Avatar } from '../../ui/Avatar';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { SOCIAL_LINKS } from '../../constants';
 import ProfileModal from '../../ui/Modal/ProfileModal';
 import { useLanguage } from '../../core/i18n';
@@ -20,24 +21,24 @@ import {
   TerminalRow,
   TerminalPrompt,
   TerminalInput,
-  ContactGrid,
-  ContactCard,
-  IconWrapper,
-  CardContent,
-  StatusIndicator,
-  SeaPixel,
   QuickStats,
   StatItem,
-  SocialLinks,
-  SocialButton,
+  ContactGrid,
+  ContactCard,
+  StatusIndicator,
+  IconWrapper,
+  CardContent,
   MessageSection,
   TypingIndicator,
   Dot,
+  SeaPixel,
+  SocialLinks,
+  SocialButton,
 } from './Contact.styles';
 
 interface ContactMethod {
   id: string;
-  icon: React.ReactNode;
+  icon: IconDefinition;
   title: string;
   subtitle: string;
   link: string;
@@ -157,10 +158,10 @@ const ContactPage: React.FC = () => {
     return () => window.clearInterval(intervalId);
   }, [t.contact.hero.description]);
 
-  const resolveNode = (): unknown => {
-    let node: unknown = skillTree;
+  const resolveNode = () => {
+    let node: Record<string, unknown> = skillTree as Record<string, unknown>;
     for (const segment of currentPath) {
-      node = (node as Record<string, unknown>)?.[segment];
+      node = (node?.[segment] as Record<string, unknown>) || {};
     }
     return node;
   };
@@ -217,23 +218,25 @@ const ContactPage: React.FC = () => {
       return [];
     }
 
-    const node = resolveNode();
+    const node = resolveNode() as Record<string, unknown>;
     if (!node || typeof node !== 'object') {
       return [`cd: ${target}: diretório inválido`];
     }
 
-    if (node.contacts && node.contacts[target]) {
-      window.open(node.contacts[target], '_blank', 'noopener,noreferrer');
+    const contacts = node.contacts as Record<string, string> | undefined;
+    if (contacts && contacts[target]) {
+      window.open(contacts[target], '_blank', 'noopener,noreferrer');
       return [`abrindo ${target}...`];
     }
 
-    if (node[target]) {
-      if (typeof node[target] === 'object') {
+    const targetValue = node[target];
+    if (targetValue) {
+      if (typeof targetValue === 'object') {
         setCurrentPath((prev) => [...prev, target]);
         return [];
       }
-      if (typeof node[target] === 'string') {
-        window.open(node[target], '_blank', 'noopener,noreferrer');
+      if (typeof targetValue === 'string') {
+        window.open(targetValue, '_blank', 'noopener,noreferrer');
         return [`abrindo ${target}...`];
       }
       return [`cd: ${target}: não é um diretório`];
