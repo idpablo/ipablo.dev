@@ -17,6 +17,5 @@ export const ROUTES = {
   CONTACT: '/contact',
 };
 
-export const DEFAULT_THEME = 'dark';
 export const THEME_STORAGE_KEY = 'theme';
 
