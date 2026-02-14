@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client';
 import Router from './core/Router';
 import { store } from './core/store';
 import { ThemeProvider } from 'styled-components';
-import { useAppSelector } from './hooks';
+import { useAppSelector, ErrorBoundary } from './hooks';
 import { lightTheme, darkTheme, GlobalStyles } from './core/theme';
 import { LanguageProvider } from './core/i18n';
 import { initializeStaticCache } from './utils/staticCache';
@@ -62,10 +62,12 @@ const rootElement = document.getElementById('root') as HTMLElement;
 const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <LanguageProvider>
-        <ThemedApp />
-      </LanguageProvider>
-    </Provider>
+    <ErrorBoundary>
+      <Provider store={store}>
+        <LanguageProvider>
+          <ThemedApp />
+        </LanguageProvider>
+      </Provider>
+    </ErrorBoundary>
   </React.StrictMode>
 );

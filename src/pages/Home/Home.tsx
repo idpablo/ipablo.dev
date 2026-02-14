@@ -15,6 +15,7 @@ import { CACHE_KEYS, CACHE_TTL } from '../../utils/cacheConfig';
 const HomePage: React.FC = () => {
   const { t } = useLanguage();
   const [projects, setProjects] = useState<Project[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
@@ -24,6 +25,7 @@ const HomePage: React.FC = () => {
       const cachedProjects = cacheManager.get<Project[]>(CACHE_KEYS.GITHUB_PROJECTS);
       if (cachedProjects) {
         setProjects(cachedProjects);
+        setIsLoading(false);
         return;
       }
 
@@ -34,9 +36,11 @@ const HomePage: React.FC = () => {
           cacheManager.set(CACHE_KEYS.GITHUB_PROJECTS, data, CACHE_TTL.API_DATA);
           setProjects(data);
         }
-      } catch (error) {
-        console.log('GitHub API fetch failed', error);
+      } catch {
+        console.log('GitHub API fetch failed');
         setProjects([]);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -77,6 +81,8 @@ const HomePage: React.FC = () => {
           <ProjectCardCarousel
             projects={projects}
             onProjectClick={handleProjectClick}
+            isLoading={isLoading}
+            loadingMessage={t.home.loadingMessage}
           />
         </DashboardContainer>
         <Footer />

@@ -15,6 +15,7 @@ export interface Translations {
     description2: string;
     devopsMessage: string;
     languageIcon: string;
+    loadingMessage: string;
   };
   about: {
     title: string;
@@ -271,6 +272,7 @@ export const translations: Record<LanguageCode, Translations> = {
         'Alguém que ama tecnologia desde sempre: criando bots, customizando Android e escrevendo scripts por puro ódio a tarefas repetitivas.\n\nDocumentação é o caminho da salvação.',
       devopsMessage: '#DevOPS é cultura.',
       languageIcon: '📌',
+      loadingMessage: 'Carregando projetos...',
     },
     about: {
       title: 'Sobre',
@@ -554,6 +556,7 @@ export const translations: Record<LanguageCode, Translations> = {
         'Someone who has loved technology forever: creating bots, customizing Android, and writing scripts out of pure hatred for repetitive tasks.\n\nDocumentation is the path to salvation.',
       devopsMessage: '#DevOPS is a culture.',
       languageIcon: '📌',
+      loadingMessage: 'Loading projects...',
     },
     about: {
       title: 'About',
@@ -837,6 +840,7 @@ export const translations: Record<LanguageCode, Translations> = {
         '一个一直热爱技术的人：创建机器人、自定义 Android，并出于对重复性任务的纯粹厌恶而编写脚本。\n\n文档是通向救赎的道路。',
       devopsMessage: '#DevOPS 是一种文化。',
       languageIcon: '📌',
+      loadingMessage: '加载项目中...',
     },
     about: {
       title: '关于',

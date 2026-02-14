@@ -7,9 +7,16 @@ import { DashboardProjects } from '../../pages/Home/Home.styles';
 interface ProjectCardCarouselProps {
   projects: Project[];
   onProjectClick: (project: Project, e: React.MouseEvent) => void;
+  isLoading?: boolean;
+  loadingMessage?: string;
 }
 
-const ProjectCardCarousel: React.FC<ProjectCardCarouselProps> = ({ projects, onProjectClick }) => {
+const ProjectCardCarousel: React.FC<ProjectCardCarouselProps> = ({
+  projects,
+  onProjectClick,
+  isLoading = false,
+  loadingMessage = 'Loading...',
+}) => {
   const { t } = useLanguage();
   const scrollTimeout = useRef<ReturnType<typeof setTimeout>>();
   const elementRef = useRef<HTMLDivElement>(null);
@@ -28,7 +35,7 @@ const ProjectCardCarousel: React.FC<ProjectCardCarouselProps> = ({ projects, onP
 
   useEffect(() => {
     const element = elementRef.current;
-    if (!element || projects.length === 0) return;
+    if (!element || projects.length === 0 || isLoading) return;
 
     const initTimeout = setTimeout(() => {
       const singleSetHeight = element.scrollHeight / 2;
@@ -64,7 +71,27 @@ const ProjectCardCarousel: React.FC<ProjectCardCarouselProps> = ({ projects, onP
       if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
       clearTimeout(initTimeout);
     };
-  }, [projects.length]);
+  }, [projects.length, isLoading]);
+
+  if (isLoading) {
+    return (
+      <DashboardProjects>
+        <ProjectCard
+          as="div"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            minHeight: '220px',
+            background: 'transparent',
+            border: 'none',
+          }}
+        >
+          <p style={{ fontSize: '1rem', opacity: 0.7 }}>{loadingMessage}</p>
+        </ProjectCard>
+      </DashboardProjects>
+    );
+  }
 
   const duplicatedProjects = [...projects, ...projects];
 
