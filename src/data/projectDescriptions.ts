@@ -1,4 +1,6 @@
-export const projectDescriptions: Record<string, any> = {
+import { ProjectDescription } from '../core/types';
+
+export const projectDescriptions: Record<string, ProjectDescription> = {
   api_backend_login: {
     enhancedDescription: "API de autenticação JWT robusta desenvolvida em Node.js, servindo como template pronto para produção. Implementa segurança moderna com tokens JWT, validação de senhas com bcrypt, e endpoints RESTful bem estruturados. Ideal para projetos que necessitam de um sistema de login seguro e escalável.",
     features: [

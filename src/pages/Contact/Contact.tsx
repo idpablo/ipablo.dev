@@ -37,7 +37,7 @@ import {
 
 interface ContactMethod {
   id: string;
-  icon: any;
+  icon: React.ReactNode;
   title: string;
   subtitle: string;
   link: string;
@@ -157,10 +157,10 @@ const ContactPage: React.FC = () => {
     return () => window.clearInterval(intervalId);
   }, [t.contact.hero.description]);
 
-  const resolveNode = () => {
-    let node: any = skillTree;
+  const resolveNode = (): unknown => {
+    let node: unknown = skillTree;
     for (const segment of currentPath) {
-      node = node?.[segment];
+      node = (node as Record<string, unknown>)?.[segment];
     }
     return node;
   };
