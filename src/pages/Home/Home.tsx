@@ -1,12 +1,12 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Header, Footer } from '../../ui';
 import { Avatar } from '../../ui/Avatar';
 import { ProjectModal } from '../../ui/Modal';
 import ProfileModal from '../../ui/Modal/ProfileModal';
 import { Project } from '../../core/types';
 import { GITHUB_API } from '../../constants';
-import { HomeStyled, DashboardContainer, DashboardInfo, DashboardProjects } from './Home.styles';
-import { ProjectCard } from '../../ui/Card';
+import { HomeStyled, DashboardContainer, DashboardInfo } from './Home.styles';
+import ProjectCardCarousel from '../../ui/Card/ProjectCardCarousel';
 import avatarImg from '../../assets/avatar.webp';
 import { useLanguage } from '../../core/i18n';
 import { cacheManager } from '../../utils/cache';
@@ -18,8 +18,6 @@ const HomePage: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
-  const projectsRef = useRef<HTMLDivElement>(null);
-  const scrollTimeout = useRef<ReturnType<typeof setTimeout>>();
 
   useEffect(() => {
     const fetchGitHubProjects = async () => {
@@ -56,63 +54,6 @@ const HomePage: React.FC = () => {
     setSelectedProject(null);
   };
 
-  const getProjectKey = (projectName: string): string => {
-    return projectName
-      .toLowerCase()
-      .replace(/ /g, '_')
-      .replace(/\./g, '_');
-  };
-
-  const getProjectDescription = (project: Project): string => {
-    const projectKey = getProjectKey(project.name);
-    
-    if (t.projects && t.projects[projectKey]) {
-      return t.projects[projectKey]?.description || project.description || '';
-    }
-    
-    return project.description || '';
-  };
-
-  useEffect(() => {
-    const element = projectsRef.current;
-    if (!element || projects.length === 0) return;
-
-    const initTimeout = setTimeout(() => {
-      const singleSetHeight = element.scrollHeight / 2;
-      element.scrollTop = singleSetHeight;
-    }, 100);
-
-    const handleScroll = () => {
-      const totalHeight = element.scrollHeight;
-      const singleSetHeight = totalHeight / 2;
-      const scrollTop = element.scrollTop;
-      const clientHeight = element.clientHeight;
-      const buffer = Math.max(50, Math.floor(clientHeight / 3));
-
-      if (scrollTop + clientHeight >= totalHeight - buffer) {
-        if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-        scrollTimeout.current = setTimeout(() => {
-          element.scrollTop = scrollTop - singleSetHeight;
-        }, 0);
-        return;
-      }
-
-      if (scrollTop <= buffer) {
-        if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-        scrollTimeout.current = setTimeout(() => {
-          element.scrollTop = scrollTop + singleSetHeight;
-        }, 0);
-      }
-    };
-
-    element.addEventListener('scroll', handleScroll);
-    return () => {
-      element.removeEventListener('scroll', handleScroll);
-      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-      clearTimeout(initTimeout);
-    };
-  }, [projects.length]);
-
   return (
     <>
       <HomeStyled>
@@ -133,32 +74,10 @@ const HomePage: React.FC = () => {
               {t.home.devopsMessage}
             </p>
           </DashboardInfo>
-          <DashboardProjects ref={projectsRef}>
-            {projects.map((project) => (
-              <ProjectCard
-                key={project.id}
-                as="button"
-                onClick={(e: React.MouseEvent) => handleProjectClick(project, e)}
-                style={{ cursor: 'pointer', background: 'none', border: 'none', padding: 0 }}
-              >
-                <h4>{project.name}</h4>
-                <p>{getProjectDescription(project)}</p>
-                {project.language && <p style={{ fontSize: '0.8rem', opacity: 0.6 }}>{t.home.languageIcon} {project.language}</p>}
-              </ProjectCard>
-            ))}
-            {projects.map((project) => (
-              <ProjectCard
-                key={`${project.id}-duplicate`}
-                as="button"
-                onClick={(e: React.MouseEvent) => handleProjectClick(project, e)}
-                style={{ cursor: 'pointer', background: 'none', border: 'none', padding: 0 }}
-              >
-                <h4>{project.name}</h4>
-                <p>{getProjectDescription(project)}</p>
-                {project.language && <p style={{ fontSize: '0.8rem', opacity: 0.6 }}>{t.home.languageIcon} {project.language}</p>}
-              </ProjectCard>
-            ))}
-          </DashboardProjects>
+          <ProjectCardCarousel
+            projects={projects}
+            onProjectClick={handleProjectClick}
+          />
         </DashboardContainer>
         <Footer />
       </HomeStyled>
