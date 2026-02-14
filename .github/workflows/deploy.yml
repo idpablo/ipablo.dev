@@ -1,43 +1,88 @@
-name: Deploy com Cache Otimizado via Cloudflare
+name: CI & Deploy
 
 on:
   push:
-    branches: [ main ]
+    branches: [main, master]
   pull_request:
-    branches: [ main ]
+    branches: [main, master]
+  workflow_dispatch:
 
 jobs:
-  build-and-deploy:
+  lint-and-typecheck:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - uses: actions/checkout@v3
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-        cache: 'npm'
-    
-    - name: Install dependencies
-      run: npm ci
-    
-    - name: Build
-      run: npm run build
-    
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build
-        force_orphan: true
-        user_name: 'github-actions[bot]'
-        user_email: '41898282+github-actions[bot]@users.noreply.github.com'
-    
-    - name: Purge Cloudflare Cache
-      run: |
-        curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
-          -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
-          -H "Content-Type: application/json" \
-          --data '{"files":["https://ipablo.dev/*"]}'
-      if: github.ref == 'refs/heads/main'
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Run TypeScript check
+        run: npx tsc --noEmit
+
+  build:
+    needs: lint-and-typecheck
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: build
+          retention-days: 1
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build
+          path: build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          force_orphan: true
+
+      - name: Purge Cloudflare Cache
+        run: |
+          curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
+            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            --data '{"files":["https://ipablo.dev/*"]}'
+        if: secrets.CLOUDFLARE_ZONE_ID != ''
