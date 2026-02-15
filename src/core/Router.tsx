@@ -1,18 +1,12 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ROUTES } from '@constants';
-import { InlineStyles } from './styles/inlineStyles';
+import LoadingFallback from './LoadingFallback';
 
 const HomePage = lazy(() => import('@pages/Home').then(module => ({ default: module.HomePage })));
 const AboutPage = lazy(() => import('@pages/About').then(module => ({ default: module.AboutPage })));
 const ContactPage = lazy(() => import('@pages/Contact').then(module => ({ default: module.ContactPage })));
 const NotFoundPage = lazy(() => import('@pages/NotFound').then(module => ({ default: module.NotFoundPage })));
-
-const LoadingFallback: React.FC = () => (
-  <div style={{ ...InlineStyles.flexCenter, minHeight: '100vh' }}>
-    Loading...
-  </div>
-);
 
 const Router: React.FC = () => {
   return (

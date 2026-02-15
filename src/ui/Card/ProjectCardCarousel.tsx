@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Project } from '@core/types';
 import { useLanguage } from '@core/i18n';
 import { ProjectCard } from './Card.styles';
@@ -20,6 +20,17 @@ const ProjectCardCarousel: React.FC<ProjectCardCarouselProps> = ({
   const { t } = useLanguage();
   const scrollTimeout = useRef<ReturnType<typeof setTimeout>>();
   const elementRef = useRef<HTMLDivElement>(null);
+  const [hasInitialized, setHasInitialized] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || 'ontouchstart' in window);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const getProjectKey = (projectName: string): string => {
     return projectName.toLowerCase().replace(/ /g, '_').replace(/\./g, '_');
@@ -35,16 +46,54 @@ const ProjectCardCarousel: React.FC<ProjectCardCarouselProps> = ({
 
   useEffect(() => {
     const element = elementRef.current;
-    if (!element || projects.length === 0 || isLoading) return;
+    if (!element || projects.length === 0 || isLoading || isMobile || hasInitialized) return;
 
-    const initTimeout = setTimeout(() => {
-      const singleSetHeight = element.scrollHeight / 2;
-      element.scrollTop = singleSetHeight;
-    }, 100);
+    const singleSetHeight = element.scrollHeight / 2;
+    const clientHeight = element.clientHeight;
+
+    element.scrollTop = 0;
+
+    const animateScroll = () => {
+      const startTime = Date.now();
+      const duration = 2000;
+      const targetPosition = singleSetHeight;
+
+      const animate = () => {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeInOut = progress < 0.5
+          ? 2 * progress * progress
+          : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+
+        element.scrollTop = targetPosition * easeInOut;
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          setTimeout(() => {
+            element.scrollTop = 0;
+            setHasInitialized(true);
+          }, 500);
+        }
+      };
+
+      requestAnimationFrame(animate);
+    };
+
+    const initTimeout = setTimeout(animateScroll, 100);
+
+    return () => {
+      clearTimeout(initTimeout);
+    };
+  }, [projects.length, isLoading, isMobile, hasInitialized]);
+
+  useEffect(() => {
+    const element = elementRef.current;
+    if (!element || projects.length === 0 || isLoading || isMobile) return;
 
     const handleScroll = () => {
       const totalHeight = element.scrollHeight;
-      const singleSetHeight = totalHeight / 2;
+      const singleSet = totalHeight / 2;
       const scrollTop = element.scrollTop;
       const clientHeight = element.clientHeight;
       const buffer = Math.max(50, Math.floor(clientHeight / 3));
@@ -52,7 +101,7 @@ const ProjectCardCarousel: React.FC<ProjectCardCarouselProps> = ({
       if (scrollTop + clientHeight >= totalHeight - buffer) {
         if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
         scrollTimeout.current = setTimeout(() => {
-          element.scrollTop = scrollTop - singleSetHeight;
+          element.scrollTop = scrollTop - singleSet;
         }, 0);
         return;
       }
@@ -60,7 +109,7 @@ const ProjectCardCarousel: React.FC<ProjectCardCarouselProps> = ({
       if (scrollTop <= buffer) {
         if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
         scrollTimeout.current = setTimeout(() => {
-          element.scrollTop = scrollTop + singleSetHeight;
+          element.scrollTop = scrollTop + singleSet;
         }, 0);
       }
     };
@@ -69,9 +118,8 @@ const ProjectCardCarousel: React.FC<ProjectCardCarouselProps> = ({
     return () => {
       element.removeEventListener('scroll', handleScroll);
       if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-      clearTimeout(initTimeout);
     };
-  }, [projects.length, isLoading]);
+  }, [projects.length, isLoading, isMobile, hasInitialized]);
 
   if (isLoading) {
     return (
