@@ -53,7 +53,7 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: build
+          name: github-pages
           path: build
           retention-days: 1
 
@@ -63,26 +63,24 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write
       pages: write
       id-token: write
 
-    steps:
-      - name: Download build artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: build
-          path: build
-      
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
-          force_orphan: true
-          user_name: 'idpablo'
-          user_email: 'pablo.soares.dev@gmail.com'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  purge-cache:
+    needs: deploy
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Purge Cloudflare Cache
         env:
           CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
@@ -92,6 +90,8 @@ jobs:
             curl -X POST "https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/purge_cache" \
               -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
               -H "Content-Type: application/json" \
-              --data '{"files":["https://ipablo.dev/*"]}'
+              --data '{"purge_everything":true}'
+            echo "Cloudflare cache purged successfully"
+          else
+            echo "Cloudflare secrets not configured, skipping cache purge"
           fi
-
