@@ -37,6 +37,7 @@ export const DashboardContainer = styled.div`
 export const DashboardInfo = styled.div`
   flex: 1;
   display: flex;
+  max-height: 80vh;
   flex-direction: column;
   justify-content: center;
   color: ${({ theme }) => theme.colors.text};
@@ -103,4 +104,3 @@ export const DashboardProjects = styled.div`
     padding-right: 0;
   }
 `;
-
