@@ -49,7 +49,6 @@ const ProjectCardCarousel: React.FC<ProjectCardCarouselProps> = ({
     if (!element || projects.length === 0 || isLoading || isMobile || hasInitialized) return;
 
     const singleSetHeight = element.scrollHeight / 2;
-    const clientHeight = element.clientHeight;
 
     element.scrollTop = 0;
 
