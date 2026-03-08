@@ -19,6 +19,8 @@ declare module 'styled-components' {
       opacitySecondary: string;
       box_shadow: string;
       box_shadow_card?: string;
+      cardGlow?: string;
+      cardGlowHover?: string;
     };
   }
 }

@@ -6,25 +6,25 @@ export const ProjectCard = styled.a`
   padding: 2rem;
   border-radius: 12px;
   background: ${({ theme }) => theme.colors.botton} !important;
-  border: 1px solid ${({ theme }) => theme.colors.primary}33;
+  border: 1px solid ${({ theme }) => theme.colors.border};
   box-shadow: ${({ theme }) => theme.config.box_shadow_card || theme.config.box_shadow};
-  backdrop-filter: saturate(120%) blur(2px);
+  backdrop-filter: saturate(180%) blur(10px);
   text-decoration: none;
   color: ${({ theme }) => theme.colors.text};
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   min-height: 220px;
   position: relative;
   z-index: 1;
 
   h4 {
-    font-size: 1.15rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.25rem;
     font-weight: 700;
     margin-top: 0.5rem;
     margin-bottom: 1rem;
     color: ${({ theme }) => theme.colors.primary};
     transition: color 0.3s ease;
-    font-family: 'Roboto', Arial, sans-serif;
     line-height: 1.4;
   }
 
@@ -39,8 +39,8 @@ export const ProjectCard = styled.a`
   }
 
   &:hover {
-    transform: translateY(-8px);
-    box-shadow: ${({ theme }) => theme.config.box_shadow_card || theme.config.box_shadow};
+    transform: translateY(-10px);
+    box-shadow: ${({ theme }) => theme.config.cardGlowHover};
     border-color: ${({ theme }) => theme.colors.primary};
     z-index: 2;
 

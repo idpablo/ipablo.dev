@@ -30,7 +30,7 @@ export const darkTheme: Theme = {
     links: '#9B8CFF',
     botton: '#120A2A',
     card: '#120A2A',
-    border: 'rgba(255,255,255,0.04)',
+    border: 'rgba(255,255,255,0.08)',
     primary: '#9B8CFF',
     primaryHover: '#7D63FF',
     textHover: '#0B0620',
@@ -40,9 +40,9 @@ export const darkTheme: Theme = {
     opacityPrimary: '0.6',
     opacitySecondary: '0',
     box_shadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
-    box_shadow_card: '0 10px 40px rgba(0, 0, 0, 0.6)',
-    cardGlow: '0 4px 10px rgba(0, 0, 0, 0.4)',
-    cardGlowHover: '0 8px 18px rgba(0, 0, 0, 0.5)',
+    box_shadow_card: '0 10px 40px rgba(0, 0, 0, 0.4)',
+    cardGlow: '0 4px 15px rgba(155, 140, 255, 0.15)',
+    cardGlowHover: '0 8px 25px rgba(155, 140, 255, 0.25)',
   },
 };
 

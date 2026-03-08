@@ -2,9 +2,9 @@ name: CI & Deploy
 
 on:
   push:
-    branches: [main]
+    branches: [main, design-staging]
   pull_request:
-    branches: [main]
+    branches: [main, design-staging]
   workflow_dispatch:
 
 jobs:
@@ -51,14 +51,14 @@ jobs:
         run: npm run build
 
       - name: Upload build artifact
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/design-staging'
         uses: actions/upload-pages-artifact@v3
         with:
           path: build
 
   deploy:
     needs: build
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/design-staging'
     runs-on: ubuntu-latest
 
     permissions:

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Project } from '@core/types';
 import { useLanguage } from '@core/i18n';
 import { ProjectCard } from './Card.styles';
-import { DashboardProjects } from '../../pages/Home/Home.styles';
+import { DashboardProjects, AnimatedProjectCard } from '../../pages/Home/Home.styles';
 
 interface ProjectCardCarouselProps {
   projects: Project[];
@@ -145,20 +145,21 @@ const ProjectCardCarousel: React.FC<ProjectCardCarouselProps> = ({
   return (
     <DashboardProjects ref={elementRef}>
       {duplicatedProjects.map((project, index) => (
-        <ProjectCard
-          key={`${project.id}-${index}`}
-          as="button"
-          onClick={(e: React.MouseEvent) => onProjectClick(project, e)}
-          style={{ cursor: 'pointer', background: 'none', border: 'none', padding: 0 }}
-        >
-          <h4>{project.name}</h4>
-          <p>{getProjectDescription(project)}</p>
-          {project.language && (
-            <p style={{ fontSize: '0.8rem', opacity: 0.6 }}>
-              {t.home.languageIcon} {project.language}
-            </p>
-          )}
-        </ProjectCard>
+        <AnimatedProjectCard key={`${project.id}-${index}`} delay={(index % projects.length) * 0.1}>
+          <ProjectCard
+            as="button"
+            onClick={(e: React.MouseEvent) => onProjectClick(project, e)}
+            style={{ cursor: 'pointer', background: 'none', border: 'none', padding: 0 }}
+          >
+            <h4>{project.name}</h4>
+            <p>{getProjectDescription(project)}</p>
+            {project.language && (
+              <p style={{ fontSize: '0.8rem', opacity: 0.6 }}>
+                {t.home.languageIcon} {project.language}
+              </p>
+            )}
+          </ProjectCard>
+        </AnimatedProjectCard>
       ))}
     </DashboardProjects>
   );
