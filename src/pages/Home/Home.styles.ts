@@ -1,4 +1,16 @@
-import styled from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
+import { sway, seaSway, wave } from '../../core/theme/animations';
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 export const HomeStyled = styled.div`
   display: flex;
@@ -19,9 +31,9 @@ export const DashboardContainer = styled.div`
   justify-content: space-between;
   gap: 5rem;
   width: 100%;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 3rem;
+  padding: 0 2rem;
   overflow: visible;
   position: relative;
   flex: 1;
@@ -44,7 +56,8 @@ export const DashboardInfo = styled.div`
   padding-right: 2rem;
 
   h2 {
-    font-size: 2.2rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.8rem;
     font-weight: 700;
     margin-bottom: 2rem;
     background: linear-gradient(135deg, ${({ theme }) => theme.colors.primary}, ${({ theme }) => theme.colors.primaryHover});
@@ -96,11 +109,33 @@ export const DashboardProjects = styled.div`
   }
   
   scrollbar-width: none;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(to top, ${({ theme }) => theme.colors.background}, transparent);
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0.8;
+  }
 
   @media (max-width: 992px) {
     gap: 1.5rem;
     max-height: none;
     padding-left: 0;
     padding-right: 0;
+    
+    &::after {
+      display: none;
+    }
   }
+`;
+
+export const AnimatedProjectCard = styled.div<{ delay: number }>`
+  animation: ${fadeIn} 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation-delay: ${({ delay }) => delay}s;
 `;
