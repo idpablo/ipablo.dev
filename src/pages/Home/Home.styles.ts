@@ -1,5 +1,4 @@
-import styled, { keyframes, css } from 'styled-components';
-import { sway, seaSway, wave } from '../../core/theme/animations';
+import styled, { keyframes } from 'styled-components';
 
 const fadeIn = keyframes`
   from {
